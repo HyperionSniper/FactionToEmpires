@@ -14,7 +14,7 @@
   <RoyalTitleDef ParentName="BaseOutlanderTitle">
     <defName>f2e_Honorary</defName>
     <label>honorary</label>
-    <description>The title of honorary is used by the outlanders to signify respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlander union.\n\nWith the title comes promise of material assistance as repayment.</description>
+    <description>The title of honorary is used by the outlanders to signify respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlander union.\n\nWith the title comes promise of material assistance or light combat support as repayment.</description>
     <seniority>0</seniority>
     <favorCost>1</favorCost>
     <permitPointsAwarded>1</permitPointsAwarded>
@@ -29,18 +29,17 @@
   <RoyalTitleDef ParentName="BaseOutlanderTitle">
     <defName>f2e_Dignitary</defName>
     <label>dignitary</label>
-    <description>The title of dignitary is used by the outlanders to further distinguish respected individuals. The title is offered to anyone, citizen or outlander, who acts with honor in the eyes of the outlanders in a manner far exceeding that which would be expected from an honorary.\n\nA dignitary may request personal protection from a mercenary group in times of need - a privilege normally restricted to union members or paying customers.</description>
+    <description>The title of dignitary is used by the outlanders to further distinguish respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlanders in a manner far exceeding that which would be expected from an honorary.\n\nA dignitary, unlike an honorary, may request immediate personal protection from an elite mercenary group in times of need - a privilege normally restricted to union members or paying customers.</description>
     <seniority>100</seniority>
     <favorCost>12</favorCost>
     <changeHeirQuestPoints>1200</changeHeirQuestPoints>
     <allowDignifiedMeditationFocus>False</allowDignifiedMeditationFocus>
     <commonality>1</commonality>
     <canBeInherited>True</canBeInherited>
-    <permitPointsAwarded>1</permitPointsAwarded>
+    <permitPointsAwarded>2</permitPointsAwarded>
     <permits>
       <li>TradeSettlement</li>
       <li>TradeCaravan</li>
-      <li>TradeOrbital</li>
     </permits>
   </RoyalTitleDef>
 
@@ -53,7 +52,6 @@
     <permits>
       <li>TradeSettlement</li>
       <li>TradeCaravan</li>
-      <li>TradeOrbital</li>
     </permits>
     <requiredApparel>
       <li>
@@ -243,7 +241,8 @@
     <permits>
       <li>TradeSettlement</li>
       <li>TradeCaravan</li>
-      <li>TradeOrbital</li>
+      <li>f2e_Outlander_CallMilitaryAidSmall</li>
+      <li>f2e_Outlander_CallMilitaryAidLarge</li>
     </permits>
     <requiredApparel>
       <li>
