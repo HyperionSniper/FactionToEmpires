@@ -93,27 +93,28 @@ namespace empireMaker
 
             RoyalTitlePermitDef def;
 
-            if (EmpireHelpers.IsUnmoddedFaction(factionDef.defName)) {
-                // even if it's unmodded, we still need to set the faction
-                def = GenerateBasePermitDef(settings, factionDef, derivedFrom);
+            def = GenerateBasePermitDef(settings, factionDef, derivedFrom);
 
-                def.royalAid = new RoyalAid {
-                    favorCost = derivedFrom.royalAid.favorCost,
-                    pawnKindDef = derivedFrom.royalAid.pawnKindDef,
-                    pawnCount = derivedFrom.royalAid.pawnCount,
-                };
-            }
-            else {
-                def = GenerateBasePermitDef(settings, factionDef, derivedFrom);
+            int combatPower = (tier == 0) ? BaseCombatPower : ScaledCombatPower * (tier + 1);
 
-                int combatPower = (tier == 0) ? BaseCombatPower : ScaledCombatPower * (tier + 1);
+            def.royalAid = new RoyalAid {
+                favorCost = derivedFrom.royalAid.favorCost,
+                pawnKindDef = permitPawns[tier],
+                pawnCount = Mathf.RoundToInt(combatPower / permitPawns[tier].combatPower)
+            };
 
-                def.royalAid = new RoyalAid {
-                    favorCost = derivedFrom.royalAid.favorCost,
-                    pawnKindDef = permitPawns[tier],
-                    pawnCount = Mathf.RoundToInt(combatPower / permitPawns[tier].combatPower)
-                };
-            }
+            //if (EmpireHelpers.IsUnmoddedFaction(factionDef.defName)) {
+            //    // even if it's unmodded, we still need to set the faction
+            //    def = GenerateBasePermitDef(settings, factionDef, derivedFrom);
+
+            //    def.royalAid = new RoyalAid {
+            //        favorCost = derivedFrom.royalAid.favorCost,
+            //        pawnKindDef = derivedFrom.royalAid.pawnKindDef,
+            //        pawnCount = derivedFrom.royalAid.pawnCount,
+            //    };
+            //}
+            //else {
+            //}
 
             return def;
         }
