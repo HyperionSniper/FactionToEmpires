@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ============== Empire titles - Player gettable non-psycaster ============================= -->
+
+  <RoyalTitleDef Abstract="True" Name="BaseOutlanderTitle" >
+    <tags>
+      <li>OutlanderTitle</li>
+    </tags>
+    <awardThought>GainedTitle</awardThought>
+    <lostThought>LostTitle</lostThought>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseOutlanderTitle">
+    <defName>f2e_Honorary</defName>
+    <label>honorary</label>
+    <description>The title of honorary is used by the outlanders to signify respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlander union.\n\nWith the title comes promise of material assistance as repayment.</description>
+    <seniority>0</seniority>
+    <favorCost>1</favorCost>
+    <permitPointsAwarded>1</permitPointsAwarded>
+    <changeHeirQuestPoints>1000</changeHeirQuestPoints>
+    <commonality>1</commonality>
+    <allowDignifiedMeditationFocus>False</allowDignifiedMeditationFocus>
+    <awardWorkerClass>RoyalTitleAwardWorker_Instant</awardWorkerClass>
+  </RoyalTitleDef>
+
+  <!-- ============== Empire titles - Player gettable psycaster ============================= -->
+
+  <RoyalTitleDef ParentName="BaseOutlanderTitle">
+    <defName>f2e_Dignitary</defName>
+    <label>dignitary</label>
+    <description>The title of dignitary is used by the outlanders to further distinguish respected individuals. The title is offered to anyone, citizen or outlander, who acts with honor in the eyes of the outlanders in a manner far exceeding that which would be expected from an honorary.\n\nA dignitary may request personal protection from a mercenary group in times of need - a privilege normally restricted to union members or paying customers.</description>
+    <seniority>100</seniority>
+    <favorCost>12</favorCost>
+    <changeHeirQuestPoints>1200</changeHeirQuestPoints>
+    <allowDignifiedMeditationFocus>False</allowDignifiedMeditationFocus>
+    <commonality>1</commonality>
+    <canBeInherited>True</canBeInherited>
+    <permitPointsAwarded>1</permitPointsAwarded>
+    <permits>
+      <li>TradeSettlement</li>
+      <li>TradeCaravan</li>
+      <li>TradeOrbital</li>
+    </permits>
+  </RoyalTitleDef>
+
+  <!-- ============== Empire titles - NPC only psycaster ============================= -->
+
+
+  <RoyalTitleDef Abstract="True" Name="BaseOutlanderCouncilTitleNPC" ParentName="BaseOutlanderTitle" >
+    <minExpectation>Moderate</minExpectation>
+    <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
+    <permits>
+      <li>TradeSettlement</li>
+      <li>TradeCaravan</li>
+      <li>TradeOrbital</li>
+    </permits>
+    <requiredApparel>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>Torso</li>
+        </bodyPartGroupsMatchAny>
+        <requiredTags>
+          <li>RoyalTier2</li>
+        </requiredTags>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>Psychic</li>
+        </allowedTags>
+      </li>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>Torso</li>
+        </bodyPartGroupsMatchAny>
+        <requiredTags>
+          <li>RoyalTier5</li>
+        </requiredTags>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>Psychic</li>
+        </allowedTags>
+      </li>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>Torso</li>
+        </bodyPartGroupsMatchAny>
+        <requiredTags>
+          <li>RoyalTier6</li>
+        </requiredTags>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>Psychic</li>
+        </allowedTags>
+      </li>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>UpperHead</li>
+          <li>FullHead</li>
+        </bodyPartGroupsMatchAny>
+        <requiredTags>
+          <li>RoyalTier7</li>
+        </requiredTags>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>Psychic</li>
+        </allowedTags>
+      </li>
+    </requiredApparel>
+    <throneRoomRequirements>
+      <li Class="RoomRequirement_Area">
+        <area>30</area>
+      </li>
+      <li Class="RoomRequirement_Impressiveness">
+        <impressiveness>60</impressiveness>
+      </li>
+      <li Class="RoomRequirement_TerrainWithTags">
+        <labelKey>RoomRequirementAllFloored</labelKey>
+        <tags>
+          <li>Floor</li>
+          <li>FineFloor</li>
+        </tags>
+      </li>
+      <li Class="RoomRequirement_ThingAnyOfCount">
+        <things>
+          <li>Brazier</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">DarklightBrazier</li>
+        </things>
+        <count>2</count>
+      </li>
+      <li Class="RoomRequirement_ThingCount">
+        <thingDef>Shelf</thingDef>
+        <count>1</count>
+      </li>
+      <li Class="RoomRequirement_ThingCount">
+        <thingDef>Column</thingDef>
+        <count>4</count>
+      </li>
+      <li Class="RoomRequirement_AllThingsAnyOfAreGlowing">
+        <labelKey>RoomRequirementAllBraziersMustBeLit</labelKey>
+        <things>
+          <li>Brazier</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">DarklightBrazier</li>
+        </things>
+      </li>
+      <li Class="RoomRequirement_ForbiddenBuildings">
+        <labelKey>RoomRequirementNoProductionFacilities</labelKey>
+        <buildingTags><li>Production</li></buildingTags>
+      </li>
+      <li Class="RoomRequirement_ForbiddenBuildings">
+        <labelKey>RoomRequirementNoBeds</labelKey>
+        <buildingTags><li>Bed</li></buildingTags>
+      </li>
+    </throneRoomRequirements>
+    <bedroomRequirements>
+      <li Class="RoomRequirement_Area">
+        <area>20</area>
+      </li>
+      <li Class="RoomRequirement_Impressiveness">
+        <impressiveness>40</impressiveness>
+      </li>
+      <li Class="RoomRequirement_TerrainWithTags">
+        <labelKey>RoomRequirementAllFloored</labelKey>
+        <tags>
+          <li>Floor</li>
+          <li>FineFloor</li>
+        </tags>
+      </li>
+      <li Class="RoomRequirement_ThingAnyOf">
+        <disablingPrecepts>
+          <li MayRequire="Ludeon.RimWorld.Ideology">SlabBed_Preferred</li>
+        </disablingPrecepts>
+        <things>
+          <li>DoubleBed</li>
+          <li>RoyalBed</li>
+        </things>
+      </li>
+      <li Class="RoomRequirement_Thing">
+        <thingDef>EndTable</thingDef>
+      </li>
+      <li Class="RoomRequirement_Thing">
+        <thingDef>Dresser</thingDef>
+      </li>
+      <li Class="RoomRequirement_ForbiddenBuildings">
+        <labelKey>RoomRequirementNoProductionFacilities</labelKey>
+        <buildingTags><li>Production</li></buildingTags>
+      </li>
+    </bedroomRequirements>
+    <foodRequirement>
+      <minQuality>MealFine</minQuality>
+      <allowedTypes>Processed, Liquor</allowedTypes>
+      <allowedDefs>
+        <li>Ambrosia</li>
+        <li>Milk</li>
+        <li>RawBerries</li>
+        <li>InsectJelly</li>
+      </allowedDefs>
+    </foodRequirement>
+    <grantedAbilities><li>Speech</li></grantedAbilities>
+    <speechCooldown>600000</speechCooldown>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseOutlanderCouncilTitleNPC">
+    <defName>f2e_Councilor</defName>
+    <label>councilman</label>
+    <labelFemale>councilwoman</labelFemale>
+    <description>A low-level member of the administration of an outlander faction.\n\nIn the outlander factions, groups of councilors help manage towns and cities.</description>
+    <seniority>700</seniority>
+    <commonality>0.7</commonality>
+    <recruitmentResistanceOffset>125</recruitmentResistanceOffset>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseOutlanderCouncilTitleNPC">
+    <defName>f2e_Governor</defName>
+    <label>governor</label>
+    <description>A middle-level member of the administration of an outlander faction.\n\nIn the outlander factions, governors control and manage towns and cities.</description>
+    <seniority>800</seniority>
+    <commonality>0.2</commonality>
+    <recruitmentResistanceOffset>125</recruitmentResistanceOffset>
+    <maxPsylinkLevel>2</maxPsylinkLevel>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseOutlanderCouncilTitleNPC">
+    <defName>f2e_PrimeCouncilor</defName>
+    <label>prime councilor</label>
+    <description>The highest level of administrator within an outlander faction. The Prime Councilor controls all the colonies united under their flag, and projects force.</description>
+    <seniority>1000</seniority>
+    <commonality>0</commonality>
+    <maxPsylinkLevel>6</maxPsylinkLevel>
+  </RoyalTitleDef>
+
+  <!-- ============== Empire titles - NPC only mercenary ============================= -->
+  
+
+  <RoyalTitleDef Abstract="True" Name="BaseOutlanderMercenaryTitleNPC" >
+    <tags>
+      <li>OutlanderMercenaryTitle</li>
+    </tags>
+    <awardThought>GainedTitle</awardThought>
+    <lostThought>LostTitle</lostThought>
+	
+    <minExpectation>Moderate</minExpectation>
+    <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
+    <permits>
+      <li>TradeSettlement</li>
+      <li>TradeCaravan</li>
+      <li>TradeOrbital</li>
+    </permits>
+    <requiredApparel>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>Torso</li>
+        </bodyPartGroupsMatchAny>
+        <requiredTags>
+          <li>RoyalTier2</li>
+        </requiredTags>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>CombatGear</li>
+        </allowedTags>
+      </li>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>Torso</li>
+        </bodyPartGroupsMatchAny>
+        <requiredTags>
+          <li>RoyalTier5</li>
+        </requiredTags>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>CombatGear</li>
+        </allowedTags>
+      </li>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>Torso</li>
+        </bodyPartGroupsMatchAny>
+        <requiredTags>
+          <li>RoyalTier6</li>
+        </requiredTags>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>CombatGear</li>
+        </allowedTags>
+      </li>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>UpperHead</li>
+          <li>FullHead</li>
+        </bodyPartGroupsMatchAny>
+        <requiredTags>
+          <li>RoyalTier7</li>
+        </requiredTags>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>CombatGear</li>
+        </allowedTags>
+      </li>
+    </requiredApparel>
+    <bedroomRequirements>
+      <li Class="RoomRequirement_Area">
+        <area>20</area>
+      </li>
+      <li Class="RoomRequirement_Impressiveness">
+        <impressiveness>40</impressiveness>
+      </li>
+      <li Class="RoomRequirement_TerrainWithTags">
+        <labelKey>RoomRequirementAllFloored</labelKey>
+        <tags>
+          <li>Floor</li>
+          <li>FineFloor</li>
+        </tags>
+      </li>
+      <li Class="RoomRequirement_ThingAnyOf">
+        <disablingPrecepts>
+          <li MayRequire="Ludeon.RimWorld.Ideology">SlabBed_Preferred</li>
+        </disablingPrecepts>
+        <things>
+          <li>DoubleBed</li>
+          <li>RoyalBed</li>
+        </things>
+      </li>
+      <li Class="RoomRequirement_Thing">
+        <thingDef>EndTable</thingDef>
+      </li>
+      <li Class="RoomRequirement_Thing">
+        <thingDef>Dresser</thingDef>
+      </li>
+      <li Class="RoomRequirement_ForbiddenBuildings">
+        <labelKey>RoomRequirementNoProductionFacilities</labelKey>
+        <buildingTags><li>Production</li></buildingTags>
+      </li>
+    </bedroomRequirements>
+    <grantedAbilities><li>Speech</li></grantedAbilities>
+    <speechCooldown>600000</speechCooldown>
+  </RoyalTitleDef>
+  
+  <RoyalTitleDef ParentName="BaseOutlanderMercenaryTitleNPC">
+    <defName>f2e_MercenaryElite</defName>
+    <label>mercenary elite</label>
+    <description>The title of elite is granted to some of the most skilled mercenaries in the outlander unions. An elite mercenary may lead their own squad.\n\nElite mercenaries are afforded powerful equipment, including armor, weaponry, and combat enhancing drugs.</description>
+    <seniority>500</seniority>
+    <commonality>0.6</commonality>
+    <recruitmentResistanceOffset>150</recruitmentResistanceOffset>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseOutlanderMercenaryTitleNPC">
+    <defName>f2e_MercenaryBoss</defName>
+    <label>mercenary boss</label>
+    <description>Outlander mercenary groups grant the title of boss to veteran mercenaries who have proven themselves in battle time and time again. They control large platoons of mercenaries and are afforded the best equipment available.</description>
+    <seniority>600</seniority>
+    <commonality>0.2</commonality>
+    <recruitmentResistanceOffset>200</recruitmentResistanceOffset>
+    <replaceOnRecruited>Consul</replaceOnRecruited>
+  </RoyalTitleDef>
+  
+</Defs>

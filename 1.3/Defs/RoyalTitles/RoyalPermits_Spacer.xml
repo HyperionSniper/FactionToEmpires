@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!-- ============================= Faction permits ============================= -->
+
+  <!-- Econ -->
+
+  <RoyalTitlePermitDef Name="DropResourcesBase" Abstract="True">
+    <workerClass>RoyalTitlePermitWorker_DropResources</workerClass>
+    <permitPointCost>1</permitPointCost>
+    <cooldownDays>45</cooldownDays>
+    <usableOnWorldMap>true</usableOnWorldMap>
+    <faction>None</faction>
+    <royalAid>
+      <targetingRange>39.9</targetingRange>
+    </royalAid>
+  </RoyalTitlePermitDef>
+  
+  <RoyalTitlePermitDef ParentName="DropResourcesBase">
+    <defName>f2e_SteelDrop</defName>
+    <label>steel drop</label>
+    <description>Call for a drop of 120 steel.</description>
+    <minTitle>Honorary</minTitle>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(0,0)</uiPosition>
+    <royalAid>
+      <itemsToDrop>
+        <Steel>120</Steel>
+      </itemsToDrop>
+      <favorCost>2</favorCost>
+    </royalAid>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef ParentName="DropResourcesBase">
+    <defName>f2e_FoodDrop</defName>
+    <label>food drop</label>
+    <description>Call for a drop of 20 packaged survival meals.</description>
+    <minTitle>Honorary</minTitle>
+    <uiPosition>(0,1)</uiPosition>
+    <royalAid>
+      <itemsToDrop>
+        <MealSurvivalPack>20</MealSurvivalPack>
+      </itemsToDrop>
+      <favorCost>2</favorCost>
+    </royalAid>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef ParentName="DropResourcesBase">
+    <defName>f2e_SilverDrop</defName>
+    <label>silver drop</label>
+    <description>Call for a drop of 250 silver.</description>
+    <minTitle>Honorary</minTitle>
+    <uiPosition>(0,4)</uiPosition>
+    <royalAid>
+      <itemsToDrop>
+        <Silver>250</Silver>
+      </itemsToDrop>
+      <favorCost>2</favorCost>
+    </royalAid>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_CallLaborerTeam</defName>
+    <label>call laborer team</label>
+    <description>Call a group of 4 laborers to assist you for 4 days. These workers can only do general labor tasks. You can control them as though they were your own colonists. You are required to keep them safe.</description>
+    <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
+    <minTitle>Dignitary</minTitle>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(0,2)</uiPosition>
+    <royalAid>
+      <favorCost>4</favorCost>
+      <pawnKindDef>Empire_Common_Laborer</pawnKindDef>
+      <pawnCount>4</pawnCount>
+      <aidDurationDays>4</aidDurationDays>
+    </royalAid>
+    <cooldownDays>60</cooldownDays>
+  </RoyalTitlePermitDef>
+
+  <!-- Combat -->
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_CallMilitaryAidSmall</defName>
+    <label>call mercenary squad</label>
+    <description>Call a group of 4 light mercenaries to aid you in battle.</description>
+    <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
+    <minTitle>Dignitary</minTitle>
+    <faction>None</faction>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(0,3)</uiPosition>
+    <royalAid>
+      <favorCost>4</favorCost>
+      <pawnKindDef>Town_Guard</pawnKindDef>
+      <pawnCount>4</pawnCount>
+      <targetingRange>39.9</targetingRange>
+    </royalAid>
+    <cooldownDays>40</cooldownDays>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_CallMilitaryAidLarge</defName>
+    <label>call elite mercenary squad</label>
+    <description>Call a group of 4 elite mercenaries to aid you in battle.</description>
+    <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
+    <minTitle>Dignitary</minTitle>
+    <faction>None</faction>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(0,7)</uiPosition>
+    <royalAid>
+      <favorCost>6</favorCost>
+      <pawnKindDef>Empire_Fighter_Janissary</pawnKindDef>
+      <pawnCount>4</pawnCount>
+      <targetingRange>39.9</targetingRange>
+    </royalAid>
+    <cooldownDays>50</cooldownDays>
+  </RoyalTitlePermitDef>
+  
+  <!--<RoyalTitlePermitDef>
+    <defName>f2e_CallArtilleryStrike</defName>
+    <label>call artillery strike</label>
+    <description>Call an artillery bombardment at a target position.</description>
+    <workerClass>F2e_RoyalTitlePermitWorker_ArtilleryStrike</workerClass>
+    <minTitle>Dignitary</minTitle>
+    <faction>Empire</faction>
+    <permitPointCost>1</permitPointCost>
+    <cooldownDays>45</cooldownDays>
+    <uiPosition>(0,5)</uiPosition>
+    <royalAid>
+      <favorCost>6</favorCost>
+      <targetingRange>44.9</targetingRange>
+      <radius>2.9</radius>
+      <explosionRadiusRange>7.9</explosionRadiusRange>
+      <explosionCount>1</explosionCount>
+      <intervalTicks>60</intervalTicks>
+      <warmupTicks>120</warmupTicks>
+    </royalAid>
+  </RoyalTitlePermitDef> -->
+  
+  <!-- Utility -->
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_CallTransportShuttle</defName>
+    <label>call transport shuttle</label>
+    <description>Call a shuttle for your own use. It will transport colonists, items, and animals anywhere you like within 70 world tiles.</description>
+    <workerClass>RoyalTitlePermitWorker_CallShuttle</workerClass>
+    <minTitle>Dignitary</minTitle>
+    <faction>None</faction>
+    <permitPointCost>1</permitPointCost>
+    <cooldownDays>60</cooldownDays>
+    <usableOnWorldMap>true</usableOnWorldMap>
+    <uiPosition>(0,6)</uiPosition>
+    <royalAid>
+      <favorCost>4</favorCost>
+      <targetingRange>44.9</targetingRange>
+      <targetingRequireLOS>false</targetingRequireLOS>
+    </royalAid>
+  </RoyalTitlePermitDef>
+  
+</Defs>
