@@ -163,8 +163,8 @@ namespace empireMaker {
                 //CopyEmpirePermits(factionDef, permitPawns);
                 // -- or --
 
-                if (!GenerateCombatPermits(settings, factionDef, techLevel, fighterPawns)) {
-                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed permit conversion.");
+                if (!GenerateTradeAndMilitaryPermits(settings, factionDef, techLevel, fighterPawns)) {
+                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed combat permit generation.");
                     // keep converting anyways, but will probably be bugged
                 }
 

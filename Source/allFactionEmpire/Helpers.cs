@@ -52,5 +52,16 @@ namespace empireMaker {
         public static bool IsUnmoddedFaction(string defName) {
             return unmoddedFactionDefNames.Contains(defName);
         }
+
+        static Dictionary<TechLevel, string> permitMaps = new Dictionary<TechLevel, string>() {
+            { TechLevel.Neolithic, "f2e_Tribal_" },
+            { TechLevel.Medieval, "f2e_Medieval_" },
+            { TechLevel.Industrial, "f2e_Outlander_" },
+            { TechLevel.Spacer, "f2e_Spacer_" },
+            { TechLevel.Ultra, "f2e_Spacer_" },
+        };
+        public static string GetDefNamePrefix(TechLevel techLevel) {
+            return permitMaps[techLevel];
+        }
     }
 }

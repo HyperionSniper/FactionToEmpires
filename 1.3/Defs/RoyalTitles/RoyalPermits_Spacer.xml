@@ -16,7 +16,7 @@
   </RoyalTitlePermitDef>
   
   <RoyalTitlePermitDef ParentName="DropResourcesBase">
-    <defName>f2e_SteelDrop</defName>
+    <defName>f2e_Spacer_SteelDrop</defName>
     <label>steel drop</label>
     <description>Call for a drop of 120 steel.</description>
     <minTitle>Honorary</minTitle>
@@ -31,7 +31,7 @@
   </RoyalTitlePermitDef>
 
   <RoyalTitlePermitDef ParentName="DropResourcesBase">
-    <defName>f2e_FoodDrop</defName>
+    <defName>f2e_Spacer_FoodDrop</defName>
     <label>food drop</label>
     <description>Call for a drop of 20 packaged survival meals.</description>
     <minTitle>Honorary</minTitle>
@@ -45,7 +45,7 @@
   </RoyalTitlePermitDef>
 
   <RoyalTitlePermitDef ParentName="DropResourcesBase">
-    <defName>f2e_SilverDrop</defName>
+    <defName>f2e_Spacer_SilverDrop</defName>
     <label>silver drop</label>
     <description>Call for a drop of 250 silver.</description>
     <minTitle>Honorary</minTitle>
@@ -59,7 +59,7 @@
   </RoyalTitlePermitDef>
 
   <RoyalTitlePermitDef>
-    <defName>f2e_CallLaborerTeam</defName>
+    <defName>f2e_Spacer_CallLaborerTeam</defName>
     <label>call laborer team</label>
     <description>Call a group of 4 laborers to assist you for 4 days. These workers can only do general labor tasks. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
@@ -78,7 +78,7 @@
   <!-- Combat -->
 
   <RoyalTitlePermitDef>
-    <defName>f2e_CallMilitaryAidSmall</defName>
+    <defName>f2e_Spacer_CallMilitaryAidSmall</defName>
     <label>call mercenary squad</label>
     <description>Call a group of 4 light mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
@@ -96,7 +96,7 @@
   </RoyalTitlePermitDef>
 
   <RoyalTitlePermitDef>
-    <defName>f2e_CallMilitaryAidLarge</defName>
+    <defName>f2e_Spacer_CallMilitaryAidLarge</defName>
     <label>call elite mercenary squad</label>
     <description>Call a group of 4 elite mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
@@ -137,7 +137,7 @@
   <!-- Utility -->
 
   <RoyalTitlePermitDef>
-    <defName>f2e_CallTransportShuttle</defName>
+    <defName>f2e_Spacer_CallTransportShuttle</defName>
     <label>call transport shuttle</label>
     <description>Call a shuttle for your own use. It will transport colonists, items, and animals anywhere you like within 70 world tiles.</description>
     <workerClass>RoyalTitlePermitWorker_CallShuttle</workerClass>

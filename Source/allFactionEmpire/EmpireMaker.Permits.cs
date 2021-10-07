@@ -13,64 +13,56 @@ namespace empireMaker
             public string prefix;
         }
 
-        static Dictionary<TechLevel, Permit> permitMaps = new Dictionary<TechLevel, Permit>() {
-            {
-                TechLevel.Neolithic,
-                new Permit() {
-                    prefix = "f2e_Tribal_"
-                }
-            },
-            {
-                TechLevel.Medieval,
-                new Permit() {
-                    prefix = "f2e_Medieval_"
-                }
-            },
-            {
-                TechLevel.Industrial,
-                new Permit() {
-                    prefix = "f2e_Outlander_"
-                }
-            },
-            {
-                TechLevel.Spacer,
-                new Permit() {
-                    prefix = "f2e_Spacer_"
-                }
-            },
-            {
-                TechLevel.Ultra,
-                new Permit() {
-                    prefix = "f2e_Spacer_"
-                }
-            },
-        };
-
         private static RoyalTitlePermitDef s_callMilitaryAidSmall;
         private static RoyalTitlePermitDef s_callMilitaryAidLarge;
         private static RoyalTitlePermitDef s_callMilitaryAidGrand;
 
-        public static bool GenerateCombatPermits(ConversionSettings settings, FactionDef factionDef,
+        private static RoyalTitlePermitDef s_tradeSettlement;
+        private static RoyalTitlePermitDef s_tradeCaravan;
+        private static RoyalTitlePermitDef s_tradeOrbital;
+
+        private const int BaseCombatPower = 240;
+        private const int ScaledCombatPower = 300;
+
+        public static bool GenerateTradeAndMilitaryPermits(ConversionSettings settings, FactionDef factionDef,
             TechLevel techLevel, List<PawnKindDef> fighterPawns)
         {
             // by the time this is run, factiondef should be one of the valid techlevels.
 
-            s_callMilitaryAidSmall ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("CallMilitaryAidSmall");
-            s_callMilitaryAidLarge ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("CallMilitaryAidLarge");
-            s_callMilitaryAidGrand ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("CallMilitaryAidGrand");
+            var p = EmpireHelpers.GetDefNamePrefix(techLevel);
 
-            if (permitMaps.ContainsKey(techLevel)) {
-                // TODO: add settings for permits
-                var militarySmall = GenerateCombatPermitDef(settings, factionDef, techLevel, 0, s_callMilitaryAidSmall, fighterPawns);
-                var militaryLarge = GenerateCombatPermitDef(settings, factionDef, techLevel, 0, s_callMilitaryAidLarge, fighterPawns);
-                var militaryGrand = GenerateCombatPermitDef(settings, factionDef, techLevel, 0, s_callMilitaryAidGrand, fighterPawns);
+            // modify premade permitdefs.
+            s_callMilitaryAidSmall ??= DefDatabase<RoyalTitlePermitDef>.GetNamed(p + "CallMilitaryAidSmall");
+            s_callMilitaryAidLarge ??= DefDatabase<RoyalTitlePermitDef>.GetNamed(p + "CallMilitaryAidLarge");
+            s_callMilitaryAidGrand ??= DefDatabase<RoyalTitlePermitDef>.GetNamed(p + "CallMilitaryAidGrand");
 
-                if (militarySmall != s_callMilitaryAidSmall) DefDatabase<RoyalTitlePermitDef>.Add(militarySmall);
-                if (militaryLarge != s_callMilitaryAidSmall) DefDatabase<RoyalTitlePermitDef>.Add(militaryLarge);
-                if (militaryGrand != s_callMilitaryAidSmall) DefDatabase<RoyalTitlePermitDef>.Add(militaryGrand);
-            }
-            else {
-                return false;
+            s_tradeSettlement ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeSettlement");
+            s_tradeCaravan ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeCaravan");
+
+            SortPermitPawns(settings, factionDef, fighterPawns, out List<PawnKindDef> permitPawns);
+
+            // TODO: add settings for permits
+            var militarySmall = GenerateCombatPermitDef(settings, factionDef, 0, s_callMilitaryAidSmall, permitPawns);
+            var militaryLarge = GenerateCombatPermitDef(settings, factionDef, 0, s_callMilitaryAidLarge, permitPawns);
+            var militaryGrand = GenerateCombatPermitDef(settings, factionDef, 0, s_callMilitaryAidGrand, permitPawns);
+
+            var tradeSettlement = GenerateTradePermitDef(settings, factionDef, s_tradeSettlement, permitPawns);
+            var tradeCaravan = GenerateTradePermitDef(settings, factionDef, s_tradeCaravan, permitPawns);
+
+            // add permits to database if they aren't already loaded
+            if (militarySmall != s_callMilitaryAidSmall) DefDatabase<RoyalTitlePermitDef>.Add(militarySmall);
+            if (militaryLarge != s_callMilitaryAidLarge) DefDatabase<RoyalTitlePermitDef>.Add(militaryLarge);
+            if (militaryGrand != s_callMilitaryAidGrand) DefDatabase<RoyalTitlePermitDef>.Add(militaryGrand);
+
+            DefDatabase<RoyalTitlePermitDef>.Add(tradeSettlement);
+            DefDatabase<RoyalTitlePermitDef>.Add(tradeCaravan);
+
+            // if faction is at least spacer, generate orbital trade permit
+            if (techLevel >= TechLevel.Spacer) {
+                s_tradeOrbital ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeOrbital");
+                var tradeOrbital = GenerateTradePermitDef(settings, factionDef, s_tradeOrbital, permitPawns);
+
+                DefDatabase<RoyalTitlePermitDef>.Add(tradeOrbital);
             }
 
             if (debugMode) {
@@ -80,7 +72,22 @@ namespace empireMaker
             return true;
         }
 
-        public static RoyalTitlePermitDef GenerateCombatPermitDef(ConversionSettings settings, FactionDef factionDef, TechLevel techLevel, int tier, RoyalTitlePermitDef derivedFrom, List<PawnKindDef> fighterPawns)
+        public static RoyalTitlePermitDef GenerateBasePermitDef(ConversionSettings settings, FactionDef factionDef, RoyalTitlePermitDef derivedFrom)
+        {
+            RoyalTitlePermitDef def;
+
+            def = new RoyalTitlePermitDef();
+
+            def.defName = $"{derivedFrom.defName}_{factionDef.defName}";
+            def.label = derivedFrom.label;
+            def.workerClass = derivedFrom.workerClass;
+            def.workerClass = derivedFrom.workerClass;
+            def.cooldownDays = derivedFrom.cooldownDays;
+
+            return def;
+        }
+
+        public static RoyalTitlePermitDef GenerateCombatPermitDef(ConversionSettings settings, FactionDef factionDef, int tier, RoyalTitlePermitDef derivedFrom, List<PawnKindDef> permitPawns)
         {
             RoyalTitlePermitDef def;
 
@@ -88,17 +95,9 @@ namespace empireMaker
                 def = derivedFrom;
             }
             else {
-                def = new RoyalTitlePermitDef();
+                def = GenerateBasePermitDef(settings, factionDef, derivedFrom);
 
-                def.defName = $"{derivedFrom.defName}_{factionDef.defName}";
-                def.label = derivedFrom.label;
-                def.workerClass = derivedFrom.workerClass;
-                def.workerClass = derivedFrom.workerClass;
-                def.cooldownDays = derivedFrom.cooldownDays;
-
-                SortPermitPawns(settings, factionDef, fighterPawns, out List<PawnKindDef> permitPawns);
-
-                int combatPower = (tier == 0) ? 240 : 300 * (tier + 1);
+                int combatPower = (tier == 0) ? BaseCombatPower : ScaledCombatPower * (tier + 1);
 
                 def.royalAid = new RoyalAid {
                     favorCost = derivedFrom.royalAid.favorCost,
@@ -106,6 +105,18 @@ namespace empireMaker
                     pawnCount = Mathf.RoundToInt(combatPower / permitPawns[tier].combatPower)
                 };
             }
+
+            return def;
+        }
+        
+        public static RoyalTitlePermitDef GenerateTradePermitDef(ConversionSettings settings, FactionDef factionDef, RoyalTitlePermitDef derivedFrom, List<PawnKindDef> permitPawns) {
+            var def = GenerateBasePermitDef(settings, factionDef, derivedFrom);
+
+            def.royalAid = new RoyalAid {
+                favorCost = derivedFrom.royalAid.favorCost,
+                pawnKindDef = permitPawns[0],
+                pawnCount = Mathf.RoundToInt(BaseCombatPower / permitPawns[0].combatPower)
+            };
 
             return def;
         }
