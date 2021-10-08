@@ -201,16 +201,16 @@
     <defName>f2e_Councilor</defName>
     <label>councilman</label>
     <labelFemale>councilwoman</labelFemale>
-    <description>A low-level member of the administration of an outlander faction.\n\nIn the outlander factions, groups of councilors help manage towns and cities.</description>
+    <description>A low-level member of the administration of an outlander faction.\n\nIn the outlander factions, groups of councilors help manage towns and cities. A councilor may become high councilor of an existing colony through election, or found their own colony through a charter proposal.</description>
     <seniority>700</seniority>
     <commonality>0.7</commonality>
     <recruitmentResistanceOffset>125</recruitmentResistanceOffset>
   </RoyalTitleDef>
 
   <RoyalTitleDef ParentName="BaseOutlanderCouncilTitleNPC">
-    <defName>f2e_Governor</defName>
-    <label>governor</label>
-    <description>A middle-level member of the administration of an outlander faction.\n\nIn the outlander factions, governors control and manage towns and cities.</description>
+    <defName>f2e_HighCouncilor</defName>
+    <label>high councilor</label>
+    <description>A middle-level member of the administration of an outlander faction.\n\nIn the outlander factions, high councilors control and manage towns and cities, and manage chartered colonies.</description>
     <seniority>800</seniority>
     <commonality>0.2</commonality>
     <recruitmentResistanceOffset>125</recruitmentResistanceOffset>
