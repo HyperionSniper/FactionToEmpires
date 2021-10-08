@@ -63,5 +63,47 @@ namespace empireMaker {
         public static string GetDefNamePrefix(TechLevel techLevel) {
             return permitMaps[techLevel];
         }
+
+        public static RoyalTitlePermitDef CreateBasePermitDef(FactionDef factionDef, RoyalTitlePermitDef derivedFrom)
+        {
+            RoyalTitlePermitDef def;
+
+            def = new RoyalTitlePermitDef();
+
+            def.defName = $"{derivedFrom.defName}_{factionDef.defName}";
+            def.label = derivedFrom.label;
+            def.workerClass = derivedFrom.workerClass;
+            def.faction = factionDef;
+            def.cooldownDays = derivedFrom.cooldownDays;
+
+            return def;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="factionDef"></param>
+        /// <param name="derivedFrom"></param>
+        /// <returns></returns>
+        public static RoyalTitlePermitDef CreatePermitDefCopy(FactionDef factionDef, RoyalTitlePermitDef derivedFrom)
+        {
+            RoyalTitlePermitDef def;
+
+            def = new RoyalTitlePermitDef();
+
+            def.defName = $"{derivedFrom.defName}_{factionDef.defName}";
+            def.label = derivedFrom.label;
+            def.workerClass = derivedFrom.workerClass;
+            def.faction = factionDef;
+            def.cooldownDays = derivedFrom.cooldownDays;
+
+            def.royalAid = new RoyalAid {
+                favorCost = derivedFrom.royalAid.favorCost,
+                pawnKindDef = derivedFrom.royalAid.pawnKindDef,
+                pawnCount = derivedFrom.royalAid.pawnCount,
+            };
+
+            return def;
+        }
     }
 }

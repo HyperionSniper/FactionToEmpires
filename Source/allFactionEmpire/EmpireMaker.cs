@@ -134,17 +134,13 @@ namespace empireMaker {
                 //CopyEmpirePermits(factionDef, permitPawns);
                 // -- or --
 
-                if (!GenerateTradeAndMilitaryPermits(settings, factionDef, techLevel, fighterPawns)) {
-                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed combat and trade permit generation.");
+                if (!GeneratePermits(settings, factionDef, techLevel, fighterPawns, out var newPermits)) {
+                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed permit generation.");
                     // keep converting anyways, but will probably be bugged
                 }
 
-                //if (!GenerateMiscPermits(settings, factionDef, techLevel)) {
-                    
-                //}
-
                 // 커스텀 작위
-                if (!GenerateRoyalTitleDefs(settings, factionDef, royalTitleTagMap)) {
+                if (!GenerateRoyalTitleDefs(settings, factionDef, royalTitleTagMap, newPermits)) {
                     Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed royal title def generation.");
                     // keep converting anyways, but will probably be bugged
                 }

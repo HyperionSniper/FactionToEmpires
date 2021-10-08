@@ -7,11 +7,11 @@ using Verse;
 
 namespace empireMaker {
     public partial class EmpireMaker {
-        public static void GenerateLegacyEmpire(ConversionSettings settings, FactionDef factionDef) {
+        private static void GenerateLegacyEmpire(ConversionSettings settings, FactionDef factionDef) {
             
         }
 
-        public static void CopyEmpirePermits(FactionDef factionDef, List<PawnKindDef> permitPawns) {
+        private static void CopyEmpirePermits(FactionDef factionDef, List<PawnKindDef> permitPawns) {
             // 커스텀 권한 생성
 
             var tradeSettlementPermit = new RoyalTitlePermitDef();

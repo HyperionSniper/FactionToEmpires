@@ -24,17 +24,24 @@ namespace empireMaker
         private const int BaseCombatPower = 240;
         private const int ScaledCombatPower = 300;
 
-        public static bool GenerateTradeAndMilitaryPermits(ConversionSettings settings, FactionDef factionDef,
-            TechLevel techLevel, List<PawnKindDef> fighterPawns)
+        private static bool GeneratePermits(ConversionSettings settings, FactionDef factionDef,
+            TechLevel techLevel, List<PawnKindDef> fighterPawns,
+            out Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs)
         {
             // by the time this is run, factiondef should be one of the valid techlevels.
 
+            generatedPermitDefs = new Dictionary<string, RoyalTitlePermitDef>();
+
             var p = EmpireHelpers.GetDefNamePrefix(techLevel);
 
+            var aidSmallDefName = p + "CallMilitaryAidSmall";
+            var aidLargeDefName = p + "CallMilitaryAidLarge";
+            var aidGrandDefName = p + "CallMilitaryAidGrand";
+
             // modify premade permitdefs.
-            var callMilitaryAidSmall = DefDatabase<RoyalTitlePermitDef>.GetNamed(p + "CallMilitaryAidSmall", false);
-            var callMilitaryAidLarge = DefDatabase<RoyalTitlePermitDef>.GetNamed(p + "CallMilitaryAidLarge", false);
-            var callMilitaryAidGrand = DefDatabase<RoyalTitlePermitDef>.GetNamed(p + "CallMilitaryAidGrand", false);
+            var callMilitaryAidSmall = DefDatabase<RoyalTitlePermitDef>.GetNamed(aidSmallDefName, false);
+            var callMilitaryAidLarge = DefDatabase<RoyalTitlePermitDef>.GetNamed(aidLargeDefName, false);
+            var callMilitaryAidGrand = DefDatabase<RoyalTitlePermitDef>.GetNamed(aidGrandDefName, false);
 
             s_tradeSettlement ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeSettlement");
             s_tradeCaravan ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeCaravan");
@@ -50,12 +57,23 @@ namespace empireMaker
             var tradeCaravan = GenerateTradePermitDef(settings, factionDef, s_tradeCaravan, permitPawns);
 
             // add permits to database if they aren't already loaded
-            if (militarySmall != null) DefDatabase<RoyalTitlePermitDef>.Add(militarySmall);
-            if (militaryLarge != null) DefDatabase<RoyalTitlePermitDef>.Add(militaryLarge);
-            if (militaryGrand != null) DefDatabase<RoyalTitlePermitDef>.Add(militaryGrand);
+            if (militarySmall != null) {
+                DefDatabase<RoyalTitlePermitDef>.Add(militarySmall);
+                generatedPermitDefs.Add(aidSmallDefName, militarySmall);
+            }
+            if (militaryLarge != null) {
+                DefDatabase<RoyalTitlePermitDef>.Add(militaryLarge);
+                generatedPermitDefs.Add(aidLargeDefName, militaryLarge);
+            }
+            if (militaryGrand != null) {
+                DefDatabase<RoyalTitlePermitDef>.Add(militaryGrand);
+                generatedPermitDefs.Add(aidGrandDefName, militaryGrand);
+            }
 
             DefDatabase<RoyalTitlePermitDef>.Add(tradeSettlement);
             DefDatabase<RoyalTitlePermitDef>.Add(tradeCaravan);
+            generatedPermitDefs.Add("TradeSettlement", tradeSettlement);
+            generatedPermitDefs.Add("TradeCaravan", tradeCaravan);
 
             // if faction is at least spacer, generate orbital trade permit
             if (techLevel >= TechLevel.Spacer) {
@@ -63,6 +81,7 @@ namespace empireMaker
                 var tradeOrbital = GenerateTradePermitDef(settings, factionDef, s_tradeOrbital, permitPawns);
 
                 DefDatabase<RoyalTitlePermitDef>.Add(tradeOrbital);
+                generatedPermitDefs.Add("TradeOrbital", tradeOrbital);
             }
 
             if (debugMode) {
@@ -72,28 +91,13 @@ namespace empireMaker
             return true;
         }
 
-        public static RoyalTitlePermitDef GenerateBasePermitDef(ConversionSettings settings, FactionDef factionDef, RoyalTitlePermitDef derivedFrom)
-        {
-            RoyalTitlePermitDef def;
-
-            def = new RoyalTitlePermitDef();
-
-            def.defName = $"{derivedFrom.defName}_{factionDef.defName}";
-            def.label = derivedFrom.label;
-            def.workerClass = derivedFrom.workerClass;
-            def.faction = factionDef;
-            def.cooldownDays = derivedFrom.cooldownDays;
-
-            return def;
-        }
-
-        public static RoyalTitlePermitDef GenerateCombatPermitDef(ConversionSettings settings, FactionDef factionDef, int tier, RoyalTitlePermitDef derivedFrom, List<PawnKindDef> permitPawns)
+        private static RoyalTitlePermitDef GenerateCombatPermitDef(ConversionSettings settings, FactionDef factionDef, int tier, RoyalTitlePermitDef derivedFrom, List<PawnKindDef> permitPawns)
         {
             if (derivedFrom == null) return null;
 
             RoyalTitlePermitDef def;
 
-            def = GenerateBasePermitDef(settings, factionDef, derivedFrom);
+            def = EmpireHelpers.CreateBasePermitDef(factionDef, derivedFrom);
 
             int combatPower = (tier == 0) ? BaseCombatPower : ScaledCombatPower * (tier + 1);
 
@@ -118,12 +122,12 @@ namespace empireMaker
 
             return def;
         }
-        
-        public static RoyalTitlePermitDef GenerateTradePermitDef(ConversionSettings settings, FactionDef factionDef, RoyalTitlePermitDef derivedFrom, List<PawnKindDef> permitPawns)
+
+        private static RoyalTitlePermitDef GenerateTradePermitDef(ConversionSettings settings, FactionDef factionDef, RoyalTitlePermitDef derivedFrom, List<PawnKindDef> permitPawns)
         {
             if (derivedFrom == null) return null;
 
-            var def = GenerateBasePermitDef(settings, factionDef, derivedFrom);
+            var def = EmpireHelpers.CreateBasePermitDef(factionDef, derivedFrom);
 
             def.royalAid = new RoyalAid {
                 favorCost = derivedFrom.royalAid.favorCost,
