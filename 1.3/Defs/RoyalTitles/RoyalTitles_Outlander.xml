@@ -33,7 +33,7 @@
   <RoyalTitleDef ParentName="BaseOutlanderTitle">
     <defName>f2e_Dignitary</defName>
     <label>dignitary</label>
-    <description>The title of dignitary is used by the outlanders to further distinguish respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlanders in a manner far exceeding that which would be expected from an honorary.\n\nA dignitary, unlike an honorary, may request immediate personal protection from an elite mercenary group in times of need - a privilege normally restricted to union members or paying customers.</description>
+    <description>The title of dignitary is used by the outlanders to further distinguish respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlanders in a manner far exceeding that which would be expected from an honorary.\n\nA dignitary, may request immediate personal protection from an enlisted elite mercenary group in times of need - a privilege normally restricted to union members or very high paying customers.</description>
     <seniority>100</seniority>
     <favorCost>12</favorCost>
     <changeHeirQuestPoints>1200</changeHeirQuestPoints>
