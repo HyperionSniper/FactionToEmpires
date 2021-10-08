@@ -59,8 +59,8 @@
 
   <RoyalTitlePermitDef Abstract="True">
     <defName>f2e_Outlander_CallLaborerTeam</defName>
-    <label>call laborer team</label>
-    <description>Call a group of 4 laborers to assist you for 4 days. These workers can only do general labor tasks. You can control them as though they were your own colonists. You are required to keep them safe.</description>
+    <label>call worker team</label>
+    <description>Call a group of 4 workers to assist you for 4 days. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
     <minTitle>Dignitary</minTitle>
     <permitPointCost>1</permitPointCost>
