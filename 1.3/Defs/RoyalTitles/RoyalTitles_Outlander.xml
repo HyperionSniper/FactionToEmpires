@@ -22,6 +22,10 @@
     <commonality>1</commonality>
     <allowDignifiedMeditationFocus>False</allowDignifiedMeditationFocus>
     <awardWorkerClass>RoyalTitleAwardWorker_Instant</awardWorkerClass>
+    <permits>
+      <li>TradeSettlement</li>
+      <li>TradeCaravan</li>
+    </permits>
   </RoyalTitleDef>
 
   <!-- ============== Empire titles - Player gettable psycaster ============================= -->
@@ -34,6 +38,7 @@
     <favorCost>12</favorCost>
     <changeHeirQuestPoints>1200</changeHeirQuestPoints>
     <allowDignifiedMeditationFocus>False</allowDignifiedMeditationFocus>
+    <awardWorkerClass>RoyalTitleAwardWorker_Instant</awardWorkerClass>
     <commonality>1</commonality>
     <canBeInherited>True</canBeInherited>
     <permitPointsAwarded>2</permitPointsAwarded>
