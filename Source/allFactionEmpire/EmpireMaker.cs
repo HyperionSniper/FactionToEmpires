@@ -54,21 +54,6 @@ namespace empireMaker {
             PatchDef();
         }
 
-        public static void SortRoyalTitleDefs(Dictionary<string, List<RoyalTitleDef>> titleTypeMap) {
-            // sort all royal title defs into title types
-            foreach (var title in DefDatabase<RoyalTitleDef>.AllDefs) {
-                foreach (var titleType in titleTypeMap) {
-                    if (title.tags.Contains(titleType.Key)) {
-                        titleType.Value.Add(title);
-                    }
-                }
-            }
-
-            foreach (var list in titleTypeMap.Values) {
-                list.SortBy(t => t.favorCost);
-            }
-        }
-
         public static void PatchDef() {
             Log.Message("## Empire Maker Start Install");
 
@@ -78,29 +63,15 @@ namespace empireMaker {
             // 제국 타이틀
             // todo: add ability to create custom royal title maps
 
-            var titleTypeMap = new Dictionary<string, List<RoyalTitleDef>> {
+            var royalTitleTagMap = new Dictionary<string, List<RoyalTitleDef>> {
                 { "EmpireTitle", new List<RoyalTitleDef>() },
                 { "OutlanderTitle", new List<RoyalTitleDef>() },
+                { "OutlanderMercenaryTitle", new List<RoyalTitleDef>() },
                 //{ "TribalTitle", new List<RoyalTitleDef>() },
             };
 
             // sort all royal title defs into title types
-            SortRoyalTitleDefs(titleTypeMap);
-
-            // 제국 폰 리스트
-            var royalPawnKindDefList = new List<PawnKindDef>
-            {
-                PawnKindDef.Named("Empire_Royal_Yeoman"),
-                PawnKindDef.Named("Empire_Royal_Acolyte"),
-                PawnKindDef.Named("Empire_Royal_Knight"),
-                PawnKindDef.Named("Empire_Royal_Praetor"),
-                PawnKindDef.Named("Empire_Royal_Baron"),
-                PawnKindDef.Named("Empire_Royal_Count"),
-                PawnKindDef.Named("Empire_Royal_Duke"),
-                PawnKindDef.Named("Empire_Royal_Consul"),
-                PawnKindDef.Named("Empire_Royal_Stellarch")
-            };
-
+            SortRoyalTitleDefs(royalTitleTagMap);
 
             for (var i = 0; i < eligibleFactions.Count; i++) {
                 var factionDef = eligibleFactions[i];
@@ -164,103 +135,18 @@ namespace empireMaker {
                 // -- or --
 
                 if (!GenerateTradeAndMilitaryPermits(settings, factionDef, techLevel, fighterPawns)) {
-                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed combat permit generation.");
+                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed combat and trade permit generation.");
                     // keep converting anyways, but will probably be bugged
                 }
 
+                //if (!GenerateMiscPermits(settings, factionDef, techLevel)) {
+                    
+                //}
+
                 // 커스텀 작위
-                var newRoyalTitleDefList = new List<RoyalTitleDef>();
-                var newRoyalTitleDefListNoStella = new List<RoyalTitleDef>();
-                var newRoyalTitleDefListNoEmperor = new List<RoyalTitleDef>();
-                for (var i = 0; i < royalTitleDefList.Count; i++) {
-                    // 복제
-                    var royalTitleDef = royalTitleDefList[i];
-                    var newRoyalTitleDef = new RoyalTitleDef {
-                        defName = $"{royalTitleDef.defName}_{factionDef.defName}",
-                        tags = new List<string>()
-                    };
-                    newRoyalTitleDef.tags.AddRange(factionDef.royalTitleTags);
-
-                    newRoyalTitleDef.awardThought = royalTitleDef.awardThought;
-                    newRoyalTitleDef.bedroomRequirements = royalTitleDef.bedroomRequirements;
-                    newRoyalTitleDef.changeHeirQuestPoints = royalTitleDef.changeHeirQuestPoints;
-                    newRoyalTitleDef.commonality = royalTitleDef.commonality;
-                    newRoyalTitleDef.debugRandomId = royalTitleDef.debugRandomId; // 디버그 랜덤아이디?
-                    newRoyalTitleDef.decreeMentalBreakCommonality = royalTitleDef.decreeMentalBreakCommonality;
-                    newRoyalTitleDef.decreeMinIntervalDays = royalTitleDef.decreeMinIntervalDays;
-                    newRoyalTitleDef.decreeMtbDays = royalTitleDef.decreeMtbDays;
-                    newRoyalTitleDef.decreeTags = royalTitleDef.decreeTags;
-                    newRoyalTitleDef.description = royalTitleDef.description;
-                    newRoyalTitleDef.descriptionHyperlinks = royalTitleDef.descriptionHyperlinks;
-                    newRoyalTitleDef.disabledJoyKinds = royalTitleDef.disabledJoyKinds;
-                    newRoyalTitleDef.disabledWorkTags = royalTitleDef.disabledWorkTags;
-                    newRoyalTitleDef.favorCost = royalTitleDef.favorCost;
-                    newRoyalTitleDef.fileName = royalTitleDef.fileName; // 파일명?
-                    newRoyalTitleDef.foodRequirement = royalTitleDef.foodRequirement;
-                    newRoyalTitleDef.generated = royalTitleDef.generated; // 생성완료?
-                    newRoyalTitleDef.ignoreConfigErrors = royalTitleDef.ignoreConfigErrors;
-                    newRoyalTitleDef.index = royalTitleDef.index; // 인덱스?
-                    newRoyalTitleDef.inheritanceWorkerOverrideClass = royalTitleDef.inheritanceWorkerOverrideClass;
-                    newRoyalTitleDef.label = royalTitleDef.label;
-                    newRoyalTitleDef.labelFemale = royalTitleDef.labelFemale;
-                    newRoyalTitleDef.lostThought = royalTitleDef.lostThought;
-                    newRoyalTitleDef.minExpectation = royalTitleDef.minExpectation;
-                    newRoyalTitleDef.modContentPack = royalTitleDef.modContentPack;
-                    newRoyalTitleDef.modExtensions = royalTitleDef.modExtensions;
-                    //n.needFallPerDayAuthority = b.needFallPerDayAuthority;
-                    if (royalTitleDef.permits != null) {
-                        newRoyalTitleDef.permits = new List<RoyalTitlePermitDef>();
-                        for (var j = 0; j < royalTitleDef.permits.Count; j++) {
-                            var newPermit = royalTitleDef.permits[j];
-
-                            switch (newPermit.defName) {
-                                case "TradeSettlement":
-                                    newPermit = tradeSettlementPermit;
-                                    break;
-                                case "TradeOrbital":
-                                    newPermit = tradeOrbitalPermit;
-                                    break;
-                                case "TradeCaravan":
-                                    newPermit = tradeCaravanPermit;
-                                    break;
-
-                                case "CallMilitaryAidSmall":
-                                    newPermit = callMilitaryAidSmall;
-                                    break;
-                                case "CallMilitaryAidLarge":
-                                    newPermit = callMilitaryAidLarge;
-                                    break;
-                                case "CallMilitaryAidGrand":
-                                    newPermit = callMilitaryAidGrand;
-                                    break;
-                            }
-
-                            newRoyalTitleDef.permits.Add(newPermit);
-                        }
-                    }
-
-                    newRoyalTitleDef.recruitmentResistanceOffset = royalTitleDef.recruitmentResistanceOffset;
-                    newRoyalTitleDef.replaceOnRecruited = royalTitleDef.replaceOnRecruited;
-                    newRoyalTitleDef.requiredApparel =
-                        useApparel != WantsApparel.off ? royalTitleDef.requiredApparel : null;
-
-                    newRoyalTitleDef.requiredMinimumApparelQuality = royalTitleDef.requiredMinimumApparelQuality;
-                    newRoyalTitleDef.rewards = royalTitleDef.rewards;
-                    newRoyalTitleDef.seniority = royalTitleDef.seniority;
-                    newRoyalTitleDef.shortHash = royalTitleDef.shortHash;
-                    newRoyalTitleDef.suppressIdleAlert = royalTitleDef.suppressIdleAlert;
-                    newRoyalTitleDef.throneRoomRequirements = royalTitleDef.throneRoomRequirements;
-
-                    DefDatabase<RoyalTitleDef>.Add(newRoyalTitleDef);
-
-                    newRoyalTitleDefList.Add(newRoyalTitleDef);
-                    if (i < royalTitleDefList.Count - 2) {
-                        newRoyalTitleDefListNoStella.Add(newRoyalTitleDef);
-                    }
-
-                    if (i < royalTitleDefList.Count - 1) {
-                        newRoyalTitleDefListNoEmperor.Add(newRoyalTitleDef);
-                    }
+                if (!GenerateRoyalTitleDefs(settings, factionDef, royalTitleTagMap)) {
+                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed royal title def generation.");
+                    // keep converting anyways, but will probably be bugged
                 }
 
                 if (debugMode) {
