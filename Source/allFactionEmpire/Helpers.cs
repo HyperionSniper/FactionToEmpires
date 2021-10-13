@@ -85,7 +85,7 @@ namespace empireMaker {
         /// <param name="factionDef"></param>
         /// <param name="derivedFrom"></param>
         /// <returns></returns>
-        public static RoyalTitlePermitDef CreatePermitDefCopy(FactionDef factionDef, RoyalTitlePermitDef derivedFrom)
+        public static RoyalTitlePermitDef CreateClonedPermitDef(FactionDef factionDef, RoyalTitlePermitDef derivedFrom)
         {
             RoyalTitlePermitDef def;
 
@@ -105,5 +105,114 @@ namespace empireMaker {
 
             return def;
         }
+
+
+        public static PawnKindDef CopyPawnKind(PawnKindDef pawnKindDef) {
+            var newPawnKindDef = new PawnKindDef {
+                defName = pawnKindDef.defName,
+                label = pawnKindDef.label,
+                aiAvoidCover = pawnKindDef.aiAvoidCover,
+                allowRoyalApparelRequirements = pawnKindDef.allowRoyalApparelRequirements,
+                allowRoyalRoomRequirements = pawnKindDef.allowRoyalRoomRequirements,
+                alternateGraphicChance = pawnKindDef.alternateGraphicChance,
+                alternateGraphics = pawnKindDef.alternateGraphics,
+                apparelAllowHeadgearChance = pawnKindDef.apparelAllowHeadgearChance, //
+                apparelColor = pawnKindDef.apparelColor,
+                apparelDisallowTags = pawnKindDef.apparelDisallowTags,
+                apparelIgnoreSeasons = pawnKindDef.apparelIgnoreSeasons,
+                apparelMoney = pawnKindDef.apparelMoney,
+                apparelRequired = pawnKindDef.apparelRequired,
+                apparelTags = pawnKindDef.apparelTags,
+                backstoryCategories = pawnKindDef.backstoryCategories,
+                backstoryCryptosleepCommonality = pawnKindDef.backstoryCryptosleepCommonality,
+                backstoryFilters = pawnKindDef.backstoryFilters,
+                backstoryFiltersOverride = pawnKindDef.backstoryFiltersOverride,
+                baseRecruitDifficulty = pawnKindDef.baseRecruitDifficulty, //
+                biocodeWeaponChance = pawnKindDef.biocodeWeaponChance, //
+                canArriveManhunter = pawnKindDef.canArriveManhunter,
+                canBeSapper = pawnKindDef.canBeSapper,
+                chemicalAddictionChance = pawnKindDef.chemicalAddictionChance,
+                combatEnhancingDrugsChance = pawnKindDef.combatEnhancingDrugsChance,
+                combatEnhancingDrugsCount = pawnKindDef.combatEnhancingDrugsCount,
+                combatPower = pawnKindDef.combatPower,
+                debugRandomId = pawnKindDef.debugRandomId,
+                defaultFactionType = pawnKindDef.defaultFactionType,
+                defendPointRadius = pawnKindDef.defendPointRadius,
+                description = pawnKindDef.description,
+                descriptionHyperlinks = pawnKindDef.descriptionHyperlinks,
+                destroyGearOnDrop = pawnKindDef.destroyGearOnDrop,
+                disallowedTraits = pawnKindDef.disallowedTraits,
+                ecoSystemWeight = pawnKindDef.ecoSystemWeight,
+                factionLeader = pawnKindDef.factionLeader, // 팩션리더?
+                fileName = pawnKindDef.fileName,
+                fixedInventory = pawnKindDef.fixedInventory,
+                fleeHealthThresholdRange = pawnKindDef.fleeHealthThresholdRange,
+                forceNormalGearQuality = pawnKindDef.forceNormalGearQuality,
+                gearHealthRange = pawnKindDef.gearHealthRange,
+                generated = pawnKindDef.generated, // 생성완료?
+                acceptArrestChanceFactor = pawnKindDef.acceptArrestChanceFactor,
+                ignoreConfigErrors = pawnKindDef.ignoreConfigErrors,
+                index = pawnKindDef.index, // 인덱스?
+                inventoryOptions = pawnKindDef.inventoryOptions,
+                invFoodDef = pawnKindDef.invFoodDef,
+                invNutrition = pawnKindDef.invNutrition,
+                isFighter = pawnKindDef.isFighter,
+                itemQuality = pawnKindDef.itemQuality,
+                labelFemale = pawnKindDef.labelFemale,
+                labelFemalePlural = pawnKindDef.labelFemalePlural,
+                labelMale = pawnKindDef.labelMale,
+                labelMalePlural = pawnKindDef.labelMalePlural,
+                labelPlural = pawnKindDef.labelPlural,
+                lifeStages = pawnKindDef.lifeStages,
+                maxGenerationAge = pawnKindDef.maxGenerationAge,
+                minGenerationAge = pawnKindDef.minGenerationAge,
+                modContentPack = pawnKindDef.modContentPack, // 모드?
+                modExtensions = pawnKindDef.modExtensions,
+                race = pawnKindDef.race, // 종족?
+                royalTitleChance = 1f,
+                shortHash = pawnKindDef.shortHash,
+                skills = pawnKindDef.skills,
+                specificApparelRequirements = pawnKindDef.specificApparelRequirements, // 귀족 의상
+                techHediffsChance = pawnKindDef.techHediffsChance,
+                techHediffsDisallowTags = pawnKindDef.techHediffsDisallowTags,
+                techHediffsMaxAmount = pawnKindDef.techHediffsMaxAmount,
+                techHediffsMoney = pawnKindDef.techHediffsMoney,
+                techHediffsRequired = pawnKindDef.techHediffsRequired,
+                techHediffsTags = pawnKindDef.techHediffsTags,
+                titleRequired = pawnKindDef.titleRequired, // 정해진 계급
+                trader = pawnKindDef.trader,
+                weaponMoney = pawnKindDef.weaponMoney,
+                weaponTags = pawnKindDef.weaponTags,
+                wildGroupSize = pawnKindDef.wildGroupSize
+            };
+
+            return newPawnKindDef;
+        }
+
+        public static TraderKindDef CopyTraderKind(TraderKindDef traderKindDef) {
+            var newTraderKindDef = new TraderKindDef {
+                defName = traderKindDef.defName,
+                permitRequiredForTrading = traderKindDef.permitRequiredForTrading,
+                faction = traderKindDef.faction,
+                category = traderKindDef.category,
+                commonality = traderKindDef.commonality,
+                commonalityMultFromPopulationIntent = traderKindDef.commonalityMultFromPopulationIntent,
+                description = traderKindDef.description,
+                descriptionHyperlinks = traderKindDef.descriptionHyperlinks,
+                hideThingsNotWillingToTrade = traderKindDef.hideThingsNotWillingToTrade,
+                ignoreConfigErrors = traderKindDef.ignoreConfigErrors,
+                label = traderKindDef.label,
+                modContentPack = traderKindDef.modContentPack,
+                modExtensions = traderKindDef.modExtensions,
+                orbital = traderKindDef.orbital,
+                requestable = traderKindDef.requestable,
+                shortHash = traderKindDef.shortHash,
+                stockGenerators = traderKindDef.stockGenerators,
+                tradeCurrency = traderKindDef.tradeCurrency
+            };
+
+            return newTraderKindDef;
+        }
+
     }
 }

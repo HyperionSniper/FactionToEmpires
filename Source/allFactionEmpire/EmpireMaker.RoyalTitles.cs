@@ -73,45 +73,45 @@ namespace empireMaker
             }
         }
 
-        public static bool GenerateRoyalTitleDefs(ConversionSettings settings, FactionDef factionDef, Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap, Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs)
+        public static bool GenerateRoyalTitleDefs(ConversionSettings settings, FactionDef factionDef, Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap, Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs, out List<RoyalTitleDef> royalTitles)
         {
             foreach (string tag in factionDef.royalTitleTags) {
                 foreach (var defaultTitleDef in royalTitleTagMap[tag]) {
-                    var newRoyalTitleDef = new RoyalTitleDef {
+                    var newRoyalTitle = new RoyalTitleDef {
                         defName = $"{defaultTitleDef.defName}_{factionDef.defName}",
                         tags = new List<string>()
                     };
-                    newRoyalTitleDef.tags.AddRange(factionDef.royalTitleTags);
+                    newRoyalTitle.tags.AddRange(factionDef.royalTitleTags);
 
-                    newRoyalTitleDef.awardThought = defaultTitleDef.awardThought;
-                    newRoyalTitleDef.bedroomRequirements = defaultTitleDef.bedroomRequirements;
-                    newRoyalTitleDef.changeHeirQuestPoints = defaultTitleDef.changeHeirQuestPoints;
-                    newRoyalTitleDef.commonality = defaultTitleDef.commonality;
-                    newRoyalTitleDef.debugRandomId = defaultTitleDef.debugRandomId; // 디버그 랜덤아이디?
-                    newRoyalTitleDef.decreeMentalBreakCommonality = defaultTitleDef.decreeMentalBreakCommonality;
-                    newRoyalTitleDef.decreeMinIntervalDays = defaultTitleDef.decreeMinIntervalDays;
-                    newRoyalTitleDef.decreeMtbDays = defaultTitleDef.decreeMtbDays;
-                    newRoyalTitleDef.decreeTags = defaultTitleDef.decreeTags;
-                    newRoyalTitleDef.description = defaultTitleDef.description;
-                    newRoyalTitleDef.descriptionHyperlinks = defaultTitleDef.descriptionHyperlinks;
-                    newRoyalTitleDef.disabledJoyKinds = defaultTitleDef.disabledJoyKinds;
-                    newRoyalTitleDef.disabledWorkTags = defaultTitleDef.disabledWorkTags;
-                    newRoyalTitleDef.favorCost = defaultTitleDef.favorCost;
-                    newRoyalTitleDef.fileName = defaultTitleDef.fileName; // 파일명?
-                    newRoyalTitleDef.foodRequirement = defaultTitleDef.foodRequirement;
-                    newRoyalTitleDef.generated = defaultTitleDef.generated; // 생성완료?
-                    newRoyalTitleDef.ignoreConfigErrors = defaultTitleDef.ignoreConfigErrors;
-                    newRoyalTitleDef.index = defaultTitleDef.index; // 인덱스?
-                    newRoyalTitleDef.inheritanceWorkerOverrideClass = defaultTitleDef.inheritanceWorkerOverrideClass;
-                    newRoyalTitleDef.label = defaultTitleDef.label;
-                    newRoyalTitleDef.labelFemale = defaultTitleDef.labelFemale;
-                    newRoyalTitleDef.lostThought = defaultTitleDef.lostThought;
-                    newRoyalTitleDef.minExpectation = defaultTitleDef.minExpectation;
-                    newRoyalTitleDef.modContentPack = defaultTitleDef.modContentPack;
-                    newRoyalTitleDef.modExtensions = defaultTitleDef.modExtensions;
+                    newRoyalTitle.awardThought = defaultTitleDef.awardThought;
+                    newRoyalTitle.bedroomRequirements = defaultTitleDef.bedroomRequirements;
+                    newRoyalTitle.changeHeirQuestPoints = defaultTitleDef.changeHeirQuestPoints;
+                    newRoyalTitle.commonality = defaultTitleDef.commonality;
+                    newRoyalTitle.debugRandomId = defaultTitleDef.debugRandomId; // 디버그 랜덤아이디?
+                    newRoyalTitle.decreeMentalBreakCommonality = defaultTitleDef.decreeMentalBreakCommonality;
+                    newRoyalTitle.decreeMinIntervalDays = defaultTitleDef.decreeMinIntervalDays;
+                    newRoyalTitle.decreeMtbDays = defaultTitleDef.decreeMtbDays;
+                    newRoyalTitle.decreeTags = defaultTitleDef.decreeTags;
+                    newRoyalTitle.description = defaultTitleDef.description;
+                    newRoyalTitle.descriptionHyperlinks = defaultTitleDef.descriptionHyperlinks;
+                    newRoyalTitle.disabledJoyKinds = defaultTitleDef.disabledJoyKinds;
+                    newRoyalTitle.disabledWorkTags = defaultTitleDef.disabledWorkTags;
+                    newRoyalTitle.favorCost = defaultTitleDef.favorCost;
+                    newRoyalTitle.fileName = defaultTitleDef.fileName; // 파일명?
+                    newRoyalTitle.foodRequirement = defaultTitleDef.foodRequirement;
+                    newRoyalTitle.generated = defaultTitleDef.generated; // 생성완료?
+                    newRoyalTitle.ignoreConfigErrors = defaultTitleDef.ignoreConfigErrors;
+                    newRoyalTitle.index = defaultTitleDef.index; // 인덱스?
+                    newRoyalTitle.inheritanceWorkerOverrideClass = defaultTitleDef.inheritanceWorkerOverrideClass;
+                    newRoyalTitle.label = defaultTitleDef.label;
+                    newRoyalTitle.labelFemale = defaultTitleDef.labelFemale;
+                    newRoyalTitle.lostThought = defaultTitleDef.lostThought;
+                    newRoyalTitle.minExpectation = defaultTitleDef.minExpectation;
+                    newRoyalTitle.modContentPack = defaultTitleDef.modContentPack;
+                    newRoyalTitle.modExtensions = defaultTitleDef.modExtensions;
                     //n.needFallPerDayAuthority = b.needFallPerDayAuthority;
                     if (defaultTitleDef.permits != null) {
-                        newRoyalTitleDef.permits = new List<RoyalTitlePermitDef>();
+                        newRoyalTitle.permits = new List<RoyalTitlePermitDef>();
 
                         // for each permit in the default title definition, 
                         // replace with new generated permits.
@@ -122,27 +122,28 @@ namespace empireMaker
                             RoyalTitlePermitDef newPermit;
 
                             if (!generatedPermitDefs.TryGetValue(oldPermit.defName, out newPermit)) {
-                                newPermit = EmpireHelpers.CreatePermitDefCopy(factionDef, oldPermit);
+                                newPermit = EmpireHelpers.CreateClonedPermitDef(factionDef, oldPermit);
                                 newPermit.faction = factionDef;
                             }
 
-                            newRoyalTitleDef.permits.Add(newPermit);
+                            newRoyalTitle.permits.Add(newPermit);
                         }
                     }
 
-                    newRoyalTitleDef.recruitmentResistanceOffset = defaultTitleDef.recruitmentResistanceOffset;
-                    newRoyalTitleDef.replaceOnRecruited = defaultTitleDef.replaceOnRecruited;
-                    newRoyalTitleDef.requiredApparel =
+                    newRoyalTitle.recruitmentResistanceOffset = defaultTitleDef.recruitmentResistanceOffset;
+                    newRoyalTitle.replaceOnRecruited = defaultTitleDef.replaceOnRecruited;
+                    newRoyalTitle.requiredApparel =
                         settings.WantsApparelType == WantsApparel.off ? null : defaultTitleDef.requiredApparel;
 
-                    newRoyalTitleDef.requiredMinimumApparelQuality = defaultTitleDef.requiredMinimumApparelQuality;
-                    newRoyalTitleDef.rewards = defaultTitleDef.rewards;
-                    newRoyalTitleDef.seniority = defaultTitleDef.seniority;
-                    newRoyalTitleDef.shortHash = defaultTitleDef.shortHash;
-                    newRoyalTitleDef.suppressIdleAlert = defaultTitleDef.suppressIdleAlert;
-                    newRoyalTitleDef.throneRoomRequirements = defaultTitleDef.throneRoomRequirements;
+                    newRoyalTitle.requiredMinimumApparelQuality = defaultTitleDef.requiredMinimumApparelQuality;
+                    newRoyalTitle.rewards = defaultTitleDef.rewards;
+                    newRoyalTitle.seniority = defaultTitleDef.seniority;
+                    newRoyalTitle.shortHash = defaultTitleDef.shortHash;
+                    newRoyalTitle.suppressIdleAlert = defaultTitleDef.suppressIdleAlert;
+                    newRoyalTitle.throneRoomRequirements = defaultTitleDef.throneRoomRequirements;
 
-                    DefDatabase<RoyalTitleDef>.Add(newRoyalTitleDef);
+                    DefDatabase<RoyalTitleDef>.Add(newRoyalTitle);
+                    royalTitles.Add(newRoyalTitle);
                 }
             }
 
