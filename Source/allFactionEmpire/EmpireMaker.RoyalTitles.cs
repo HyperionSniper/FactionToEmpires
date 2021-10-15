@@ -75,6 +75,8 @@ namespace empireMaker
 
         public static bool GenerateRoyalTitleDefs(ConversionSettings settings, FactionDef factionDef, Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap, Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs, out List<RoyalTitleDef> royalTitles)
         {
+            royalTitles = new List<RoyalTitleDef>();
+
             foreach (string tag in factionDef.royalTitleTags) {
                 foreach (var defaultTitleDef in royalTitleTagMap[tag]) {
                     var newRoyalTitle = new RoyalTitleDef {
