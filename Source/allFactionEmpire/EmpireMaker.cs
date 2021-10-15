@@ -95,7 +95,11 @@ namespace empireMaker {
                 // copy royal faction settings from the Empire
                 factionDef.royalFavorLabel = empireFactionDef.royalFavorLabel;
                 factionDef.royalFavorIconPath = empireFactionDef.royalFavorIconPath;
+                //factionDef.royalFavorIconPath = $"F2E/Icon_{factionDef.defName}";
                 factionDef.raidLootMaker = empireFactionDef.raidLootMaker;
+
+                //var royalFavorIcon = GraphicDatabase.Get<Graphic>(factionDef.royalFavorIconPath);
+
 
                 factionDef.royalTitleInheritanceRelations = empireFactionDef.royalTitleInheritanceRelations;
                 factionDef.royalTitleInheritanceWorkerClass = empireFactionDef.royalTitleInheritanceWorkerClass;

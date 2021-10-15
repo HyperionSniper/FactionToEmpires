@@ -15,7 +15,7 @@ namespace empireMaker {
             var needMakeLeader = allPawns.Count >= 6 || leaderPawns.Count > 0;
 
             // pawn을 귀족으로 변환
-
+            // 
             for (var n = 0; n < nonLeaderPawns.Count; n++) {
                 var pawnKindDef = allPawns[n];
                 pawnKindDef.titleSelectOne = royalTitles;
@@ -26,8 +26,7 @@ namespace empireMaker {
                     pawnKindDef.techHediffsTags = new List<string>();
                 }
 
-                pawnKindDef.techHediffsTags.AddRange(new List<string>
-                    {"Advanced", "ImplantEmpireRoyal", "ImplantEmpireCommon"});
+                pawnKindDef.techHediffsTags.AddRange(new List<string> {"Advanced", "ImplantEmpireRoyal", "ImplantEmpireCommon"});
             }
 
 
@@ -39,8 +38,7 @@ namespace empireMaker {
                     : allPawns[allPawns.Count - 1];
 
                 pawnKindDef.titleSelectOne = new List<RoyalTitleDef>();
-                pawnKindDef.titleRequired =
-                    newRoyalTitleDefListNoEmperor[newRoyalTitleDefListNoEmperor.Count - 1];
+                pawnKindDef.titleRequired = royalTitles[royalTitles.Count - 1]; // TODO: hmmm
                 pawnKindDef.royalTitleChance = 1f;
                 pawnKindDef.allowRoyalApparelRequirements = false;
                 if (pawnKindDef.techHediffsTags == null) {
@@ -192,7 +190,6 @@ namespace empireMaker {
                     : randomPawn.techHediffsDisallowTags.ListFullCopy();
 
                 newPawn.techHediffsDisallowTags.Add("PainCauser");
-
 
                 newPawn.techHediffsMaxAmount = defaultPawn.techHediffsMaxAmount;
                 newPawn.techHediffsMoney = defaultPawn.techHediffsMoney;
