@@ -75,13 +75,55 @@ namespace empireMaker
             generatedPermitDefs.Add("TradeSettlement", tradeSettlement);
             generatedPermitDefs.Add("TradeCaravan", tradeCaravan);
 
-            // if faction is at least spacer, generate orbital trade permit
+            // 계급에 따른 거래제한
+            // setup TraderKinds 
+            if (settings.RequiresTradePermit) {
+                var unused = new RoyalTitlePermitDef();
+
+                // 기지
+                var traderKindDefList = new List<TraderKindDef>();
+                foreach (var traderKindDef in factionDef.baseTraderKinds) {
+                    var newTraderKindDef = EmpireHelpers.CopyTraderKind(traderKindDef);
+                    newTraderKindDef.defName = $"{traderKindDef.defName}_{factionDef.defName}_base";
+                    newTraderKindDef.permitRequiredForTrading = tradeSettlement;
+                    newTraderKindDef.faction = factionDef;
+                    DefDatabase<TraderKindDef>.Add(newTraderKindDef);
+                    traderKindDefList.Add(newTraderKindDef);
+                }
+
+                factionDef.baseTraderKinds = traderKindDefList;
+
+
+                // 캐러밴
+                traderKindDefList.Clear();
+                foreach (var caravanTraderKindDef in factionDef.caravanTraderKinds) {
+                    var newCaravanTraderKindDef = EmpireHelpers.CopyTraderKind(caravanTraderKindDef);
+                    newCaravanTraderKindDef.defName =
+                        $"{caravanTraderKindDef.defName}_{factionDef.defName}_caravan";
+                    newCaravanTraderKindDef.permitRequiredForTrading = tradeCaravan;
+                    newCaravanTraderKindDef.faction = factionDef;
+                    DefDatabase<TraderKindDef>.Add(newCaravanTraderKindDef);
+                    traderKindDefList.Add(newCaravanTraderKindDef);
+                }
+
+                factionDef.caravanTraderKinds = traderKindDefList;
+            }
+
+            // if faction is at least spacer, generate orbital trade permit stuff too
             if (techLevel >= TechLevel.Spacer) {
                 s_tradeOrbital ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeOrbital");
                 var tradeOrbital = GenerateTradePermitDef(settings, factionDef, s_tradeOrbital, permitPawns);
 
                 DefDatabase<RoyalTitlePermitDef>.Add(tradeOrbital);
                 generatedPermitDefs.Add("TradeOrbital", tradeOrbital);
+
+                // 궤도상선
+                foreach (var traderKindDef in from traders in DefDatabase<TraderKindDef>.AllDefs
+                                              where traders.orbital && traders.faction != null && traders.faction == factionDef
+                                              select traders
+                ) {
+                    traderKindDef.permitRequiredForTrading = tradeOrbital;
+                }
             }
 
             if (debugMode) {

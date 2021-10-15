@@ -87,14 +87,6 @@ namespace empireMaker {
                     continue;
                 }
 
-                var useApparel = settings.WantsApparelType;
-
-                if (!factionDef.humanlikeFaction) {
-                    useApparel = WantsApparel.off;
-                }
-                //bool useCollectorTrader = ar_faction_collector[z];
-                var useTradePermit = settings.RequiresTradePermit;
-
                 if (debugMode) {
                     Log.Message("A");
                 }
@@ -156,8 +148,6 @@ namespace empireMaker {
 
 
                 // 귀족 PawnKind 생성
-
-
                 var bugFixMode = settings.ConversionType == Conversion.bugFix;
 
                 // 버그 해결 모드
@@ -169,104 +159,6 @@ namespace empireMaker {
                     else {
                         GeneratePawnKinds(settings, factionDef, royalTitles, allPawns, leaderPawns, nonLeaderPawns);
                     }
-                }
-
-                // Pawn Kinds 생성 : SpaceRefugee_Clothed
-                if (nonLeaderPawns.Count > 0) {
-                    var spaceRefugeeClothedDef = PawnKindDef.Named("SpaceRefugee_Clothed");
-                    var randomPawnCopy = EmpireHelpers.CopyPawnKind(nonLeaderPawns[0]);
-                    randomPawnCopy.defName = $"SpaceRefugee_Clothed_{factionDef.defName}";
-                    randomPawnCopy.apparelMoney = spaceRefugeeClothedDef.apparelMoney;
-                    randomPawnCopy.gearHealthRange = spaceRefugeeClothedDef.gearHealthRange;
-                    if (randomPawnCopy.disallowedTraits == null) {
-                        randomPawnCopy.disallowedTraits = new List<TraitDef>();
-                    }
-
-                    randomPawnCopy.disallowedTraits.Add(TraitDefOf.Nudist);
-                    randomPawnCopy.baseRecruitDifficulty = spaceRefugeeClothedDef.baseRecruitDifficulty;
-                    randomPawnCopy.forceNormalGearQuality = spaceRefugeeClothedDef.forceNormalGearQuality;
-                    randomPawnCopy.isFighter = spaceRefugeeClothedDef.isFighter;
-                    randomPawnCopy.apparelAllowHeadgearChance = spaceRefugeeClothedDef.apparelAllowHeadgearChance;
-                    randomPawnCopy.techHediffsMoney = spaceRefugeeClothedDef.techHediffsMoney;
-                    randomPawnCopy.techHediffsTags = spaceRefugeeClothedDef.techHediffsTags;
-                    randomPawnCopy.techHediffsChance = spaceRefugeeClothedDef.techHediffsChance;
-
-                    DefDatabase<PawnKindDef>.Add(randomPawnCopy);
-                }
-                else {
-                    var spaceRefugeeClothedDef = PawnKindDef.Named("SpaceRefugee_Clothed");
-                    var randomPawnCopy = EmpireHelpers.CopyPawnKind(spaceRefugeeClothedDef);
-                    randomPawnCopy.defName = $"SpaceRefugee_Clothed_{factionDef.defName}";
-
-                    DefDatabase<PawnKindDef>.Add(randomPawnCopy);
-                }
-
-                if (debugMode) {
-                    Log.Message("F");
-                }
-
-                // 커스텀 계급 규칙
-                var royalImplantRuleList = new List<RoyalImplantRule>();
-                if (empireFactionDef.royalImplantRules != null) {
-                    for (var n = 0; n < empireFactionDef.royalImplantRules.Count; n++) {
-                        // 복제
-                        var baseRoyalImplantRule = empireFactionDef.royalImplantRules[n];
-                        var newRoyalImplantRule = new RoyalImplantRule {
-                            implantHediff = baseRoyalImplantRule.implantHediff,
-                            maxLevel = baseRoyalImplantRule.maxLevel,
-                            minTitle = newRoyalTitleDefList[n]
-                        };
-
-                        royalImplantRuleList.Add(newRoyalImplantRule);
-                    }
-                }
-
-                factionDef.royalImplantRules = royalImplantRuleList;
-
-                // 계급에 따른 거래제한
-                if (useTradePermit) {
-                    var unused = new RoyalTitlePermitDef();
-
-                    // 기지
-                    var traderKindDefList = new List<TraderKindDef>();
-                    foreach (var traderKindDef in factionDef.baseTraderKinds) {
-                        var newTraderKindDef = EmpireHelpers.CopyTraderKind(traderKindDef);
-                        newTraderKindDef.defName = $"{traderKindDef.defName}_{factionDef.defName}_base";
-                        newTraderKindDef.permitRequiredForTrading = tradeSettlementPermit;
-                        newTraderKindDef.faction = factionDef;
-                        DefDatabase<TraderKindDef>.Add(newTraderKindDef);
-                        traderKindDefList.Add(newTraderKindDef);
-                    }
-
-                    factionDef.baseTraderKinds = traderKindDefList;
-
-
-                    // 캐러밴
-                    traderKindDefList = new List<TraderKindDef>();
-                    foreach (var caravanTraderKindDef in factionDef.caravanTraderKinds) {
-                        var newCaravanTraderKindDef = EmpireHelpers.CopyTraderKind(caravanTraderKindDef);
-                        newCaravanTraderKindDef.defName =
-                            $"{caravanTraderKindDef.defName}_{factionDef.defName}_caravan";
-                        newCaravanTraderKindDef.permitRequiredForTrading = tradeCaravanPermit;
-                        newCaravanTraderKindDef.faction = factionDef;
-                        DefDatabase<TraderKindDef>.Add(newCaravanTraderKindDef);
-                        traderKindDefList.Add(newCaravanTraderKindDef);
-                    }
-
-                    factionDef.caravanTraderKinds = traderKindDefList;
-
-                    // 궤도상선
-                    foreach (var traderKindDef in from traders in DefDatabase<TraderKindDef>.AllDefs
-                                                  where
-                                                      traders.orbital && traders.faction != null && traders.faction == factionDef
-                                                  select traders
-                    ) {
-                        traderKindDef.permitRequiredForTrading = tradeOrbitalPermit;
-                    }
-                }
-
-                if (debugMode) {
-                    Log.Message("G");
                 }
             }
         }
