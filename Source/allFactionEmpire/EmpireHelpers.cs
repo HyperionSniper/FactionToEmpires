@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
 using Verse;
@@ -7,6 +8,14 @@ using static empireMaker.EmpireMaker;
 
 namespace empireMaker {
     public class EmpireHelpers {
+        public static void PrintObj(object obj) {
+            foreach (PropertyDescriptor descriptor in TypeDescriptor.GetProperties(obj)) {
+                string name = descriptor.Name;
+                object value = descriptor.GetValue(obj);
+                Log.Message(string.Format("{0}={1}", name, value));
+            }
+        }
+
         public static TechLevel GetTechLevel(ConversionSettings settings, FactionDef factionDef) {
             TechLevel techLevel;
             bool forceConversion = settings.ConversionType == Conversion.forceConversion;
