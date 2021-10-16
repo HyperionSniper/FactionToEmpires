@@ -95,6 +95,7 @@ namespace empireMaker {
                 // copy royal faction settings from the Empire
                 factionDef.royalFavorLabel = empireFactionDef.royalFavorLabel;
                 factionDef.royalFavorIconPath = empireFactionDef.royalFavorIconPath;
+                Log.Warning("[DEBUG] path: " + empireFactionDef.royalFavorIconPath);
                 //factionDef.royalFavorIconPath = $"F2E/Icon_{factionDef.defName}";
                 factionDef.raidLootMaker = empireFactionDef.raidLootMaker;
 
