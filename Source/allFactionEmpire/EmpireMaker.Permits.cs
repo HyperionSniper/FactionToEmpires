@@ -8,15 +8,6 @@ namespace empireMaker
 {
     public partial class EmpireMaker
     {
-        private class Permit
-        {
-            public string prefix;
-        }
-
-        //private static RoyalTitlePermitDef s_callMilitaryAidSmall;
-        //private static RoyalTitlePermitDef s_callMilitaryAidLarge;
-        //private static RoyalTitlePermitDef s_callMilitaryAidGrand;
-
         private static RoyalTitlePermitDef s_tradeSettlement;
         private static RoyalTitlePermitDef s_tradeCaravan;
         private static RoyalTitlePermitDef s_tradeOrbital;
@@ -25,7 +16,7 @@ namespace empireMaker
         private const int ScaledCombatPower = 300;
 
         private static bool GeneratePermits(ConversionSettings settings, FactionDef factionDef,
-            TechLevel techLevel, List<PawnKindDef> fighterPawns,
+            TechLevel techLevel, List<PawnKindDef> allPawns,
             out Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs)
         {
             // by the time this is run, factiondef should be one of the valid techlevels.
@@ -46,6 +37,7 @@ namespace empireMaker
             s_tradeSettlement ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeSettlement");
             s_tradeCaravan ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeCaravan");
 
+            SortFighterPawnKinds(settings, factionDef, allPawns, out var fighterPawns);
             SortPermitPawns(settings, factionDef, fighterPawns, out List<PawnKindDef> permitPawns);
 
             // TODO: add settings for permits
@@ -75,8 +67,27 @@ namespace empireMaker
             generatedPermitDefs.Add("TradeSettlement", tradeSettlement);
             generatedPermitDefs.Add("TradeCaravan", tradeCaravan);
 
+            // Setup TraderKinds ---
+            // if faction is at least spacer, generate orbital trade permit stuff too
+            if (techLevel >= TechLevel.Spacer) {
+                s_tradeOrbital ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeOrbital");
+                var tradeOrbital = GenerateTradePermitDef(settings, factionDef, s_tradeOrbital, permitPawns);
+
+                DefDatabase<RoyalTitlePermitDef>.Add(tradeOrbital);
+                generatedPermitDefs.Add("TradeOrbital", tradeOrbital);
+
+                if (settings.RequiresTradePermit) {
+                    // 궤도상선
+                    foreach (var traderKindDef in from traders in DefDatabase<TraderKindDef>.AllDefs
+                                                  where traders.orbital && traders.faction != null && traders.faction == factionDef
+                                                  select traders
+                    ) {
+                        traderKindDef.permitRequiredForTrading = tradeOrbital;
+                    }
+                }
+            }
+
             // 계급에 따른 거래제한
-            // setup TraderKinds 
             if (settings.RequiresTradePermit) {
                 var unused = new RoyalTitlePermitDef();
 
@@ -107,23 +118,6 @@ namespace empireMaker
                 }
 
                 factionDef.caravanTraderKinds = traderKindDefList;
-            }
-
-            // if faction is at least spacer, generate orbital trade permit stuff too
-            if (techLevel >= TechLevel.Spacer) {
-                s_tradeOrbital ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeOrbital");
-                var tradeOrbital = GenerateTradePermitDef(settings, factionDef, s_tradeOrbital, permitPawns);
-
-                DefDatabase<RoyalTitlePermitDef>.Add(tradeOrbital);
-                generatedPermitDefs.Add("TradeOrbital", tradeOrbital);
-
-                // 궤도상선
-                foreach (var traderKindDef in from traders in DefDatabase<TraderKindDef>.AllDefs
-                                              where traders.orbital && traders.faction != null && traders.faction == factionDef
-                                              select traders
-                ) {
-                    traderKindDef.permitRequiredForTrading = tradeOrbital;
-                }
             }
 
             if (debugMode) {
