@@ -140,6 +140,13 @@ namespace empireMaker
                 }
             }
 
+            // Set the name of the highest rank to match the FactionDef's LeaderTitle.
+            royalTitles.SortByDescending(def => def.seniority);
+
+            var highestRank = royalTitles[0];
+            highestRank.label = factionDef.leaderTitle;
+            highestRank.labelFemale = factionDef.leaderTitleFemale;
+
             return true;
         }
     }
