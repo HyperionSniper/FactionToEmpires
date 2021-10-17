@@ -3,22 +3,12 @@
   <!-- ============================= Faction permits ============================= -->
 
   <!-- Econ -->
-
-  <RoyalTitlePermitDef Name="DropResourcesBase" Abstract="True">
-    <workerClass>RoyalTitlePermitWorker_DropResources</workerClass>
-    <permitPointCost>1</permitPointCost>
-    <cooldownDays>45</cooldownDays>
-    <usableOnWorldMap>true</usableOnWorldMap>
-    <royalAid>
-      <targetingRange>39.9</targetingRange>
-    </royalAid>
-  </RoyalTitlePermitDef>
   
   <RoyalTitlePermitDef ParentName="DropResourcesBase" Abstract="True">
     <defName>f2e_Outlander_SteelDrop</defName>
     <label>steel drop</label>
     <description>Call for a drop of 120 steel.</description>
-    <minTitle>Honorary</minTitle>
+    <minTitle>f2e_Honorary</minTitle>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,0)</uiPosition>
     <royalAid>
@@ -33,7 +23,7 @@
     <defName>f2e_Outlander_FoodDrop</defName>
     <label>food drop</label>
     <description>Call for a drop of 20 packaged survival meals.</description>
-    <minTitle>Honorary</minTitle>
+    <minTitle>f2e_Honorary</minTitle>
     <uiPosition>(0,1)</uiPosition>
     <royalAid>
       <itemsToDrop>
@@ -47,7 +37,7 @@
     <defName>f2e_Outlander_SilverDrop</defName>
     <label>silver drop</label>
     <description>Call for a drop of 250 silver.</description>
-    <minTitle>Honorary</minTitle>
+    <minTitle>f2e_Honorary</minTitle>
     <uiPosition>(0,4)</uiPosition>
     <royalAid>
       <itemsToDrop>
@@ -62,7 +52,7 @@
     <label>call worker team</label>
     <description>Call a group of 4 workers to assist you for 4 days. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
-    <minTitle>Dignitary</minTitle>
+    <minTitle>f2e_Dignitary</minTitle>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,2)</uiPosition>
     <royalAid>
@@ -82,7 +72,7 @@
     <label>call mercenary squad</label>
     <description>Call a group of 4 light mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
-    <minTitle>Dignitary</minTitle>
+    <minTitle>f2e_Dignitary</minTitle>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,3)</uiPosition>
     <royalAid>
@@ -99,7 +89,7 @@
     <label>call elite mercenary squad</label>
     <description>Call a group of 4 elite mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
-    <minTitle>Dignitary</minTitle>
+    <minTitle>f2e_Dignitary</minTitle>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,7)</uiPosition>
     <royalAid>
