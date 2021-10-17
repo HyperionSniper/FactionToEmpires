@@ -53,6 +53,7 @@
     <description>Call a group of 4 laborers to assist you for 4 days. These workers can only do general labor tasks. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
+    <faction>Ancients</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,2)</uiPosition>
     <royalAid>
@@ -72,7 +73,7 @@
     <description>Call a group of 4 light mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
-    <faction>None</faction>
+    <faction>Ancients</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,3)</uiPosition>
     <royalAid>
@@ -90,7 +91,7 @@
     <description>Call a group of 4 elite mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
-    <faction>None</faction>
+    <faction>Ancients</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,7)</uiPosition>
     <royalAid>
@@ -130,8 +131,8 @@
     <label>call transport shuttle</label>
     <description>Call a shuttle for your own use. It will transport colonists, items, and animals anywhere you like within 70 world tiles.</description>
     <workerClass>RoyalTitlePermitWorker_CallShuttle</workerClass>
-    <minTitle>Dignitary</minTitle>
-    <faction>None</faction>
+    <minTitle>f2e_Dignitary</minTitle>
+    <faction>Ancients</faction>
     <permitPointCost>1</permitPointCost>
     <cooldownDays>60</cooldownDays>
     <usableOnWorldMap>true</usableOnWorldMap>

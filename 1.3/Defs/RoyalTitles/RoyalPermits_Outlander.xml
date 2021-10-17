@@ -4,7 +4,7 @@
 
   <!-- Econ -->
   
-  <RoyalTitlePermitDef ParentName="DropResourcesBase" Abstract="True">
+  <RoyalTitlePermitDef ParentName="DropResourcesBase">
     <defName>f2e_Outlander_SteelDrop</defName>
     <label>steel drop</label>
     <description>Call for a drop of 120 steel.</description>
@@ -19,7 +19,7 @@
     </royalAid>
   </RoyalTitlePermitDef>
 
-  <RoyalTitlePermitDef ParentName="DropResourcesBase" Abstract="True">
+  <RoyalTitlePermitDef ParentName="DropResourcesBase">
     <defName>f2e_Outlander_FoodDrop</defName>
     <label>food drop</label>
     <description>Call for a drop of 20 packaged survival meals.</description>
@@ -33,7 +33,7 @@
     </royalAid>
   </RoyalTitlePermitDef>
 
-  <RoyalTitlePermitDef ParentName="DropResourcesBase" Abstract="True">
+  <RoyalTitlePermitDef ParentName="DropResourcesBase">
     <defName>f2e_Outlander_SilverDrop</defName>
     <label>silver drop</label>
     <description>Call for a drop of 250 silver.</description>
@@ -47,12 +47,13 @@
     </royalAid>
   </RoyalTitlePermitDef>
 
-  <RoyalTitlePermitDef Abstract="True">
+  <RoyalTitlePermitDef>
     <defName>f2e_Outlander_CallLaborerTeam</defName>
     <label>call worker team</label>
     <description>Call a group of 4 workers to assist you for 4 days. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
+    <faction>OutlanderCivil</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,2)</uiPosition>
     <royalAid>
@@ -67,12 +68,13 @@
 
   <!-- Combat -->
 
-  <RoyalTitlePermitDef Abstract="True">
+  <RoyalTitlePermitDef>
     <defName>f2e_Outlander_CallMilitaryAidSmall</defName>
     <label>call mercenary squad</label>
     <description>Call a group of 4 light mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
+    <faction>OutlanderCivil</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,3)</uiPosition>
     <royalAid>
@@ -84,12 +86,13 @@
     <cooldownDays>40</cooldownDays>
   </RoyalTitlePermitDef>
 
-  <RoyalTitlePermitDef Abstract="True">
+  <RoyalTitlePermitDef>
     <defName>f2e_Outlander_CallMilitaryAidLarge</defName>
     <label>call elite mercenary squad</label>
     <description>Call a group of 4 elite mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
+    <faction>OutlanderCivil</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,7)</uiPosition>
     <royalAid>
