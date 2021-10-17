@@ -73,48 +73,36 @@ namespace empireMaker {
             return permitMaps[techLevel];
         }
 
-        public static RoyalTitlePermitDef CreateBasePermitDef(FactionDef factionDef, RoyalTitlePermitDef derivedFrom)
+        public static RoyalTitlePermitDef ClonePermitDef(FactionDef factionDef, RoyalTitlePermitDef derivedFrom)
         {
-            RoyalTitlePermitDef def;
+            RoyalTitlePermitDef def = new RoyalTitlePermitDef();
 
-            def = new RoyalTitlePermitDef();
+            Debug.Assert(factionDef != null, "Attempted to assign permit clone to null faction");
+            Debug.Assert(derivedFrom != null, "Attempted to derive permit from null permit");
 
             def.defName = $"{derivedFrom.defName}_{factionDef.defName}";
             def.label = derivedFrom.label;
+            def.description = derivedFrom.description;
             def.workerClass = derivedFrom.workerClass;
+            def.minTitle = derivedFrom.minTitle;
             def.faction = factionDef;
+            def.permitPointCost = derivedFrom.permitPointCost;
+            def.uiPosition = derivedFrom.uiPosition;
             def.cooldownDays = derivedFrom.cooldownDays;
+
+            if (derivedFrom.royalAid != null) {
+                def.royalAid = new RoyalAid {
+                    favorCost = derivedFrom.royalAid.favorCost,
+                    pawnKindDef = derivedFrom.royalAid.pawnKindDef,
+                    pawnCount = derivedFrom.royalAid.pawnCount,
+                };
+            }
+
+            def.usableOnWorldMap = derivedFrom.usableOnWorldMap;
+            def.prerequisite = derivedFrom.prerequisite;
 
             return def;
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="factionDef"></param>
-        /// <param name="derivedFrom"></param>
-        /// <returns></returns>
-        public static RoyalTitlePermitDef CreateClonedPermitDef(FactionDef factionDef, RoyalTitlePermitDef derivedFrom)
-        {
-            RoyalTitlePermitDef def;
-
-            def = new RoyalTitlePermitDef();
-
-            def.defName = $"{derivedFrom.defName}_{factionDef.defName}";
-            def.label = derivedFrom.label;
-            def.workerClass = derivedFrom.workerClass;
-            def.faction = factionDef;
-            def.cooldownDays = derivedFrom.cooldownDays;
-
-            def.royalAid = new RoyalAid {
-                favorCost = derivedFrom.royalAid.favorCost,
-                pawnKindDef = derivedFrom.royalAid.pawnKindDef,
-                pawnCount = derivedFrom.royalAid.pawnCount,
-            };
-
-            return def;
-        }
-
 
         public static PawnKindDef CopyPawnKind(PawnKindDef pawnKindDef) {
             var newPawnKindDef = new PawnKindDef {

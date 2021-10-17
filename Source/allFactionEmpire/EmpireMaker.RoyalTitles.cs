@@ -124,7 +124,7 @@ namespace empireMaker
                             RoyalTitlePermitDef newPermit;
 
                             if (!generatedPermitDefs.TryGetValue(oldPermit.defName, out newPermit)) {
-                                newPermit = EmpireHelpers.CreateClonedPermitDef(factionDef, oldPermit);
+                                newPermit = EmpireHelpers.ClonePermitDef(factionDef, oldPermit);
                                 newPermit.faction = factionDef;
                             }
 

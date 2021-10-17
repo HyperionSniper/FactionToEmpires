@@ -8,10 +8,6 @@ namespace empireMaker
 {
     public partial class EmpireMaker
     {
-        private static RoyalTitlePermitDef s_tradeSettlement;
-        private static RoyalTitlePermitDef s_tradeCaravan;
-        private static RoyalTitlePermitDef s_tradeOrbital;
-
         private const int BaseCombatPower = 240;
         private const int ScaledCombatPower = 300;
 
@@ -34,19 +30,14 @@ namespace empireMaker
             var callMilitaryAidLarge = DefDatabase<RoyalTitlePermitDef>.GetNamed(aidLargeDefName, false);
             var callMilitaryAidGrand = DefDatabase<RoyalTitlePermitDef>.GetNamed(aidGrandDefName, false);
 
-            s_tradeSettlement ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeSettlement");
-            s_tradeCaravan ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeCaravan");
-
             SortFighterPawnKinds(settings, factionDef, allPawns, out var fighterPawns);
             SortPermitPawns(settings, factionDef, fighterPawns, out List<PawnKindDef> permitPawns);
 
+            // Combat permits --
             // TODO: add settings for permits
             var militarySmall = GenerateCombatPermitDef(settings, factionDef, 0, callMilitaryAidSmall, permitPawns);
             var militaryLarge = GenerateCombatPermitDef(settings, factionDef, 1, callMilitaryAidLarge, permitPawns);
             var militaryGrand = GenerateCombatPermitDef(settings, factionDef, 2, callMilitaryAidGrand, permitPawns);
-
-            var tradeSettlement = EmpireHelpers.CreateBasePermitDef(factionDef, s_tradeSettlement);
-            var tradeCaravan = EmpireHelpers.CreateBasePermitDef(factionDef, s_tradeCaravan);
 
             // add permits to database if they aren't already loaded
             if (militarySmall != null) {
@@ -62,16 +53,26 @@ namespace empireMaker
                 generatedPermitDefs.Add(aidGrandDefName, militaryGrand);
             }
 
+            // Trade permits --
+            var tradeSettlement = new RoyalTitlePermitDef();
+            var tradeCaravan = new RoyalTitlePermitDef();
+
+            tradeSettlement.defName = $"TradeSettlement_{factionDef.defName}";
+            tradeCaravan.defName = $"TradeCaravan_{factionDef.defName}";
+            tradeSettlement.label = "trade with settlements";
+            tradeCaravan.label = $"trade with caravans";
+
             DefDatabase<RoyalTitlePermitDef>.Add(tradeSettlement);
             DefDatabase<RoyalTitlePermitDef>.Add(tradeCaravan);
             generatedPermitDefs.Add("TradeSettlement", tradeSettlement);
             generatedPermitDefs.Add("TradeCaravan", tradeCaravan);
 
-            // Setup TraderKinds ---
+            // Setup TraderKinds ----
             // if faction is at least spacer, generate orbital trade permit stuff too
             if (techLevel >= TechLevel.Spacer) {
-                s_tradeOrbital ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeOrbital");
-                var tradeOrbital = EmpireHelpers.CreateBasePermitDef(factionDef, s_tradeOrbital);
+                var tradeOrbital = new RoyalTitlePermitDef();
+                tradeOrbital.defName = $"TradeOrbital_{factionDef.defName}";
+                tradeOrbital.label = $"trade with orbital traders";
 
                 DefDatabase<RoyalTitlePermitDef>.Add(tradeOrbital);
                 generatedPermitDefs.Add("TradeOrbital", tradeOrbital);
@@ -129,30 +130,17 @@ namespace empireMaker
 
         private static RoyalTitlePermitDef GenerateCombatPermitDef(ConversionSettings settings, FactionDef factionDef, int tier, RoyalTitlePermitDef derivedFrom, List<PawnKindDef> permitPawns)
         {
-            RoyalTitlePermitDef def;
+            if (derivedFrom == null) return null;
 
-            def = EmpireHelpers.CreateBasePermitDef(factionDef, derivedFrom);
+            RoyalTitlePermitDef def = EmpireHelpers.ClonePermitDef(factionDef, derivedFrom);
 
             int combatPower = (tier == 0) ? BaseCombatPower : ScaledCombatPower * (tier + 1);
 
             def.royalAid = new RoyalAid {
-                favorCost = derivedFrom.royalAid.favorCost,
+                favorCost = derivedFrom?.royalAid.favorCost ?? (tier + 2) * 2,
                 pawnKindDef = permitPawns[tier],
                 pawnCount = Mathf.RoundToInt(combatPower / permitPawns[tier].combatPower)
             };
-
-            //if (EmpireHelpers.IsUnmoddedFaction(factionDef.defName)) {
-            //    // even if it's unmodded, we still need to set the faction
-            //    def = GenerateBasePermitDef(settings, factionDef, derivedFrom);
-
-            //    def.royalAid = new RoyalAid {
-            //        favorCost = derivedFrom.royalAid.favorCost,
-            //        pawnKindDef = derivedFrom.royalAid.pawnKindDef,
-            //        pawnCount = derivedFrom.royalAid.pawnCount,
-            //    };
-            //}
-            //else {
-            //}
 
             return def;
         }
