@@ -56,37 +56,23 @@ namespace empireMaker
             // Trade permits --
             var tradeSettlement = new RoyalTitlePermitDef();
             var tradeCaravan = new RoyalTitlePermitDef();
+            var tradeOrbital = new RoyalTitlePermitDef();
 
             tradeSettlement.defName = $"TradeSettlement_{factionDef.defName}";
             tradeCaravan.defName = $"TradeCaravan_{factionDef.defName}";
+            tradeOrbital.defName = $"TradeOrbital_{factionDef.defName}";
+
             tradeSettlement.label = "trade with settlements";
             tradeCaravan.label = $"trade with caravans";
+            tradeOrbital.label = $"trade with orbital traders";
 
             DefDatabase<RoyalTitlePermitDef>.Add(tradeSettlement);
             DefDatabase<RoyalTitlePermitDef>.Add(tradeCaravan);
+            DefDatabase<RoyalTitlePermitDef>.Add(tradeOrbital);
+
             generatedPermitDefs.Add("TradeSettlement", tradeSettlement);
             generatedPermitDefs.Add("TradeCaravan", tradeCaravan);
-
-            // Setup TraderKinds ----
-            // if faction is at least spacer, generate orbital trade permit stuff too
-            if (techLevel >= TechLevel.Spacer) {
-                var tradeOrbital = new RoyalTitlePermitDef();
-                tradeOrbital.defName = $"TradeOrbital_{factionDef.defName}";
-                tradeOrbital.label = $"trade with orbital traders";
-
-                DefDatabase<RoyalTitlePermitDef>.Add(tradeOrbital);
-                generatedPermitDefs.Add("TradeOrbital", tradeOrbital);
-
-                if (settings.RequiresTradePermit) {
-                    // 궤도상선
-                    foreach (var traderKindDef in from traders in DefDatabase<TraderKindDef>.AllDefs
-                                                  where traders.orbital && traders.faction != null && traders.faction == factionDef
-                                                  select traders
-                    ) {
-                        traderKindDef.permitRequiredForTrading = tradeOrbital;
-                    }
-                }
-            }
+            generatedPermitDefs.Add("TradeOrbital", tradeOrbital);
 
             // 계급에 따른 거래제한
             if (settings.RequiresTradePermit) {
@@ -102,7 +88,6 @@ namespace empireMaker
                     DefDatabase<TraderKindDef>.Add(newTraderKindDef);
                     traderKindDefList.Add(newTraderKindDef);
                 }
-
                 factionDef.baseTraderKinds = traderKindDefList;
 
 
@@ -117,8 +102,15 @@ namespace empireMaker
                     DefDatabase<TraderKindDef>.Add(newCaravanTraderKindDef);
                     traderKindDefList.Add(newCaravanTraderKindDef);
                 }
-
                 factionDef.caravanTraderKinds = traderKindDefList;
+
+                // 궤도상선
+                foreach (var traderKindDef in from traders in DefDatabase<TraderKindDef>.AllDefs
+                                              where traders.orbital && traders.faction != null && traders.faction == factionDef
+                                              select traders
+                ) {
+                    traderKindDef.permitRequiredForTrading = tradeOrbital;
+                }
             }
 
             if (debugMode) {
