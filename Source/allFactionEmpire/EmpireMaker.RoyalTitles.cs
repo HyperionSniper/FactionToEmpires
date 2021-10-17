@@ -1,60 +1,51 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
 namespace empireMaker
 {
     public partial class EmpireMaker
     {
+        private static Dictionary<TechLevel, string[]> s_RoyalTitleMap = new Dictionary<TechLevel, string[]> {
+            { TechLevel.Neolithic, new string[] { "OutlanderTitle" } },
+            { TechLevel.Medieval, new string[] { "OutlanderTitle" } },
+            { TechLevel.Industrial, new string[] { "OutlanderTitle", "OutlanderMercenaryTitle" } },
+            { TechLevel.Spacer, new string[] { "OutlanderTitle", "OutlanderMercenaryTitle" } },
+            { TechLevel.Ultra, new string[] { "OutlanderTitle" } },
+        };
+
         /// <summary>
         /// Sets royal title tags based on tech level. Returns true if the tech level matches a valid tech level.
         /// </summary>
         /// <param name="settings"></param>
         /// <param name="factionDef"></param>
         /// <returns></returns>
-        public static bool SetRoyalTitleTags(ConversionSettings settings, FactionDef factionDef, TechLevel techLevel)
+        private static bool SetRoyalTitleTags(ConversionSettings settings, FactionDef factionDef, TechLevel techLevel)
         {
             // set royal titles based on tech level
-            bool useMercenaryTitles = !settings.DisableMercTitles;
+            bool useMercTitles = !settings.DisableMercTitles;
 
             switch (techLevel) {
                 case TechLevel.Neolithic:
-                    factionDef.royalTitleTags.Add("OutlanderTitle"); // TODO
-                    break;
-
                 case TechLevel.Medieval:
-                    factionDef.royalTitleTags.Add("OutlanderTitle"); // TODO
-                    break;
-
                 case TechLevel.Industrial:
-                    factionDef.royalTitleTags.Add("OutlanderTitle");
-
-                    if (useMercenaryTitles) {
-                        factionDef.royalTitleTags.Add("OutlanderMercenaryTitle");
-                    }
-                    break;
-
                 case TechLevel.Spacer:
-                    factionDef.royalTitleTags.Add("OutlanderTitle"); // TODO
-
-                    if (useMercenaryTitles) {
-                        factionDef.royalTitleTags.Add("OutlanderMercenaryTitle");
-                    }
-                    break;
-
                 case TechLevel.Ultra:
-                    factionDef.royalTitleTags.Add("OutlanderTitle"); // TODO
+                    factionDef.royalTitleTags.AddRange(
+                        s_RoyalTitleMap[techLevel]
+                        .Take(useMercTitles ? 2 : 1));
                     break;
 
                 default:
-                    factionDef.royalTitleTags.Add($"{factionDef.defName}Title");
+                    factionDef.royalTitleTags.Add($"OutlanderTitle");
                     return false;
             }
 
             return true;
         }
 
-        public static void SortRoyalTitleDefs(Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap)
+        private static void SortRoyalTitleDefs(Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap)
         {
             // sort all royal title defs into title types
             foreach (var title in DefDatabase<RoyalTitleDef>.AllDefs) {
@@ -73,17 +64,17 @@ namespace empireMaker
             }
         }
 
-        public static bool GenerateRoyalTitleDefs(ConversionSettings settings, FactionDef factionDef, Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap, Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs, out List<RoyalTitleDef> royalTitles)
+        private static bool GenerateRoyalTitleDefs(ConversionSettings settings, FactionDef factionDef, Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap, Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs, out List<RoyalTitleDef> royalTitles)
         {
             royalTitles = new List<RoyalTitleDef>();
 
             foreach (string tag in factionDef.royalTitleTags) {
                 foreach (var defaultTitleDef in royalTitleTagMap[tag]) {
                     var newRoyalTitle = new RoyalTitleDef {
-                        defName = $"{defaultTitleDef.defName}_{factionDef.defName}",
-                        tags = new List<string>()
+                        defName = $"{defaultTitleDef.defName}_{factionDef.defName}"
                     };
-                    newRoyalTitle.tags.AddRange(factionDef.royalTitleTags);
+                    newRoyalTitle.tags = new List<string>(
+                        defaultTitleDef.tags.Select(title => title + "_" + factionDef.defName));
 
                     newRoyalTitle.awardThought = defaultTitleDef.awardThought;
                     newRoyalTitle.bedroomRequirements = defaultTitleDef.bedroomRequirements;
