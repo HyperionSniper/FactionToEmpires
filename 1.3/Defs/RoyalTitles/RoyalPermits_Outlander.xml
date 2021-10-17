@@ -38,7 +38,7 @@
     <label>silver drop</label>
     <description>Call for a drop of 250 silver.</description>
     <minTitle>f2e_Honorary</minTitle>
-    <uiPosition>(0,4)</uiPosition>
+    <uiPosition>(0,2)</uiPosition>
     <royalAid>
       <itemsToDrop>
         <Silver>250</Silver>
@@ -55,7 +55,7 @@
     <minTitle>f2e_Dignitary</minTitle>
     <faction>OutlanderCivil</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(0,2)</uiPosition>
+    <uiPosition>(0,5)</uiPosition>
     <royalAid>
       <favorCost>3</favorCost>
 	  <!-- TODO: replace with custom worker pawn kind -->
@@ -73,13 +73,13 @@
     <label>call mercenary squad</label>
     <description>Call a group of 4 light mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
-    <minTitle>f2e_Dignitary</minTitle>
+    <minTitle>f2e_Honorary</minTitle>
     <faction>OutlanderCivil</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,3)</uiPosition>
     <royalAid>
       <favorCost>3</favorCost>
-      <pawnKindDef>Mercenary_Gunner</pawnKindDef>
+      <pawnKindDef>Mercenary_Gunner_Acidifier</pawnKindDef>
       <pawnCount>4</pawnCount>
       <targetingRange>39.9</targetingRange>
     </royalAid>
@@ -94,7 +94,7 @@
     <minTitle>f2e_Dignitary</minTitle>
     <faction>OutlanderCivil</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(0,7)</uiPosition>
+    <uiPosition>(0,6)</uiPosition>
     <royalAid>
       <favorCost>5</favorCost>
       <pawnKindDef>Mercenary_Elite_Acidifier</pawnKindDef>
