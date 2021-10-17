@@ -129,8 +129,6 @@ namespace empireMaker
 
         private static RoyalTitlePermitDef GenerateCombatPermitDef(ConversionSettings settings, FactionDef factionDef, int tier, RoyalTitlePermitDef derivedFrom, List<PawnKindDef> permitPawns)
         {
-            if (derivedFrom == null) return null;
-
             RoyalTitlePermitDef def;
 
             def = EmpireHelpers.CreateBasePermitDef(factionDef, derivedFrom);

@@ -95,7 +95,7 @@ namespace empireMaker {
                 // copy royal faction settings from the Empire
                 factionDef.royalFavorLabel = empireFactionDef.royalFavorLabel;
                 factionDef.royalFavorIconPath = empireFactionDef.royalFavorIconPath;
-                Log.Warning("[DEBUG] path: " + empireFactionDef.royalFavorIconPath);
+                //Log.Warning("[DEBUG] path: " + empireFactionDef.royalFavorIconPath);
                 //factionDef.royalFavorIconPath = $"F2E/Icon_{factionDef.defName}";
                 factionDef.raidLootMaker = empireFactionDef.raidLootMaker;
 
@@ -127,7 +127,6 @@ namespace empireMaker {
                 // sort pawn types into groups
                 // EmpireMaker.SortPawnKinds.cs
                 SortPawnKinds(settings, factionDef, out var allPawns, out var leaderPawns, out var nonLeaderPawns);
-                SortFighterPawnKinds(settings, factionDef, allPawns, out var fighterPawns);
 
                 // get royal permits & pawn types:
                 //SortPermitPawnsLegacy(settings, factionDef, fighterPawns, out var permitPawns);
@@ -135,7 +134,7 @@ namespace empireMaker {
                 // -- or --
 
                 // EmpireMaker.Permits.cs
-                if (!GeneratePermits(settings, factionDef, techLevel, fighterPawns, out var newPermits)) {
+                if (!GeneratePermits(settings, factionDef, techLevel, allPawns, out var newPermits)) {
                     Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed permit generation.");
                     // keep converting anyways, but will probably be bugged
                 }
