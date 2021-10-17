@@ -45,8 +45,8 @@ namespace empireMaker
             var militaryLarge = GenerateCombatPermitDef(settings, factionDef, 1, callMilitaryAidLarge, permitPawns);
             var militaryGrand = GenerateCombatPermitDef(settings, factionDef, 2, callMilitaryAidGrand, permitPawns);
 
-            var tradeSettlement = GenerateTradePermitDef(settings, factionDef, s_tradeSettlement, permitPawns);
-            var tradeCaravan = GenerateTradePermitDef(settings, factionDef, s_tradeCaravan, permitPawns);
+            var tradeSettlement = EmpireHelpers.CreateBasePermitDef(factionDef, s_tradeSettlement);
+            var tradeCaravan = EmpireHelpers.CreateBasePermitDef(factionDef, s_tradeCaravan);
 
             // add permits to database if they aren't already loaded
             if (militarySmall != null) {
@@ -71,7 +71,7 @@ namespace empireMaker
             // if faction is at least spacer, generate orbital trade permit stuff too
             if (techLevel >= TechLevel.Spacer) {
                 s_tradeOrbital ??= DefDatabase<RoyalTitlePermitDef>.GetNamed("TradeOrbital");
-                var tradeOrbital = GenerateTradePermitDef(settings, factionDef, s_tradeOrbital, permitPawns);
+                var tradeOrbital = EmpireHelpers.CreateBasePermitDef(factionDef, s_tradeOrbital);
 
                 DefDatabase<RoyalTitlePermitDef>.Add(tradeOrbital);
                 generatedPermitDefs.Add("TradeOrbital", tradeOrbital);
@@ -155,21 +155,6 @@ namespace empireMaker
             //}
             //else {
             //}
-
-            return def;
-        }
-
-        private static RoyalTitlePermitDef GenerateTradePermitDef(ConversionSettings settings, FactionDef factionDef, RoyalTitlePermitDef derivedFrom, List<PawnKindDef> permitPawns)
-        {
-            if (derivedFrom == null) return null;
-
-            var def = EmpireHelpers.CreateBasePermitDef(factionDef, derivedFrom);
-
-            def.royalAid = new RoyalAid {
-                favorCost = derivedFrom.royalAid.favorCost,
-                pawnKindDef = permitPawns[0],
-                pawnCount = Mathf.RoundToInt(BaseCombatPower / permitPawns[0].combatPower)
-            };
 
             return def;
         }
