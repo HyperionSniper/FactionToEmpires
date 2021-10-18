@@ -3,7 +3,8 @@ using RimWorld;
 using Verse;
 
 namespace empireMaker {
-    public partial class EmpireMaker {
+    public partial class EmpireMaker : HugsLib.ModBase
+    {
 
         public static bool phychicAll = true;
         public static bool delVanilla;
@@ -42,6 +43,7 @@ namespace empireMaker {
             public Conversion ConversionType;
             public TechLevel ForcedTechLevel;
             public bool DisableMercTitles;
+            public bool IsRaiderFaction;
 
             public Relationship RelationshipType;
             public WantsApparel WantsApparelType;
@@ -145,13 +147,16 @@ namespace empireMaker {
                     "techLevel_d".Translate(), EmpireTechLevel.industrial, null, "en_techLevel_").Value;
                 }
 
+                settings.IsRaiderFaction = Settings.GetHandle<bool>($"{factionDef.defName}IsRaider", "isRaider_t".Translate(),
+                    "isRaider_d".Translate()).Value;
+
                 settings.RelationshipHandle = Settings.GetHandle($"{factionDef.defName}Relation", "relation_t".Translate(),
                     "relation_d".Translate(), Relationship.basic, null, "en_relation_");
 
                 // 관계
+                // merc titles are only available for certain tech levels
                 if (factionDef.techLevel == TechLevel.Industrial
-                    || factionDef.techLevel == TechLevel.Spacer
-                    || factionDef.techLevel == TechLevel.Ultra)
+                    || factionDef.techLevel == TechLevel.Spacer)
                 {
                     settings.DisableMercTitles = Settings.GetHandle<bool>($"{factionDef.defName}Relation", "disableMercTitles_t".Translate(),
                         "disableMercTitles_d".Translate(), true);

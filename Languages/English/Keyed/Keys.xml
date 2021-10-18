@@ -17,6 +17,9 @@
   <techLevel_t>       - Tech Level</techLevel_t>
   <techLevel_d>Sets the forced tech level of this faction. Default royal titles are selected according to tech level.</techLevel_d>
   
+  <isRaider_t>       - Is Raider Faction</isRaider_t>
+  <isRaider_d>Sets whether or not this faction is a raider faction. Raider factions have different royal titles.</isRaider_d>
+  
   <disableMercTitles_t>       - Disable Mercenary Titles</disableMercTitles_t>
   <disableMercTitles_d>Disables mercenary titles for this faction (from Industrial and Spacer default royal titles).</disableMercTitles_d>
   

@@ -15,7 +15,7 @@
       <itemsToDrop>
         <Steel>120</Steel>
       </itemsToDrop>
-      <favorCost>2</favorCost>
+      <favorCost>1</favorCost>
     </royalAid>
   </RoyalTitlePermitDef>
 
@@ -29,7 +29,7 @@
       <itemsToDrop>
         <MealSurvivalPack>20</MealSurvivalPack>
       </itemsToDrop>
-      <favorCost>2</favorCost>
+      <favorCost>1</favorCost>
     </royalAid>
   </RoyalTitlePermitDef>
 
@@ -43,7 +43,7 @@
       <itemsToDrop>
         <Silver>250</Silver>
       </itemsToDrop>
-      <favorCost>2</favorCost>
+      <favorCost>1</favorCost>
     </royalAid>
   </RoyalTitlePermitDef>
 
@@ -104,12 +104,12 @@
     <cooldownDays>50</cooldownDays>
   </RoyalTitlePermitDef>
   
-  <!--<RoyalTitlePermitDef>
+  <RoyalTitlePermitDef>
     <defName>f2e_CallArtilleryStrike</defName>
     <label>call artillery strike</label>
     <description>Call an artillery bombardment at a target position.</description>
-    <workerClass>F2e_RoyalTitlePermitWorker_ArtilleryStrike</workerClass>
-    <minTitle>Dignitary</minTitle>
+    <workerClass>RoyalTitlePermitWorker_OrbitalStrike</workerClass>
+    <minTitle>f2e_Dignitary</minTitle>
     <faction>Empire</faction>
     <permitPointCost>1</permitPointCost>
     <cooldownDays>45</cooldownDays>
@@ -119,20 +119,22 @@
       <targetingRange>44.9</targetingRange>
       <radius>2.9</radius>
       <explosionRadiusRange>7.9</explosionRadiusRange>
-      <explosionCount>1</explosionCount>
+      <explosionCount>4</explosionCount>
       <intervalTicks>60</intervalTicks>
       <warmupTicks>120</warmupTicks>
+      <pawnKindDef>Mercenary_Gunner</pawnKindDef>
+      <pawnCount>1</pawnCount>
     </royalAid>
-  </RoyalTitlePermitDef> -->
+  </RoyalTitlePermitDef> 
   
   <!-- Utility -->
 
-  <!--<RoyalTitlePermitDef>
-    <defName>f2e_CallDropPods</defName>
-    <label>call drop pods</label>
-    <description>Call drop pods for your own use. It will transport colonists, items, and animals anywhere you like within 70 world tiles.</description>
+  <RoyalTitlePermitDef>
+    <defName>f2e_CallTransportShuttle</defName>
+    <label>call transport shuttle</label>
+    <description>Call a shuttle for your own use. It will transport colonists, items, and animals anywhere you like within 70 world tiles.</description>
     <workerClass>RoyalTitlePermitWorker_CallShuttle</workerClass>
-    <minTitle>Knight</minTitle>
+    <minTitle>f2e_Dignitary</minTitle>
     <faction>Empire</faction>
     <permitPointCost>1</permitPointCost>
     <cooldownDays>40</cooldownDays>
@@ -143,6 +145,6 @@
       <targetingRange>44.9</targetingRange>
       <targetingRequireLOS>false</targetingRequireLOS>
     </royalAid>
-  </RoyalTitlePermitDef>-->
+  </RoyalTitlePermitDef>
   
 </Defs>

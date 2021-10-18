@@ -1,4 +1,5 @@
 ﻿using RimWorld;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
@@ -7,7 +8,7 @@ namespace empireMaker
 {
     public partial class EmpireMaker
     {
-        private static Dictionary<TechLevel, string[]> s_RoyalTitleMap = new Dictionary<TechLevel, string[]> {
+        private static Dictionary<TechLevel, string[]> s_RoyalTitleTagMap = new Dictionary<TechLevel, string[]> {
             { TechLevel.Neolithic, new string[] { "OutlanderTitle" } },
             { TechLevel.Medieval, new string[] { "OutlanderTitle" } },
             { TechLevel.Industrial, new string[] { "OutlanderTitle", "OutlanderMercenaryTitle" } },
@@ -25,6 +26,9 @@ namespace empireMaker
         {
             // set royal titles based on tech level
             bool useMercTitles = !settings.DisableMercTitles;
+            bool isRaider = settings.IsRaiderFaction || EmpireHelpers.IsRaiderFaction(factionDef);
+
+            factionDef.royalTitleTags ??= new List<string>();
 
             switch (techLevel) {
                 case TechLevel.Neolithic:
@@ -32,9 +36,13 @@ namespace empireMaker
                 case TechLevel.Industrial:
                 case TechLevel.Spacer:
                 case TechLevel.Ultra:
+                    var titleTags = s_RoyalTitleTagMap[techLevel];
+
+                    // if mercenaries are enabled, 2 title tags may be taken
+                    // some tech levels have no mercenary titles
                     factionDef.royalTitleTags.AddRange(
-                        s_RoyalTitleMap[techLevel]
-                        .Take(useMercTitles ? 2 : 1));
+                        titleTags
+                        .Take(useMercTitles ? Math.Min(2, titleTags.Length) : 1));
                     break;
 
                 default:
@@ -50,6 +58,8 @@ namespace empireMaker
             // sort all royal title defs into title types
             foreach (var title in DefDatabase<RoyalTitleDef>.AllDefs) {
                 // for each individual royal title, assign it to a single List in the royalTitleTagMap.
+                if (title.tags == null) continue;
+
                 foreach (var titleType in royalTitleTagMap) {
                     if (title.tags.Contains(titleType.Key)) {
                         titleType.Value.Add(title);
@@ -68,6 +78,7 @@ namespace empireMaker
         {
             royalTitles = new List<RoyalTitleDef>();
 
+            // Clone RoyalTitles --
             foreach (string tag in factionDef.royalTitleTags) {
                 foreach (var defaultTitleDef in royalTitleTagMap[tag]) {
                     var newRoyalTitle = new RoyalTitleDef {
@@ -144,8 +155,16 @@ namespace empireMaker
             royalTitles.SortByDescending(def => def.seniority);
 
             var highestRank = royalTitles[0];
+
+            if (debugMode)
+                Log.Warning("highest rank: " + highestRank.label);
+
             highestRank.label = factionDef.leaderTitle;
             highestRank.labelFemale = factionDef.leaderTitleFemale;
+
+            if (highestRank.description != null) {
+                highestRank.description = string.Format(highestRank.description, factionDef.leaderTitle);
+            }
 
             return true;
         }
