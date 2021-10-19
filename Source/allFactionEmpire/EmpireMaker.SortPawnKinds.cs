@@ -6,7 +6,7 @@ using Verse;
 
 namespace empireMaker {
     public partial class EmpireMaker {
-        private static void SortPawnKinds(ConversionSettings settings, FactionDef factionDef,
+        private static void SortPawnKinds(ConversionParams settings, FactionDef factionDef,
             out List<PawnKindDef> allPawns, out List<PawnKindDef> leaderPawns, out List<PawnKindDef> nonLeaderPawns)
         {
             allPawns = new List<PawnKindDef>();
@@ -59,7 +59,7 @@ namespace empireMaker {
             }
         }
 
-        private static void SortFighterPawnKinds(ConversionSettings settings, FactionDef factionDef,
+        private static void SortFighterPawnKinds(ConversionParams settings, FactionDef factionDef,
             List<PawnKindDef> allPawns,
             out List<PawnKindDef> fighterPawns)
         {
@@ -93,7 +93,7 @@ namespace empireMaker {
             }
         }
 
-        private static void SortPermitPawns(ConversionSettings settings, FactionDef factionDef, 
+        private static void SortPermitPawns(ConversionParams settings, FactionDef factionDef, 
             List<PawnKindDef> fighterPawns,
             out List<PawnKindDef> permitPawns)
         {

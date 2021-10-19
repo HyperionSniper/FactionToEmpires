@@ -11,7 +11,7 @@ namespace empireMaker {
 
 
         public static List<FactionDef> eligibleFactions = new List<FactionDef>();
-        public static List<ConversionSettings> factionConversionSettings = new List<ConversionSettings>();
+        public static List<ConversionParams> factionConversionSettings = new List<ConversionParams>();
 
         public static List<FactionDef> willBeEmpireFactionDefList = new List<FactionDef>();
 
@@ -63,7 +63,7 @@ namespace empireMaker {
             // 제국 타이틀
             // todo: add ability to create custom royal title maps
 
-            var royalTitleTagMap = new Dictionary<string, List<RoyalTitleDef>> {
+            var baseRoyalTitles = new Dictionary<string, List<RoyalTitleDef>> {
                 { "EmpireTitle", new List<RoyalTitleDef>() },
                 { "OutlanderTitle", new List<RoyalTitleDef>() },
                 { "OutlanderMercenaryTitle", new List<RoyalTitleDef>() },
@@ -72,7 +72,8 @@ namespace empireMaker {
 
             // sort all royal title defs into title types
             // EmpireMaker.RoyalTitles.cs
-            SortRoyalTitleDefs(royalTitleTagMap);
+            GetBaseRoyalTitles(baseRoyalTitles);
+            var baseRoyalPermits = GetBaseRoyalPermits();
 
             for (var i = 0; i < eligibleFactions.Count; i++) {
                 var factionDef = eligibleFactions[i];
@@ -134,14 +135,14 @@ namespace empireMaker {
                 // -- or --
 
                 // EmpireMaker.Permits.cs
-                if (!GeneratePermits(settings, factionDef, techLevel, allPawns, out var newPermits)) {
-                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed permit generation.");
+                if (!GenerateRoyalPermits(settings, factionDef, techLevel, allPawns, baseRoyalPermits[settings.Archetype], out var newPermits)) {
+                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed trade and reinforcement permit generation.");
                     // keep converting anyways, but will probably be bugged
                 }
 
                 // 커스텀 작위
                 // EmpireMaker.RoyalTitles.cs
-                if (!GenerateRoyalTitleDefs(settings, factionDef, royalTitleTagMap, newPermits, out var royalTitles)) {
+                if (!GenerateRoyalTitleDefs(settings, factionDef, baseRoyalTitles, newPermits, out var royalTitles)) {
                     Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed royal title def generation.");
                     // keep converting anyways, but will probably be bugged
                 }

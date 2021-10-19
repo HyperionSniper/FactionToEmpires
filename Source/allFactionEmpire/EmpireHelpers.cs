@@ -16,7 +16,7 @@ namespace empireMaker {
             }
         }
 
-        public static TechLevel GetTechLevel(ConversionSettings settings, FactionDef factionDef) {
+        public static TechLevel GetTechLevel(ConversionParams settings, FactionDef factionDef) {
             TechLevel techLevel;
             bool forceConversion = settings.ConversionType == Conversion.forceConversion;
 
@@ -110,6 +110,8 @@ namespace empireMaker {
             def.permitPointCost = derivedFrom.permitPointCost;
             def.uiPosition = derivedFrom.uiPosition;
             def.cooldownDays = derivedFrom.cooldownDays;
+
+            def.generated = true;
 
             if (derivedFrom.royalAid != null) {
                 def.royalAid = new RoyalAid {

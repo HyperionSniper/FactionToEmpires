@@ -9,6 +9,7 @@
     <label>steel drop</label>
     <description>Call for a drop of 120 steel.</description>
     <minTitle>f2e_Honorary</minTitle>
+    <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,0)</uiPosition>
     <royalAid>
@@ -24,7 +25,8 @@
     <label>food drop</label>
     <description>Call for a drop of 20 packaged survival meals.</description>
     <minTitle>f2e_Honorary</minTitle>
-    <uiPosition>(0,1)</uiPosition>
+    <faction>f2e_IndustrialOutlander</faction>
+    <uiPosition>(1,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
         <MealSurvivalPack>20</MealSurvivalPack>
@@ -38,7 +40,7 @@
     <label>silver drop</label>
     <description>Call for a drop of 250 silver.</description>
     <minTitle>f2e_Honorary</minTitle>
-    <uiPosition>(0,2)</uiPosition>
+    <uiPosition>(2,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
         <Silver>250</Silver>
@@ -53,9 +55,9 @@
     <description>Call a group of 4 workers to assist you for 4 days. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
-    <faction>OutlanderCivil</faction>
+    <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(0,5)</uiPosition>
+    <uiPosition>(0,2)</uiPosition>
     <royalAid>
       <favorCost>3</favorCost>
 	  <!-- TODO: replace with custom worker pawn kind -->
@@ -70,16 +72,16 @@
 
   <RoyalTitlePermitDef>
     <defName>f2e_Outlander_CallMilitaryAidSmall</defName>
-    <label>call mercenary squad</label>
+    <label>call light combat squad</label>
     <description>Call a group of 4 light mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
-    <minTitle>f2e_Honorary</minTitle>
-    <faction>OutlanderCivil</faction>
+    <minTitle>f2e_Dignitary</minTitle>
+    <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,3)</uiPosition>
     <royalAid>
       <favorCost>3</favorCost>
-      <pawnKindDef>Mercenary_Gunner_Acidifier</pawnKindDef>
+      <pawnKindDef>Town_Guard</pawnKindDef>
       <pawnCount>4</pawnCount>
       <targetingRange>39.9</targetingRange>
     </royalAid>
@@ -88,32 +90,50 @@
 
   <RoyalTitlePermitDef>
     <defName>f2e_Outlander_CallMilitaryAidLarge</defName>
-    <label>call elite mercenary squad</label>
-    <description>Call a group of 4 elite mercenaries to aid you in battle.</description>
+    <label>call mercenary squad</label>
+    <description>Call a group of mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
-    <minTitle>f2e_Dignitary</minTitle>
-    <faction>OutlanderCivil</faction>
+    <minTitle>f2e_Councilor</minTitle>
+    <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(0,6)</uiPosition>
+    <uiPosition>(1,5)</uiPosition>
+    <royalAid>
+      <favorCost>5</favorCost>
+      <pawnKindDef>Mercenary_Gunner_Acidifier</pawnKindDef>
+      <pawnCount>4</pawnCount>
+      <targetingRange>39.9</targetingRange>
+    </royalAid>
+    <cooldownDays>50</cooldownDays>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_Outlander_CallMilitaryAidGrand</defName>
+    <label>call elite mercenary squad</label>
+    <description>Call a group of elite mercenaries to aid you in battle.</description>
+    <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
+    <minTitle>f2e_Councilor</minTitle>
+    <faction>f2e_IndustrialOutlander</faction>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(2,5)</uiPosition>
     <royalAid>
       <favorCost>5</favorCost>
       <pawnKindDef>Mercenary_Elite_Acidifier</pawnKindDef>
       <pawnCount>4</pawnCount>
       <targetingRange>39.9</targetingRange>
     </royalAid>
-    <cooldownDays>50</cooldownDays>
+    <cooldownDays>60</cooldownDays>
   </RoyalTitlePermitDef>
-  
+
   <RoyalTitlePermitDef>
     <defName>f2e_CallArtilleryStrike</defName>
     <label>call artillery strike</label>
-    <description>Call an artillery bombardment at a target position.</description>
+    <description>Call {0} bombardment at a target position.</description>
     <workerClass>RoyalTitlePermitWorker_OrbitalStrike</workerClass>
-    <minTitle>f2e_Dignitary</minTitle>
-    <faction>Empire</faction>
+    <minTitle>f2e_HighCouncilor</minTitle>
+    <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
     <cooldownDays>45</cooldownDays>
-    <uiPosition>(0,5)</uiPosition>
+    <uiPosition>(0,7)</uiPosition>
     <royalAid>
       <favorCost>6</favorCost>
       <targetingRange>44.9</targetingRange>
@@ -125,8 +145,13 @@
       <pawnKindDef>Mercenary_Gunner</pawnKindDef>
       <pawnCount>1</pawnCount>
     </royalAid>
-  </RoyalTitlePermitDef> 
-  
+    <modExtensions>
+      <li Class="empireMaker.ArtilleryPermitShellDef">
+        <shellDefName>Shell_HighExplosive</shellDefName>
+      </li>
+    </modExtensions>
+  </RoyalTitlePermitDef>
+
   <!-- Utility -->
 
   <RoyalTitlePermitDef>
@@ -134,8 +159,8 @@
     <label>call transport shuttle</label>
     <description>Call a shuttle for your own use. It will transport colonists, items, and animals anywhere you like within 70 world tiles.</description>
     <workerClass>RoyalTitlePermitWorker_CallShuttle</workerClass>
-    <minTitle>f2e_Dignitary</minTitle>
-    <faction>Empire</faction>
+    <minTitle>f2e_Councilor</minTitle>
+    <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
     <cooldownDays>40</cooldownDays>
     <usableOnWorldMap>true</usableOnWorldMap>
@@ -146,5 +171,5 @@
       <targetingRequireLOS>false</targetingRequireLOS>
     </royalAid>
   </RoyalTitlePermitDef>
-  
+
 </Defs>

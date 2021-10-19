@@ -22,7 +22,7 @@ namespace empireMaker
         /// <param name="settings"></param>
         /// <param name="factionDef"></param>
         /// <returns></returns>
-        private static bool SetRoyalTitleTags(ConversionSettings settings, FactionDef factionDef, TechLevel techLevel)
+        private static bool SetRoyalTitleTags(ConversionParams settings, FactionDef factionDef, TechLevel techLevel)
         {
             // set royal titles based on tech level
             bool useMercTitles = !settings.DisableMercTitles;
@@ -53,7 +53,7 @@ namespace empireMaker
             return true;
         }
 
-        private static void SortRoyalTitleDefs(Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap)
+        private static void GetBaseRoyalTitles(Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap)
         {
             // sort all royal title defs into title types
             foreach (var title in DefDatabase<RoyalTitleDef>.AllDefs) {
@@ -74,7 +74,7 @@ namespace empireMaker
             }
         }
 
-        private static bool GenerateRoyalTitleDefs(ConversionSettings settings, FactionDef factionDef, Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap, Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs, out List<RoyalTitleDef> royalTitles)
+        private static bool GenerateRoyalTitleDefs(ConversionParams settings, FactionDef factionDef, Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap, Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs, out List<RoyalTitleDef> royalTitles)
         {
             royalTitles = new List<RoyalTitleDef>();
 

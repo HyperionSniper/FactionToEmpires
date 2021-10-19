@@ -14,9 +14,9 @@
   <RoyalTitleDef ParentName="BaseOutlanderTitle">
     <defName>f2e_Honorary</defName>
     <label>honorary</label>
-    <description>The title of honorary is used by the outlanders to signify respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlander union.\n\nWith the title comes promise of material assistance or light combat support as repayment.</description>
+    <description>The title of honorary is used by the outlanders to signify respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlander union.\n\nWith the title comes promise of material assistance as repayment.</description>
     <seniority>0</seniority>
-    <favorCost>1</favorCost>
+    <favorCost>4</favorCost>
     <permitPointsAwarded>1</permitPointsAwarded>
     <changeHeirQuestPoints>1000</changeHeirQuestPoints>
     <commonality>1</commonality>
@@ -33,9 +33,9 @@
   <RoyalTitleDef ParentName="BaseOutlanderTitle">
     <defName>f2e_Dignitary</defName>
     <label>dignitary</label>
-    <description>The title of dignitary is used by the outlanders to further distinguish respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlanders in a manner far exceeding that which would be expected from an honorary.\n\nA dignitary may request immediate personal protection from an enlisted elite mercenary group in times of need - a privilege normally restricted to union members or very high paying customers.</description>
+    <description>The title of dignitary is used by the outlanders to further distinguish respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlanders in a manner far exceeding that which would be expected from an honorary.\n\nA dignitary may request immediate personal protection from an enlisted mercenary group in times of need - a privilege normally restricted to paying customers or union administrators.</description>
     <seniority>100</seniority>
-    <favorCost>4</favorCost>
+    <favorCost>8</favorCost>
     <changeHeirQuestPoints>1200</changeHeirQuestPoints>
     <allowDignifiedMeditationFocus>False</allowDignifiedMeditationFocus>
     <awardWorkerClass>RoyalTitleAwardWorker_Instant</awardWorkerClass>
@@ -76,7 +76,7 @@
     <label>councilman</label>
     <labelFemale>councilwoman</labelFemale>
     <description>A low-level member of the administration of an outlander union faction. Outlander colonies are almost entirely independent except in times of need, so councils are usually linked together only by loyalty to the union. This allows honorable unaffiliated outsiders to achieve the title of councilor.\n\nIn the outlander factions, low-level administrative groups help manage towns and cities. A councilor may become high councilor of an existing colony through election, or found their own colony through a charter proposal. At war, a councilor leads their own squad, fighting alongside their soldiers, and may request mercenary reinforcements at will.</description>
-    <favorCost>6</favorCost>
+    <favorCost>10</favorCost>
     <seniority>700</seniority>
     <minExpectation>Moderate</minExpectation>
     <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
@@ -130,7 +130,7 @@
     <label>high councilor</label>
     <description>A middle-level member of the administration of an outlander union faction. Among the unaffiliated, only the most honorable are granted this level of influence within the union.\n\nIn the outlander factions, high councilors oversee the councils of towns and cities, collaborate with other high councilors in times of need, and may grant charters for colonies. At war, a high councilor serves as a general, fielding multiple divisions by drop pod and enacting specific strategies individually or by the Prime Councilor's order.</description>
     <seniority>800</seniority>
-    <favorCost>20</favorCost>
+    <favorCost>14</favorCost>
     <minExpectation>High</minExpectation>
     <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
     <changeHeirQuestPoints>2000</changeHeirQuestPoints>

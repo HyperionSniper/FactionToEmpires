@@ -1,0 +1,40 @@
+<Defs>
+  <FactionDef Name="DummyFactionBase" Abstract="True">
+    <hidden>true</hidden>
+	<humanlikeFaction>false</humanlikeFaction>
+    <raidLootValueFromPointsCurve>
+      <points>
+        <li>(1,1)</li>
+      </points>
+    </raidLootValueFromPointsCurve>
+  </FactionDef>
+
+  <FactionDef ParentName="DummyFactionBase">
+    <defName>f2e_Neolithic</defName>
+    <techLevel>Neolithic</techLevel>
+  </FactionDef>
+  <FactionDef ParentName="DummyFactionBase">
+    <defName>f2e_Medieval</defName>
+    <techLevel>Medieval</techLevel>
+  </FactionDef>
+  <FactionDef ParentName="DummyFactionBase">
+    <defName>f2e_IndustrialRaider</defName>
+    <techLevel>Industrial</techLevel>
+  </FactionDef>
+  <FactionDef ParentName="DummyFactionBase">
+    <defName>f2e_IndustrialOutlander</defName>
+    <techLevel>Industrial</techLevel>
+  </FactionDef>
+  <FactionDef ParentName="DummyFactionBase">
+    <defName>f2e_SpacerRaider</defName>
+    <techLevel>Spacer</techLevel>
+  </FactionDef>
+  <FactionDef ParentName="DummyFactionBase">
+    <defName>f2e_Spacer</defName>
+    <techLevel>Spacer</techLevel>
+  </FactionDef>
+  <FactionDef ParentName="DummyFactionBase">
+    <defName>f2e_Ultra</defName>
+    <techLevel>Ultra</techLevel>
+  </FactionDef>
+</Defs>

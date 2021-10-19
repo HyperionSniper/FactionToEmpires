@@ -39,9 +39,22 @@ namespace empireMaker {
             ultra = 6,
         }
 
-        public class ConversionSettings {
+        public enum EmpireArchetype {
+            Neolithic, // all neolithic
+            Medieval, // all medieval
+            IndustrialRaider, // industrial, spacer raider
+            IndustrialOutlander, // industrial non-raider
+            SpacerRaider, // industrial, spacer raider
+            Spacer, // spacer non-raider
+            Ultra // ultra
+        }
+
+        public class ConversionParams {
             public Conversion ConversionType;
+
             public TechLevel ForcedTechLevel;
+            public TechLevel ActualTechLevel;
+
             public bool DisableMercTitles;
             public bool IsRaiderFaction;
 
@@ -50,6 +63,50 @@ namespace empireMaker {
             public bool RequiresTradePermit;
 
             public SettingHandle<Relationship> RelationshipHandle;
+
+            public TechLevel EffectiveTechLevel {
+                get {
+                    if (ConversionType == Conversion.forceConversion) {
+                        return ForcedTechLevel;
+                    }
+                    else {
+                        return ActualTechLevel;
+                    }
+                }
+            }
+
+            public EmpireArchetype Archetype {
+                get {
+                    switch (EffectiveTechLevel) {
+                        case TechLevel.Neolithic:
+                            return EmpireArchetype.Neolithic;
+
+                        case TechLevel.Medieval:
+                            return EmpireArchetype.Medieval;
+
+                        case TechLevel.Industrial:
+                            if (IsRaiderFaction) {
+                                return EmpireArchetype.IndustrialRaider;
+                            }
+                            else {
+                                return EmpireArchetype.IndustrialOutlander;
+                            }
+
+                        case TechLevel.Spacer:
+                            if (IsRaiderFaction) {
+                                return EmpireArchetype.SpacerRaider;
+                            }
+                            else {
+                                return EmpireArchetype.Spacer;
+                            }
+
+                        case TechLevel.Ultra:
+                            return EmpireArchetype.Ultra;
+
+                        default: return EmpireArchetype.IndustrialOutlander;
+                    }
+                }
+            }
         }
 
         public override void SettingsChanged() {
@@ -122,7 +179,7 @@ namespace empireMaker {
                 var factionDef = eligibleFactions[i];
                 var isHardMod = EmpireHelpers.IsHardModToConvert(factionDef.modContentPack.PackageId);
 
-                ConversionSettings settings = new ConversionSettings();
+                ConversionParams settings = new ConversionParams();
 
                 // 제국화
                 Conversion makeType;
@@ -146,6 +203,8 @@ namespace empireMaker {
                     settings.ForcedTechLevel = (RimWorld.TechLevel) Settings.GetHandle($"{factionDef.defName}TechLevel", "techLevel_t".Translate(),
                     "techLevel_d".Translate(), EmpireTechLevel.industrial, null, "en_techLevel_").Value;
                 }
+
+                settings.ActualTechLevel = factionDef.techLevel;
 
                 settings.IsRaiderFaction = Settings.GetHandle<bool>($"{factionDef.defName}IsRaider", "isRaider_t".Translate(),
                     "isRaider_d".Translate()).Value;

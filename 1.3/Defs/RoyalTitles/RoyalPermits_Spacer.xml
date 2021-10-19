@@ -9,6 +9,7 @@
     <label>steel drop</label>
     <description>Call for a drop of 120 steel.</description>
     <minTitle>f2e_Honorary</minTitle>
+    <faction>f2e_Spacer</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,0)</uiPosition>
     <royalAid>
@@ -24,7 +25,8 @@
     <label>food drop</label>
     <description>Call for a drop of 20 packaged survival meals.</description>
     <minTitle>f2e_Honorary</minTitle>
-    <uiPosition>(0,1)</uiPosition>
+    <faction>f2e_Spacer</faction>
+    <uiPosition>(1,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
         <MealSurvivalPack>20</MealSurvivalPack>
@@ -38,7 +40,8 @@
     <label>silver drop</label>
     <description>Call for a drop of 250 silver.</description>
     <minTitle>f2e_Honorary</minTitle>
-    <uiPosition>(0,4)</uiPosition>
+    <faction>f2e_Spacer</faction>
+    <uiPosition>(2,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
         <Silver>250</Silver>
@@ -53,7 +56,7 @@
     <description>Call a group of 4 laborers to assist you for 4 days. These workers can only do general labor tasks. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
-    <faction>Ancients</faction>
+    <faction>f2e_Spacer</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,2)</uiPosition>
     <royalAid>
@@ -73,7 +76,7 @@
     <description>Call a group of 4 light mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
-    <faction>Ancients</faction>
+    <faction>f2e_Spacer</faction>
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,3)</uiPosition>
     <royalAid>
@@ -91,9 +94,9 @@
     <description>Call a group of 4 elite mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
-    <faction>Ancients</faction>
+    <faction>f2e_Spacer</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(0,7)</uiPosition>
+    <uiPosition>(1,5)</uiPosition>
     <royalAid>
       <favorCost>6</favorCost>
       <pawnKindDef>Mercenary_Elite_Acidifier</pawnKindDef>
@@ -109,6 +112,7 @@
     <description>Call an artillery bombardment at a target position.</description>
     <workerClass>F2e_RoyalTitlePermitWorker_ArtilleryStrike</workerClass>
     <minTitle>Dignitary</minTitle>
+    <faction>f2e_Spacer</faction>
     <faction>Empire</faction>
     <permitPointCost>1</permitPointCost>
     <cooldownDays>45</cooldownDays>
@@ -132,7 +136,7 @@
     <description>Call a shuttle for your own use. It will transport colonists, items, and animals anywhere you like within 70 world tiles.</description>
     <workerClass>RoyalTitlePermitWorker_CallShuttle</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
-    <faction>Ancients</faction>
+    <faction>f2e_Spacer</faction>
     <permitPointCost>1</permitPointCost>
     <cooldownDays>60</cooldownDays>
     <usableOnWorldMap>true</usableOnWorldMap>

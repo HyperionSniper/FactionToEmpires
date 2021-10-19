@@ -8,7 +8,7 @@ using Verse;
 
 namespace empireMaker {
     public partial class EmpireMaker {
-        public static void GeneratePawnKindsBugFix(ConversionSettings settings, FactionDef factionDef, List<RoyalTitleDef> royalTitles, List<PawnKindDef> allPawns, List<PawnKindDef> leaderPawns, List<PawnKindDef> nonLeaderPawns) {
+        public static void GeneratePawnKindsBugFix(ConversionParams settings, FactionDef factionDef, List<RoyalTitleDef> royalTitles, List<PawnKindDef> allPawns, List<PawnKindDef> leaderPawns, List<PawnKindDef> nonLeaderPawns) {
 
             Log.Message($" - {factionDef.defName} : make pawnkind with bugFix mode");
 
@@ -63,7 +63,7 @@ namespace empireMaker {
             PawnKindDef.Named("Empire_Royal_Stellarch")
         };
 
-        private static void GeneratePawnKinds(ConversionSettings settings, FactionDef factionDef, List<RoyalTitleDef> royalTitles, List<PawnKindDef> allPawns, List<PawnKindDef> leaderPawns, List<PawnKindDef> nonLeaderPawns) {
+        private static void GeneratePawnKinds(ConversionParams settings, FactionDef factionDef, List<RoyalTitleDef> royalTitles, List<PawnKindDef> allPawns, List<PawnKindDef> leaderPawns, List<PawnKindDef> nonLeaderPawns) {
 
             Log.Message($" - {factionDef.defName} : make pawnkind");
 
