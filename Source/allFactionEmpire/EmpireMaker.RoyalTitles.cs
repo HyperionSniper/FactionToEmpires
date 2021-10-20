@@ -8,13 +8,31 @@ namespace empireMaker
 {
     public partial class EmpireMaker
     {
-        private static Dictionary<TechLevel, string[]> s_RoyalTitleTagMap = new Dictionary<TechLevel, string[]> {
-            { TechLevel.Neolithic, new string[] { "OutlanderTitle" } },
-            { TechLevel.Medieval, new string[] { "OutlanderTitle" } },
-            { TechLevel.Industrial, new string[] { "OutlanderTitle", "OutlanderMercenaryTitle" } },
-            { TechLevel.Spacer, new string[] { "OutlanderTitle", "OutlanderMercenaryTitle" } },
-            { TechLevel.Ultra, new string[] { "OutlanderTitle" } },
+        private static Dictionary<TechLevel, Titles> s_RoyalTitleTagMap = new Dictionary<TechLevel, Titles> {
+            { TechLevel.Neolithic, new Titles {
+                Base = "NeolithicTitle"
+            }},
+            { TechLevel.Medieval, new Titles {
+                Base = "MedievalTitle"
+            }},
+            { TechLevel.Industrial, new Titles {
+                Base = "IndustrialOutlanderTitle",
+                Raider = "SpacerRaiderTitle"
+            }},
+            { TechLevel.Spacer, new Titles {
+                Base = "SpacerTitle",
+                Raider = "SpacerRaiderTitle"
+            }},
+            { TechLevel.Ultra, new Titles {
+                Base = "UltraTitle"
+            }},
         };
+
+        private class Titles {
+            public string Base;
+            public string Raider;
+            public string Mercenary;
+        }
 
         /// <summary>
         /// Sets royal title tags based on tech level. Returns true if the tech level matches a valid tech level.
@@ -40,9 +58,17 @@ namespace empireMaker
 
                     // if mercenaries are enabled, 2 title tags may be taken
                     // some tech levels have no mercenary titles
-                    factionDef.royalTitleTags.AddRange(
-                        titleTags
-                        .Take(useMercTitles ? Math.Min(2, titleTags.Length) : 1));
+
+                    if (isRaider && titleTags.Raider != null) {
+                        factionDef.royalTitleTags.Add(titleTags.Raider);
+                    } else {
+                        factionDef.royalTitleTags.Add(titleTags.Base);
+                    }
+
+                    if (titleTags.Mercenary != null) {
+                        factionDef.royalTitleTags.Add(titleTags.Mercenary);
+                    }
+
                     break;
 
                 default:
