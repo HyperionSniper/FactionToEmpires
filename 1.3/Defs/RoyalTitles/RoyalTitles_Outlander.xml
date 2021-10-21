@@ -347,10 +347,10 @@
   </RoyalTitleDef>
 
   <RoyalTitleDef ParentName="BaseOutlanderCouncilTitleNPC">
-    <defName>f2e_PrimeCouncilor</defName>
-    <label>prime councilor</label>
-    <description>The highest level of administrator within an outlander union faction. The Prime Councilor, titled within this faction as {0}, controls all the colonies united under their flag, and projects force across the planet as needed. They may order their constituents to act as one in times of need, and at war, the Prime Councilor acts as commander-in-chief, and may approve wide-scale military movements and projections of force.</description>
-    <seniority>1000</seniority>
+    <defName>f2e_Governor</defName>
+    <label>governor</label>
+    <description>A high-level member of the administration of an outlander faction. They assist the prime councilor in managing towns and cities. One governor may have jurisdiction over multiple colonies.\n\nGovernors hold a strictly administrative role and do not participate in war directly, although wartime domestic logistics fall under their authority.</description>
+    <seniority>900</seniority>
     <commonality>0</commonality>
 
     <throneRoomRequirements>
@@ -365,6 +365,134 @@
       </li>
       <li Class="RoomRequirement_Impressiveness">
         <impressiveness>120</impressiveness>
+      </li>
+      <li Class="RoomRequirement_TerrainWithTags">
+        <labelKey>RoomRequirementAllFineFloored</labelKey>
+        <tags>
+          <li>FineFloor</li>
+        </tags>
+      </li>
+      <li Class="RoomRequirement_ThingAnyOfCount">
+        <things>
+          <li>Brazier</li>
+          <li>TorchLamp</li>
+          <li>StandingLamp</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">DarklightBrazier</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darktorch</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darklamp</li>
+        </things>
+        <count>2</count>
+      </li>
+      <li Class="RoomRequirement_ThingCount">
+        <thingDef>Column</thingDef>
+        <count>2</count>
+      </li>
+      <li Class="RoomRequirement_ThingCount">
+        <thingDef>Drape</thingDef>
+        <count>2</count>
+      </li>
+      <li Class="RoomRequirement_AllThingsAnyOfAreGlowing">
+        <labelKey>RoomRequirementAllBraziersMustBeLit</labelKey>
+        <things>
+          <li>Brazier</li>
+          <li>TorchLamp</li>
+          <li>StandingLamp</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">DarklightBrazier</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darktorch</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darklamp</li>
+        </things>
+      </li>
+      <li Class="RoomRequirement_ForbiddenBuildings">
+        <labelKey>RoomRequirementNoProductionFacilities</labelKey>
+        <buildingTags>
+          <li>Production</li>
+        </buildingTags>
+      </li>
+      <li Class="RoomRequirement_ForbiddenBuildings">
+        <labelKey>RoomRequirementNoBeds</labelKey>
+        <buildingTags>
+          <li>Bed</li>
+        </buildingTags>
+      </li>
+      <li MayRequire="Ludeon.RimWorld.Ideology" Class="RoomRequirement_ForbidAltars">
+        <labelKey>RoomRequirementNoAltars</labelKey>
+      </li>
+    </throneRoomRequirements>
+
+    <bedroomRequirements>
+      <li Class="RoomRequirement_Area">
+        <area>30</area>
+      </li>
+      <li Class="RoomRequirement_Impressiveness">
+        <impressiveness>60</impressiveness>
+      </li>
+      <li Class="RoomRequirement_TerrainWithTags">
+        <labelKey>RoomRequirementAllFloored</labelKey>
+        <tags>
+          <li>Floor</li>
+          <li>FineFloor</li>
+        </tags>
+      </li>
+      <li Class="RoomRequirement_ThingAnyOf">
+        <disablingPrecepts>
+          <li MayRequire="Ludeon.RimWorld.Ideology">SlabBed_Preferred</li>
+        </disablingPrecepts>
+        <things>
+          <li>Bed</li>
+          <li>RoyalBed</li>
+        </things>
+      </li>
+      <li Class="RoomRequirement_Thing">
+        <thingDef>EndTable</thingDef>
+      </li>
+      <li Class="RoomRequirement_Thing">
+        <thingDef>Dresser</thingDef>
+      </li>
+      <li Class="RoomRequirement_ThingCount">
+        <thingDef>Drape</thingDef>
+        <count>1</count>
+      </li>
+      <li Class="RoomRequirement_ForbiddenBuildings">
+        <labelKey>RoomRequirementNoProductionFacilities</labelKey>
+        <buildingTags>
+          <li>Production</li>
+        </buildingTags>
+      </li>
+    </bedroomRequirements>
+
+    <foodRequirement>
+      <minQuality>MealFine</minQuality>
+      <allowedTypes>Processed, Liquor</allowedTypes>
+      <allowedDefs>
+        <li>Ambrosia</li>
+        <li>Milk</li>
+        <li>RawBerries</li>
+        <li>InsectJelly</li>
+      </allowedDefs>
+    </foodRequirement>
+    
+    <maxPsylinkLevel>5</maxPsylinkLevel>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseOutlanderCouncilTitleNPC">
+    <defName>f2e_PrimeCouncilor</defName>
+    <label>prime councilor</label>
+    <description>The highest level of administrator within an outlander union faction. The Prime Councilor, titled within this faction as {0}, controls all the colonies united under their flag, and projects force across the planet as needed. They may order their constituents to act as one in times of need, and at war, the Prime Councilor acts as commander-in-chief, and may approve wide-scale military movements and projections of force.</description>
+    <seniority>1000</seniority>
+    <commonality>0</commonality>
+
+    <throneRoomRequirements>
+      <li Class="RoomRequirement_HasAssignedThroneAnyOf">
+        <things>
+          <li>Throne</li>
+          <li>GrandThrone</li>
+        </things>
+      </li>
+      <li Class="RoomRequirement_Area">
+        <area>80</area>
+      </li>
+      <li Class="RoomRequirement_Impressiveness">
+        <impressiveness>160</impressiveness>
       </li>
       <li Class="RoomRequirement_TerrainWithTags">
         <labelKey>RoomRequirementAllFineFloored</labelKey>
@@ -424,12 +552,11 @@
         <area>30</area>
       </li>
       <li Class="RoomRequirement_Impressiveness">
-        <impressiveness>40</impressiveness>
+        <impressiveness>80</impressiveness>
       </li>
       <li Class="RoomRequirement_TerrainWithTags">
         <labelKey>RoomRequirementAllFloored</labelKey>
         <tags>
-          <li>Floor</li>
           <li>FineFloor</li>
         </tags>
       </li>
@@ -461,7 +588,7 @@
     </bedroomRequirements>
 
     <foodRequirement>
-      <minQuality>MealFine</minQuality>
+      <minQuality>MealLavish</minQuality>
       <allowedTypes>Processed, Liquor</allowedTypes>
       <allowedDefs>
         <li>Ambrosia</li>
