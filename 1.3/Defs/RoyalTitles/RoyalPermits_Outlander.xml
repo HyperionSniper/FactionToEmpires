@@ -3,39 +3,38 @@
   <!-- ============================= Faction permits ============================= -->
 
   <!-- Econ -->
+
+  <RoyalTitlePermitDef Name="OutlanderDropResourcesBase" ParentName="DropResourcesBase" Abstract="True">
+    <faction>f2e_IndustrialOutlander</faction>
+  </RoyalTitlePermitDef>
   
-  <RoyalTitlePermitDef ParentName="DropResourcesBase">
+  <RoyalTitlePermitDef ParentName="OutlanderDropResourcesBase">
     <defName>f2e_Outlander_SteelDrop</defName>
     <label>steel drop</label>
     <description>Call for a drop of 120 steel.</description>
     <minTitle>f2e_Honorary</minTitle>
-    <faction>f2e_IndustrialOutlander</faction>
-    <permitPointCost>1</permitPointCost>
     <uiPosition>(0,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
         <Steel>120</Steel>
       </itemsToDrop>
-      <favorCost>1</favorCost>
     </royalAid>
   </RoyalTitlePermitDef>
 
-  <RoyalTitlePermitDef ParentName="DropResourcesBase">
+  <RoyalTitlePermitDef ParentName="OutlanderDropResourcesBase">
     <defName>f2e_Outlander_FoodDrop</defName>
     <label>food drop</label>
     <description>Call for a drop of 20 packaged survival meals.</description>
     <minTitle>f2e_Honorary</minTitle>
-    <faction>f2e_IndustrialOutlander</faction>
     <uiPosition>(1,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
         <MealSurvivalPack>20</MealSurvivalPack>
       </itemsToDrop>
-      <favorCost>1</favorCost>
     </royalAid>
   </RoyalTitlePermitDef>
 
-  <RoyalTitlePermitDef ParentName="DropResourcesBase">
+  <RoyalTitlePermitDef ParentName="OutlanderDropResourcesBase">
     <defName>f2e_Outlander_SilverDrop</defName>
     <label>silver drop</label>
     <description>Call for a drop of 250 silver.</description>
@@ -45,7 +44,6 @@
       <itemsToDrop>
         <Silver>250</Silver>
       </itemsToDrop>
-      <favorCost>1</favorCost>
     </royalAid>
   </RoyalTitlePermitDef>
 
