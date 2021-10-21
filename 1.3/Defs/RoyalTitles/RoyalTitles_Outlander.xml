@@ -131,7 +131,7 @@
     <description>A middle-level member of the administration of an outlander union faction. Among the unaffiliated, only the most honorable are granted this level of influence within the union.\n\nIn the outlander factions, high councilors oversee the councils of towns and cities, collaborate with other high councilors in times of need, and may grant charters for colonies. At war, a high councilor serves as a general, fielding multiple divisions by drop pod and enacting specific strategies individually or by the Prime Councilor's order.</description>
     <seniority>800</seniority>
     <favorCost>14</favorCost>
-    <minExpectation>High</minExpectation>
+    <minExpectation>Moderate</minExpectation>
     <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
     <changeHeirQuestPoints>2000</changeHeirQuestPoints>
     <commonality>0.2</commonality>
@@ -282,7 +282,7 @@
 
 
   <RoyalTitleDef Abstract="True" Name="BaseOutlanderCouncilTitleNPC" ParentName="BaseOutlanderTitle" >
-    <minExpectation>Moderate</minExpectation>
+    <minExpectation>High</minExpectation>
     <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
     <permits>
       <li>TradeSettlement</li>
