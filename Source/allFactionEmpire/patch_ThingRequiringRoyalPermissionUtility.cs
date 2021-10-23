@@ -17,7 +17,7 @@ namespace empireMaker
             public static bool Prefix(ref bool __result, Def implantOrWeapon, Pawn pawn, Faction faction,
                 int implantLevel = 0)
             {
-                if (!EmpireMaker.phychicAll)
+                if (!EmpireMaker.psychicAll)
                 {
                     return true;
                 }

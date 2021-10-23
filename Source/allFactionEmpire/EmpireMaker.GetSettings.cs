@@ -1,55 +1,21 @@
 ﻿using HugsLib.Settings;
 using RimWorld;
+using System.Collections.Generic;
+using System.Linq;
 using Verse;
 
-namespace empireMaker {
+namespace empireMaker
+{
     public partial class EmpireMaker : HugsLib.ModBase
     {
 
-        public static bool phychicAll = true;
+        public static bool psychicAll = true;
         public static bool delVanilla;
         public static float questAmount = 1f;
         public static bool debugMode;
 
-        public enum Conversion {
-            noConversion,
-            empire,
-            bugFix,
-            forceConversion
-        }
-
-        public enum Relationship {
-            basic,
-            empire,
-            ally,
-            neutral,
-            enemy,
-            permanentEnemy
-        }
-        public enum WantsApparel {
-            off,
-            forcedRoyal,
-            basic
-        }
-        public enum EmpireTechLevel {
-            neolithic = 2,
-            medieval = 3,
-            industrial = 4,
-            spacer = 5,
-            ultra = 6,
-        }
-
-        public enum EmpireArchetype {
-            Neolithic, // all neolithic
-            Medieval, // all medieval
-            IndustrialRaider, // industrial raider
-            IndustrialOutlander, // industrial non-raider
-            SpacerRaider, // spacer raider
-            Spacer, // spacer non-raider
-            Ultra // ultra
-        }
-
-        public class ConversionParams {
+        public class ConversionParams
+        {
             public Conversion ConversionType;
 
             public TechLevel ForcedTechLevel;
@@ -61,8 +27,6 @@ namespace empireMaker {
             public Relationship RelationshipType;
             public WantsApparel WantsApparelType;
             public bool RequiresTradePermit;
-
-            public SettingHandle<Relationship> RelationshipHandle;
 
             public TechLevel EffectiveTechLevel {
                 get {
@@ -109,25 +73,11 @@ namespace empireMaker {
             }
         }
 
-        public override void SettingsChanged() {
-            phychicAll = phychicAllSetting.Value;
-            delVanilla = delVanillaSetting.Value;
-
-            if (questAmountSetting.Value < 0.1f) {
-                questAmountSetting.Value = 0.1f;
-            }
-            else if (questAmountSetting.Value > 20f) {
-                questAmountSetting.Value = 20f;
-            }
-
-            questAmount = questAmountSetting.Value;
-
-            debugMode = debugModeSetting.Value;
+        public override void SettingsChanged()
+        {
 
             for (var i = 0; i < factionConversionSettings.Count; i++) {
                 var settings = factionConversionSettings[i];
-
-                settings.RelationshipType = settings.RelationshipHandle.Value;
 
                 // forced tech level must be a valid tech level
                 if (settings.ConversionType == Conversion.forceConversion) {
@@ -148,31 +98,44 @@ namespace empireMaker {
             }
         }
 
-        public Conversion GetMakeType(FactionDef factionDef, Conversion defaultValue) {
+        public SettingHandle<Conversion> GetMakeType(FactionDef factionDef, Conversion defaultValue)
+        {
             return Settings
                 .GetHandle(
                     $"{factionDef.defName}ToEmpire", $"==== {factionDef.label.ToUpper()} ====", "make_d".Translate(),
-                    defaultValue, null, "en_make_")
-                .Value;
+                    defaultValue, null, "en_make_");
         }
 
-        public void GetSettings() {
+        public void GetSettings()
+        {
             // 초능력 공용화
-            phychicAllSetting =
-                Settings.GetHandle("phychicAll", "phychicAll_t".Translate(), "phychicAll_d".Translate(), true);
-            phychicAll = phychicAllSetting.Value;
+            var psychicAllSetting = GetHandle("phychicAll", null, true);
+            psychicAllSetting.ValueChanged += v => psychicAll = ((SettingHandle<bool>)v).Value;
 
             // 바닐라 제국 숨기기
-            delVanillaSetting =
-                Settings.GetHandle<bool>("delVanilla", "delVanilla_t".Translate(), "delVanilla_d".Translate());
+            var delVanillaSetting = GetHandle("delVanilla", null, true);
             delVanillaSetting.NeverVisible = true;
-            delVanilla = delVanillaSetting.Value;
+            delVanillaSetting.ValueChanged += v => delVanilla = ((SettingHandle<bool>)v).Value;
 
             // 퀘스트 생성량
-            questAmountSetting = Settings.GetHandle("questAmount", "questAmount_t".Translate(),
-                "questAmount_d".Translate(), 1f);
+            var questAmountSetting = GetHandle("questAmount", null, 1);
             questAmountSetting.NeverVisible = true;
-            questAmount = questAmountSetting.Value;
+            questAmountSetting.ValueChanged += v => {
+                var setting = ((SettingHandle<float>)v);
+
+                if (setting.Value < 0.1f) {
+                    setting.Value = 0.1f;
+                }
+                else if (setting.Value > 20f) {
+                    setting.Value = 20f;
+                }
+
+                questAmount = questAmountSetting.Value;
+            };
+
+            // 디버그 모드
+            var debugModeSetting = GetHandle("debugMode", null, true);
+            debugModeSetting.ValueChanged += v => debugMode = ((SettingHandle<bool>)v).Value;
 
             for (var i = 0; i < eligibleFactions.Count; i++) {
                 // 옵션 관리
@@ -182,70 +145,93 @@ namespace empireMaker {
                 ConversionParams settings = new ConversionParams();
 
                 // 제국화
-                Conversion makeType;
+                SettingHandle<Conversion> makeType;
                 if (factionDef.permanentEnemy) {
                     makeType = GetMakeType(factionDef, Conversion.noConversion);
                 }
-                else if (isHardMod) {
-                    makeType = GetMakeType(factionDef, Conversion.bugFix);
+                //else if (isHardMod) {
+                //    makeType = GetMakeType(factionDef, Conversion.bugFix);
 
-                    if (makeType == Conversion.empire) {
-                        makeType = Conversion.bugFix;
-                    }
-                }
+                //    if (makeType == Conversion.empire) {
+                //        makeType.Value = Conversion.bugFix;
+                //    }
+                //}
                 else {
                     makeType = GetMakeType(factionDef, Conversion.noConversion);
                 }
 
-                settings.ConversionType = makeType;
+                settings.ConversionType = makeType.Value;
+                makeType.ValueChanged += s => settings.ConversionType = makeType.Value;
 
-                if (settings.ConversionType == Conversion.forceConversion) {
-                    settings.ForcedTechLevel = (RimWorld.TechLevel) Settings.GetHandle($"{factionDef.defName}TechLevel", "techLevel_t".Translate(),
-                    "techLevel_d".Translate(), EmpireTechLevel.industrial, null, "en_techLevel_").Value;
-                }
+                var techLevel = GetHandle("techLevel", factionDef.defName, EmpireTechLevel.industrial);
+                var disableMercTitles = GetHandle("disableMercTitles", factionDef.defName, false);
 
-                settings.ActualTechLevel = factionDef.techLevel;
+                var isRaider = GetHandle("isRaider", factionDef.defName, false);
+                var trade = GetHandle("trade", factionDef.defName, true);
+                var relation = GetHandle("relation", factionDef.defName, Relationship.basic);
+                var apparel = GetHandle("apparel", factionDef.defName, WantsApparel.basic);
 
-                settings.IsRaiderFaction = Settings.GetHandle<bool>($"{factionDef.defName}IsRaider", "isRaider_t".Translate(),
-                    "isRaider_d".Translate()).Value;
+                // set visibility predicates
+                SettingHandle.ShouldDisplay basePredicate = () => {
+                    return settings.ConversionType != Conversion.noConversion;
+                };
 
-                settings.RelationshipHandle = Settings.GetHandle($"{factionDef.defName}Relation", "relation_t".Translate(),
-                    "relation_d".Translate(), Relationship.basic, null, "en_relation_");
+                SettingHandle.ShouldDisplay showTechLevelPredicate = () => {
+                    return settings.ConversionType == Conversion.forceConversion;
+                };
 
-                // 관계
-                // merc titles are only available for certain tech levels
-                if (factionDef.techLevel == TechLevel.Industrial
-                    || factionDef.techLevel == TechLevel.Spacer)
-                {
-                    settings.DisableMercTitles = Settings.GetHandle<bool>($"{factionDef.defName}Relation", "disableMercTitles_t".Translate(),
-                        "disableMercTitles_d".Translate(), true);
-                }
+                SettingHandle.ShouldDisplay showMercTitlesPredicate = () => {
+                    var validTechLevels = (from titles in s_RoyalTitleTagMap
+                                          where titles.Value.Mercenary != null
+                                          select titles.Key).ToList();
 
-                settings.RelationshipType = settings.RelationshipHandle.Value;
-                //ar_faction_relation.Add(Settings.GetHandle<en_relation>($"{f.defName}Relation", $"relation_t".Translate(), "relation_d".Translate(), en_relation.basic, null, "en_relation_").Value);
+                    return settings.ConversionType != Conversion.noConversion
+                    && validTechLevels.Contains(settings.ActualTechLevel);
+                };
 
+                techLevel.VisibilityPredicate = showTechLevelPredicate;
+                disableMercTitles.VisibilityPredicate = showMercTitlesPredicate;
 
-                // 왕족 의상
-                settings.WantsApparelType = Settings.GetHandle($"{factionDef.defName}Apparel", "apparel_t".Translate(),
-                    "apparel_d".Translate(), WantsApparel.basic, null, "en_apparel_").Value;
+                isRaider.VisibilityPredicate = basePredicate;
+                trade.VisibilityPredicate = basePredicate;
+                relation.VisibilityPredicate = basePredicate;
+                apparel.VisibilityPredicate = basePredicate;
 
+                techLevel.ValueChanged += s => settings.ForcedTechLevel = (TechLevel)techLevel.Value;
+                disableMercTitles.ValueChanged += s => settings.DisableMercTitles = disableMercTitles.Value;
 
+                isRaider.ValueChanged += s => settings.IsRaiderFaction = isRaider.Value;
                 // 거래제한과 권한
-                settings.RequiresTradePermit = Settings.GetHandle<bool>($"{factionDef.defName}TradePermit", "trade_t".Translate(),
-                    "trade_d".Translate()).Value;
+                trade.ValueChanged += s => settings.RequiresTradePermit = trade.Value;
+                relation.ValueChanged += s => settings.RelationshipType = relation.Value;
+                // 왕족 의상
+                apparel.ValueChanged += s => settings.WantsApparelType = apparel.Value;
 
-                // 공물 징수원
-                //ar_faction_collector.Add(Settings.GetHandle<bool>($"{f.defName}Collector", $"     - (not developed yet)use tribute collector", "A caravan trader selling royal favors.\n\n* Need to restart and new game", true).Value);
+                // set values
+                settings.ForcedTechLevel = (TechLevel)techLevel.Value;
+                settings.ActualTechLevel = factionDef.techLevel;
+                settings.DisableMercTitles = disableMercTitles.Value;
+
+                settings.IsRaiderFaction = isRaider.Value;
+                // 거래제한과 권한
+                settings.RequiresTradePermit = trade.Value;
+                settings.RelationshipType = relation.Value;
+                // 왕족 의상
+                settings.WantsApparelType = apparel.Value;
 
                 factionConversionSettings.Add(settings);
             }
+        }
 
+        SettingHandle<T> GetHandle<T>(string title, string faction = null, T defaultValue = default)
+        {
 
-
-            // 디버그 모드
-            debugModeSetting =
-                Settings.GetHandle<bool>("debugMode", "debugMode_t".Translate(), "debugMode_d".Translate());
-            debugMode = debugModeSetting.Value;
+            return Settings.GetHandle<T>(
+                $"{faction}_{title}",
+                $"{title}_t".Translate(), $"{title}_d".Translate(),
+                defaultValue,
+                null,
+                typeof(T).IsEnum ? $"en_{title}_" : null);
         }
     }
 }

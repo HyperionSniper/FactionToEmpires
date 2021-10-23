@@ -13,19 +13,6 @@ namespace empireMaker {
         public static List<FactionDef> eligibleFactions = new List<FactionDef>();
         public static List<ConversionParams> factionConversionSettings = new List<ConversionParams>();
 
-        public static List<FactionDef> willBeEmpireFactionDefList = new List<FactionDef>();
-
-
-        // 비호환 하드모드 패키지 아이디
-
-        private SettingHandle<bool> debugModeSetting;
-
-        private SettingHandle<bool> delVanillaSetting;
-
-        private SettingHandle<bool> phychicAllSetting;
-
-        private SettingHandle<float> questAmountSetting;
-
         public override string ModIdentifier => "empireMaker";
 
         public override void DefsLoaded() {
@@ -64,10 +51,13 @@ namespace empireMaker {
             // todo: add ability to create custom royal title maps
 
             var baseRoyalTitles = new Dictionary<string, List<RoyalTitleDef>> {
-                { "EmpireTitle", new List<RoyalTitleDef>() },
-                { "OutlanderTitle", new List<RoyalTitleDef>() },
-                { "OutlanderMercenaryTitle", new List<RoyalTitleDef>() },
-                //{ "TribalTitle", new List<RoyalTitleDef>() },
+                { "NeolithicTitle", new List<RoyalTitleDef>() },
+                //{ "MedievalTitle", new List<RoyalTitleDef>() },
+                { "IndustrialOutlanderTitle", new List<RoyalTitleDef>() },
+                { "IndustrialMercenaryTitle", new List<RoyalTitleDef>() },
+                //{ "SpacerTitle", new List<RoyalTitleDef>() },
+                //{ "SpacerRaiderTitle", new List<RoyalTitleDef>() },
+                //{ "UltraTitle", new List<RoyalTitleDef>() },
             };
 
             var royalFavorLabels = new Dictionary<EmpireArchetype, string> {

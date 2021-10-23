@@ -164,7 +164,6 @@ namespace empireMaker
         }
 
         private static Dictionary<EmpireArchetype, List<RoyalTitlePermitDef>> GetBaseRoyalPermits() {
-            int i = 0;
             var dict = new Dictionary<EmpireArchetype, List<RoyalTitlePermitDef>>();
 
             foreach (object value in Enum.GetValues(typeof(EmpireArchetype))) {
@@ -189,10 +188,10 @@ namespace empireMaker
                     permitArchetype = permitArchetype.Substring(0, underscoreIndex);
                 }
 
-                Log.Message($"Found permit {permitDef.defName}, archetype:{permitArchetype}");
+                //Log.Message($"Found permit {permitDef.defName}, archetype:{permitArchetype}");
 
                 if (Enum.TryParse<EmpireArchetype>(permitArchetype, out var archetype)) {
-                    Log.Message($"sorted");
+                    //Log.Message($"sorted");
                     dict[archetype].Add(permitDef);
                 }
             }

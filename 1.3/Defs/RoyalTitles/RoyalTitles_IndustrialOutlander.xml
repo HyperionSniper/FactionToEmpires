@@ -606,7 +606,7 @@
 
   <RoyalTitleDef Abstract="True" Name="BaseOutlanderMercenaryTitleNPC" >
     <tags>
-      <li>OutlanderMercenaryTitle</li>
+      <li>IndustrialMercenaryTitle</li>
     </tags>
     <awardThought>GainedTitle</awardThought>
     <lostThought>LostTitle</lostThought>

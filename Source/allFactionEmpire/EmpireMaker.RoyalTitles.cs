@@ -13,19 +13,34 @@ namespace empireMaker
                 Base = "NeolithicTitle"
             }},
             { TechLevel.Medieval, new Titles {
-                Base = "MedievalTitle"
+                Base = "NeolithicTitle"
+                //Base = "MedievalTitle"
             }},
             { TechLevel.Industrial, new Titles {
                 Base = "IndustrialOutlanderTitle",
-                Raider = "SpacerRaiderTitle"
+                //Raider = "SpacerRaiderTitle",
+                Mercenary = "IndustrialMercenaryTitle"
             }},
             { TechLevel.Spacer, new Titles {
-                Base = "SpacerTitle",
-                Raider = "SpacerRaiderTitle"
+                Base = "IndustrialOutlanderTitle",
+                //Raider = "SpacerRaiderTitle",
+                Mercenary = "IndustrialMercenaryTitle"
             }},
             { TechLevel.Ultra, new Titles {
-                Base = "UltraTitle"
+                Base = "IndustrialOutlanderTitle",
+                //Raider = "SpacerRaiderTitle",
+                Mercenary = "IndustrialMercenaryTitle"
             }},
+            //{ TechLevel.Spacer, new Titles {
+            //    Base = "SpacerTitle",
+            //    Raider = "SpacerRaiderTitle",
+            //    Mercenary = "IndustrialMercenaryTitle"
+            //}},
+            //{ TechLevel.Ultra, new Titles {
+            //    Base = "UltraTitle",
+            //    Raider = "SpacerRaiderTitle",
+            //    Mercenary = "IndustrialMercenaryTitle"
+            //}},
         };
 
         private class Titles {
