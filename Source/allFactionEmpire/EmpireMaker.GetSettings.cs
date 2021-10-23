@@ -42,9 +42,9 @@ namespace empireMaker {
         public enum EmpireArchetype {
             Neolithic, // all neolithic
             Medieval, // all medieval
-            IndustrialRaider, // industrial, spacer raider
+            IndustrialRaider, // industrial raider
             IndustrialOutlander, // industrial non-raider
-            SpacerRaider, // industrial, spacer raider
+            SpacerRaider, // spacer raider
             Spacer, // spacer non-raider
             Ultra // ultra
         }
