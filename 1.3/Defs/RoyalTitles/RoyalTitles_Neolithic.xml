@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!-- ============== Empire titles - Player gettable non-psycaster ============================= -->
+
+  <RoyalTitleDef Abstract="True" Name="BaseNeolithicTitle" >
+    <tags>
+      <li>NeolithicTitle</li>
+    </tags>
+    <awardThought>GainedTitle</awardThought>
+    <lostThought>LostTitle</lostThought>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseNeolithicTitle">
+    <defName>f2e_Acknowledged</defName>
+    <label>acknowledged</label>
+    <description>An individual observed to have significantly contributed to a tribe may recieve an official accolade for their efforts. This title is granted most often to respected outsiders, as other internal titles are reserved for tribesmen.</description>
+    <seniority>0</seniority>
+    <favorCost>6</favorCost>
+    <changeHeirQuestPoints>1200</changeHeirQuestPoints>
+    <allowDignifiedMeditationFocus>False</allowDignifiedMeditationFocus>
+    <awardWorkerClass>RoyalTitleAwardWorker_Instant</awardWorkerClass>
+    <commonality>0.32</commonality>
+    <canBeInherited>True</canBeInherited>
+    <permitPointsAwarded>1</permitPointsAwarded>
+    <permits>
+      <li>TradeSettlement</li>
+      <li>TradeCaravan</li>
+    </permits>
+  </RoyalTitleDef>
+
+  <!-- ============== Empire titles - Player gettable psycaster ============================= -->
+
+  <RoyalTitleDef ParentName="BaseNeolithicTitle">
+    <defName>f2e_Respected</defName>
+    <label>respected</label>
+    <description>An individual observed to have significantly contributed to a tribe, building upon previous contributions, may receive a second tier of accolades. Tribes will gladly make small accommodations of resources for a respected individual. This title is granted most often to respected outsiders, as other internal titles are reserved for tribesmen.</description>
+    <seniority>100</seniority>
+    <favorCost>6</favorCost>
+    <changeHeirQuestPoints>1400</changeHeirQuestPoints>
+    <allowDignifiedMeditationFocus>False</allowDignifiedMeditationFocus>
+    <awardWorkerClass>RoyalTitleAwardWorker_Instant</awardWorkerClass>
+    <commonality>0.16</commonality>
+    <canBeInherited>True</canBeInherited>
+    <permitPointsAwarded>1</permitPointsAwarded>
+    <permits>
+      <li>TradeSettlement</li>
+      <li>TradeCaravan</li>
+    </permits>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseNeolithicTitle">
+    <defName>f2e_Honorable</defName>
+    <label>honorable</label>
+    <description>An individual observed to have significantly contributed to a tribe, building further upon previous contributions, may receive a final third tier of accolades, including the ability to call for direct assistance should the need ever arise. This title is granted most often to respected outsiders, as other internal titles are reserved for tribesmen.</description>
+    <seniority>200</seniority>
+    <favorCost>6</favorCost>
+    <changeHeirQuestPoints>1600</changeHeirQuestPoints>
+    <allowDignifiedMeditationFocus>False</allowDignifiedMeditationFocus>
+    <awardWorkerClass>RoyalTitleAwardWorker_Instant</awardWorkerClass>
+    <commonality>0.08</commonality>
+    <canBeInherited>True</canBeInherited>
+    <permitPointsAwarded>1</permitPointsAwarded>
+    <permits>
+      <li>TradeSettlement</li>
+      <li>TradeCaravan</li>
+    </permits>
+  </RoyalTitleDef>
+
+  <!-- ============== Empire titles - Player gettable council ============================= -->
+  <RoyalTitleDef Name="BaseNeolithicLeaderTitle" ParentName="BaseOutlanderTitle" Abstract="True">
+    <canBeInherited>True</canBeInherited>
+    <decreeMtbDays>-1</decreeMtbDays>
+    <!-- disabled -->
+    <decreeMentalBreakCommonality>8</decreeMentalBreakCommonality>
+    <permitPointsAwarded>1</permitPointsAwarded>
+    <decreeTags>
+      <li>All</li>
+    </decreeTags>
+    <permits>
+      <li>TradeSettlement</li>
+      <li>TradeCaravan</li>
+      <li>TradeOrbital</li>
+    </permits>
+    <grantedAbilities>
+      <li>Speech</li>
+    </grantedAbilities>
+    <speechCooldown>900000</speechCooldown>
+    <maxPsylinkLevel>5</maxPsylinkLevel>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseNeolithicLeaderTitle">
+    <defName>f2e_Elder</defName>
+    <label>elder</label>
+    <description>The title of elder may be used to characterize highly respected members of a tribe. Depending on the size and political structure of the tribe, the title may not officially exist in some tribes. An outsider may be granted this title and a place in a tribal union council only with the greatest of honor.\n\nWithin more organized tribes, an elder often holds a middle-level position of authority and is usually elected. In other tribes, an elder may hold a culturally significant role or act as an instructor. In this case, a tribesman often becomes an elder through high skill in a craft or art, or through general knowledgability.</description>
+    <favorCost>28</favorCost>
+    <seniority>800</seniority>
+    <minExpectation>Moderate</minExpectation>
+    <requiredMinimumApparelQuality>Excellent</requiredMinimumApparelQuality>
+    <changeHeirQuestPoints>1600</changeHeirQuestPoints>
+    <commonality>0.7</commonality>
+    <recruitmentResistanceOffset>30</recruitmentResistanceOffset>
+
+    <foodRequirement>
+      <minQuality>MealLavish</minQuality>
+      <allowedTypes>Processed, Liquor</allowedTypes>
+      <allowedDefs>
+        <li>Ambrosia</li>
+        <li>Milk</li>
+        <li>RawBerries</li>
+        <li>InsectJelly</li>
+      </allowedDefs>
+    </foodRequirement>
+
+    <maxPsylinkLevel>3</maxPsylinkLevel>
+  </RoyalTitleDef>
+
+  <!-- ============== Empire titles - NPC only psycaster ============================= -->
+
+  <RoyalTitleDef ParentName="BaseNeolithicLeaderTitle">
+    <defName>f2e_ClanChief</defName>
+    <label>clan chief</label>
+    <description>In more organized tribes, the title of clan chief is the highest rank below chief. Depending on the political structure and size of the tribe, the title may not exist at all in some tribes.\n\nA clan chief is responsible for managing the resources and internal conflicts of their clan. In times of war, a clan chief fights as any other warrior, usually as an elite.</description>
+    <seniority>900</seniority>
+    <minExpectation>Moderate</minExpectation>
+    <requiredMinimumApparelQuality>Excellent</requiredMinimumApparelQuality>
+    <changeHeirQuestPoints>2000</changeHeirQuestPoints>
+    <commonality>0.3</commonality>
+    <recruitmentResistanceOffset>60</recruitmentResistanceOffset>
+
+    <foodRequirement>
+      <minQuality>MealLavish</minQuality>
+      <allowedTypes>Processed, Liquor</allowedTypes>
+      <allowedDefs>
+        <li>Ambrosia</li>
+        <li>Milk</li>
+        <li>RawBerries</li>
+        <li>InsectJelly</li>
+      </allowedDefs>
+    </foodRequirement>
+
+    <maxPsylinkLevel>5</maxPsylinkLevel>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseNeolithicLeaderTitle">
+    <defName>f2e_Chief</defName>
+    <label>chief</label>
+    <description>The title of chief may be used to characterize the most respected people in a tribe. Depending on the size and political structure of the tribe, the title may not officially exist in some tribes. A tribesman may be elected to the rank of chief in more organized tribes or otherwise naturally rise to a state of leadership through respect or leadership skills.\n\nMultiple chiefs exist in each tribe and represent their own tribes within a tribal confederation. Most chiefs handle internal affairs and resources, however, many chiefs gain their title through leadership skill in other positions. At war, a warchief or warrior anima chief leads their tribesmen into battle while other chiefs handle civil duties.</description>
+    <seniority>1000</seniority>
+    <commonality>0.09</commonality>
+    <minExpectation>High</minExpectation>
+    <requiredMinimumApparelQuality>Excellent</requiredMinimumApparelQuality>
+
+    <foodRequirement>
+      <minQuality>MealLavish</minQuality>
+      <allowedTypes>Processed, Liquor</allowedTypes>
+      <allowedDefs>
+        <li>Ambrosia</li>
+        <li>Milk</li>
+        <li>RawBerries</li>
+        <li>InsectJelly</li>
+      </allowedDefs>
+    </foodRequirement>
+
+    <speechCooldown>600000</speechCooldown>
+    <maxPsylinkLevel>6</maxPsylinkLevel>
+  </RoyalTitleDef>
+  
+</Defs>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <RoyalTitlePermitDef Name="NeolithicResourcesTeleportBase" Abstract="True">
+    <permitPointCost>1</permitPointCost>
+    <cooldownDays>45</cooldownDays>
+    <minTitle>f2e_Honorable</minTitle>
+    <!-- TODO: replace with custom worker -->
+    <workerClass>RoyalTitlePermitWorker_DropResources</workerClass>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef ParentName="NeolithicResourcesTeleportBase">
+    <defName>f2e_Neolithic_WoodTeleport</defName>
+    <label>wood teleport</label>
+    <description>Call for a farskip drop of 240 wood.</description>
+    <uiPosition>(0,1)</uiPosition>
+    <royalAid>
+      <itemsToDrop>
+        <Wood>240</Wood>
+      </itemsToDrop>
+    </royalAid>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef ParentName="NeolithicResourcesTeleportBase">
+    <defName>f2e_Neolithic_PemmicanTeleport</defName>
+    <label>pemmican teleport</label>
+    <description>Call for a farskip drop of 360 pemmican.</description>
+    <uiPosition>(1,1)</uiPosition>
+    <royalAid>
+      <itemsToDrop>
+        <Pemmican>360</Pemmican>
+      </itemsToDrop>
+    </royalAid>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_Neolithic_CallLaborerTeamTeleport</defName>
+    <label>teleport worker team</label>
+    <description>Request a group of 4 workers to assist you for 4 days. They will arrive immediately by farskip. You can control them as though they were your own colonists. You are required to keep them safe.</description>
+    <!-- TODO: replace with custom worker -->
+    <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
+    <minTitle>f2e_Elder</minTitle>
+    <faction>f2e_Neolithic</faction>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(1,2)</uiPosition>
+    <royalAid>
+      <favorCost>3</favorCost>
+      <pawnKindDef>Empire_Common_Laborer</pawnKindDef>
+      <pawnCount>4</pawnCount>
+      <aidDurationDays>4</aidDurationDays>
+    </royalAid>
+    <cooldownDays>60</cooldownDays>
+  </RoyalTitlePermitDef>
+
+  <!-- Combat -->
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_Neolithic_CallTeleportMilitaryAidSmall</defName>
+    <label>call light protection troop</label>
+    <description>Call a group of light warrior tribesmen to aid you in battle. They will arrive immediately by farskip.</description>
+    <!--TODO: Add farskip drop custom permit worker-->
+    <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
+    <minTitle>f2e_Elder</minTitle>
+    <faction>f2e_Neolithic</faction>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(1,3)</uiPosition>
+    <royalAid>
+      <favorCost>3</favorCost>
+      <pawnKindDef>Town_Guard</pawnKindDef>
+      <pawnCount>4</pawnCount>
+      <targetingRange>39.9</targetingRange>
+    </royalAid>
+    <cooldownDays>40</cooldownDays>
+  </RoyalTitlePermitDef>
+</Defs>

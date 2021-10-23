@@ -70,11 +70,21 @@ namespace empireMaker {
                 //{ "TribalTitle", new List<RoyalTitleDef>() },
             };
 
+            var royalFavorLabels = new Dictionary<EmpireArchetype, string> {
+                {  EmpireArchetype.Neolithic, "respect" },
+                {  EmpireArchetype.Medieval, "respect" },
+                {  EmpireArchetype.IndustrialOutlander, "distinction" },
+                {  EmpireArchetype.IndustrialRaider, "glory" },
+                {  EmpireArchetype.Spacer, "prestige" },
+                {  EmpireArchetype.SpacerRaider, "glory" },
+                {  EmpireArchetype.Ultra, "honor" },
+            };
+
             // sort all royal title defs into title types
             // EmpireMaker.RoyalTitles.cs
             GetBaseRoyalTitles(baseRoyalTitles);
             var baseRoyalPermits = GetBaseRoyalPermits();
-
+            
             for (var i = 0; i < eligibleFactions.Count; i++) {
                 var factionDef = eligibleFactions[i];
                 var settings = factionConversionSettings[i];
@@ -94,7 +104,7 @@ namespace empireMaker {
 
                 // 팩션 제국화
                 // copy royal faction settings from the Empire
-                factionDef.royalFavorLabel = empireFactionDef.royalFavorLabel;
+                factionDef.royalFavorLabel = royalFavorLabels[settings.Archetype];
                 factionDef.royalFavorIconPath = empireFactionDef.royalFavorIconPath;
                 //Log.Warning("[DEBUG] path: " + empireFactionDef.royalFavorIconPath);
                 //factionDef.royalFavorIconPath = $"F2E/Icon_{factionDef.defName}";

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!-- ============================= Faction permits ============================= -->
+
+  <!-- Econ -->
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_NeolithicTradeSpecial</defName>
+    <label>trade with special traders</label>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef Name="NeolithicRequestResourcesBase" Abstract="True">
+    <permitPointCost>1</permitPointCost>
+    <cooldownDays>45</cooldownDays>
+    <!-- TODO: replace with custom worker -->
+    <workerClass>RoyalTitlePermitWorker_DropResources</workerClass>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef ParentName="NeolithicRequestResourcesBase">
+    <defName>f2e_Neolithic_WoodRequest</defName>
+    <label>wood request</label>
+    <description>Call for a delivery of 240 wood. It will arrive within 2-3 days.</description>
+    <minTitle>f2e_Respected</minTitle>
+    <uiPosition>(0,0)</uiPosition>
+    <royalAid>
+      <itemsToDrop>
+        <Wood>240</Wood>
+      </itemsToDrop>
+    </royalAid>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef ParentName="NeolithicRequestResourcesBase">
+    <defName>f2e_Neolithic_PemmicanRequest</defName>
+    <label>pemmican request</label>
+    <description>Call for a delivery of 360 pemmican. It will arrive within 2-3 days.</description>
+    <minTitle>f2e_Respected</minTitle>
+    <uiPosition>(1,0)</uiPosition>
+    <royalAid>
+      <itemsToDrop>
+        <Pemmican>360</Pemmican>
+      </itemsToDrop>
+    </royalAid>
+  </RoyalTitlePermitDef>
+	
+  <RoyalTitlePermitDef>
+    <defName>f2e_Neolithic_CallLaborerTeam</defName>
+    <label>call worker team</label>
+    <description>Request a group of 4 workers to assist you for 4 days. They will arrive within 2-3 days. You can control them as though they were your own colonists. You are required to keep them safe.</description>
+    <!-- TODO: replace with custom worker -->
+    <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
+    <minTitle>f2e_Honorable</minTitle>
+    <faction>f2e_Neolithic</faction>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(0,2)</uiPosition>
+    <royalAid>
+      <favorCost>3</favorCost>
+      <pawnKindDef>Empire_Common_Laborer</pawnKindDef>
+      <pawnCount>4</pawnCount>
+      <aidDurationDays>4</aidDurationDays>
+    </royalAid>
+    <cooldownDays>60</cooldownDays>
+  </RoyalTitlePermitDef>
+
+  <!-- Combat -->
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_Neolithic_CallMilitaryAidSmall</defName>
+    <label>call light protection troop</label>
+    <description>Call a group of light warrior tribesmen to protect your colony. They will arrive within 2-3 days.</description>
+    <!-- TODO: replace with custom worker -->
+    <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
+    <minTitle>f2e_Elder</minTitle>
+    <faction>f2e_Neolithic</faction>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(0,3)</uiPosition>
+    <royalAid>
+      <favorCost>3</favorCost>
+      <pawnKindDef>Town_Guard</pawnKindDef>
+      <pawnCount>4</pawnCount>
+      <targetingRange>39.9</targetingRange>
+    </royalAid>
+    <cooldownDays>40</cooldownDays>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_Neolithic_CallMilitaryAidLarge</defName>
+    <label>call protection troop</label>
+    <description>Call a group of warrior tribesmen to protect your colony. They will arrive within 2-3 days.</description>
+    <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
+    <minTitle>f2e_Elder</minTitle>
+    <faction>f2e_Neolithic</faction>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(1,5)</uiPosition>
+    <royalAid>
+      <favorCost>5</favorCost>
+      <pawnKindDef>Mercenary_Gunner_Acidifier</pawnKindDef>
+      <pawnCount>4</pawnCount>
+      <targetingRange>39.9</targetingRange>
+    </royalAid>
+    <cooldownDays>50</cooldownDays>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_Neolithic_CallMilitaryAidGrand</defName>
+    <label>call elite mercenary squad</label>
+    <description>Call a group of warchiefs to protect your colony. They will arrive within 2-3 days.</description>
+    <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
+    <minTitle>f2e_Elder</minTitle>
+    <faction>f2e_Neolithic</faction>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(2,5)</uiPosition>
+    <royalAid>
+      <favorCost>5</favorCost>
+      <pawnKindDef>Tribal_ChiefRanged</pawnKindDef>
+      <pawnCount>4</pawnCount>
+      <targetingRange>39.9</targetingRange>
+    </royalAid>
+    <cooldownDays>60</cooldownDays>
+  </RoyalTitlePermitDef>
+
+</Defs>
