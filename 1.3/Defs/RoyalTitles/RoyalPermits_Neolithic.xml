@@ -12,6 +12,8 @@
   <RoyalTitlePermitDef Name="NeolithicRequestResourcesBase" Abstract="True">
     <permitPointCost>1</permitPointCost>
     <cooldownDays>45</cooldownDays>
+    <minTitle>f2e_Respected</minTitle>
+    <faction>f2e_Neolithic</faction>
     <!-- TODO: replace with custom worker -->
     <workerClass>RoyalTitlePermitWorker_DropResources</workerClass>
     <royalAid>
@@ -23,7 +25,6 @@
     <defName>f2e_Neolithic_WoodRequest</defName>
     <label>wood request</label>
     <description>Call for a delivery of 240 wood. It will arrive within 2-3 days.</description>
-    <minTitle>f2e_Respected</minTitle>
     <uiPosition>(0,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
@@ -36,7 +37,6 @@
     <defName>f2e_Neolithic_PemmicanRequest</defName>
     <label>pemmican request</label>
     <description>Call for a delivery of 360 pemmican. It will arrive within 2-3 days.</description>
-    <minTitle>f2e_Respected</minTitle>
     <uiPosition>(1,0)</uiPosition>
     <royalAid>
       <itemsToDrop>

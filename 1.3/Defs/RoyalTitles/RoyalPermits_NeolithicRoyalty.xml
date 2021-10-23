@@ -4,6 +4,7 @@
     <permitPointCost>1</permitPointCost>
     <cooldownDays>45</cooldownDays>
     <minTitle>f2e_Honorable</minTitle>
+    <faction>f2e_Neolithic</faction>
     <!-- TODO: replace with custom worker -->
     <workerClass>RoyalTitlePermitWorker_DropResources</workerClass>
     <royalAid>
