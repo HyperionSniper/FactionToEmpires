@@ -4,7 +4,7 @@
 
   <!-- Econ -->
 
-  <RoyalTitlePermitDef ParentName="DropResourcesBase">
+  <RoyalTitlePermitDef ParentName="DropResourcesBase" Abstract="True">
     <permitPointCost>1</permitPointCost>
     <cooldownDays>45</cooldownDays>
     <usableOnWorldMap>true</usableOnWorldMap>

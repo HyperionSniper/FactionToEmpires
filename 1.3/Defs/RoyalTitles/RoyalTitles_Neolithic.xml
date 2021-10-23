@@ -3,12 +3,10 @@
 
   <!-- ============== Empire titles - Player gettable non-psycaster ============================= -->
 
-  <RoyalTitleDef Abstract="True" Name="BaseNeolithicTitle" >
+  <RoyalTitleDef Abstract="True" Name="BaseNeolithicTitle" ParentName="BaseTitle" >
     <tags>
       <li>NeolithicTitle</li>
     </tags>
-    <awardThought>GainedTitle</awardThought>
-    <lostThought>LostTitle</lostThought>
   </RoyalTitleDef>
 
   <RoyalTitleDef ParentName="BaseNeolithicTitle">
@@ -68,7 +66,7 @@
   </RoyalTitleDef>
 
   <!-- ============== Empire titles - Player gettable council ============================= -->
-  <RoyalTitleDef Name="BaseNeolithicLeaderTitle" ParentName="BaseOutlanderTitle" Abstract="True">
+  <RoyalTitleDef Name="BaseNeolithicLeaderTitle" ParentName="BaseNeolithicTitle" Abstract="True">
     <canBeInherited>True</canBeInherited>
     <decreeMtbDays>-1</decreeMtbDays>
     <!-- disabled -->

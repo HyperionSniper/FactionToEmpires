@@ -281,7 +281,6 @@
 
 
   <RoyalTitleDef Abstract="True" Name="BaseOutlanderCouncilTitleNPC" ParentName="BaseIndustrialOutlanderTitle" >
-    <minExpectation>Moderate</minExpectation>
     <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
     <permits>
       <li>TradeSettlement</li>
@@ -350,7 +349,8 @@
     <label>governor</label>
     <description>A high-level member of the administration of an outlander faction. They assist the prime councilor in managing towns and cities. One governor may have jurisdiction over multiple colonies.\n\nGovernors hold a strictly administrative role and do not participate in war directly, although wartime domestic logistics fall under their authority.</description>
     <seniority>900</seniority>
-    <commonality>0</commonality>
+    <commonality>0.1</commonality>
+    <minExpectation>SkyHigh</minExpectation>
 
     <throneRoomRequirements>
       <li Class="RoomRequirement_HasAssignedThroneAnyOf">
@@ -479,6 +479,7 @@
     <description>The highest level of administrator within an outlander union faction. The Prime Councilor, titled within this faction as {0}, controls all the colonies united under their flag, and projects force across the planet as needed. They may order their constituents to act as one in times of need, and at war, the Prime Councilor acts as commander-in-chief, and may approve wide-scale military movements and projections of force.</description>
     <seniority>1000</seniority>
     <commonality>0</commonality>
+    <minExpectation>Noble</minExpectation>
 
     <throneRoomRequirements>
       <li Class="RoomRequirement_HasAssignedThroneAnyOf">

@@ -6,6 +6,9 @@
 
   <RoyalTitlePermitDef Name="OutlanderDropResourcesBase" ParentName="DropResourcesBase" Abstract="True">
     <faction>f2e_IndustrialOutlander</faction>
+    <royalAid>
+      <favorCost>4</favorCost>
+    </royalAid>
   </RoyalTitlePermitDef>
   
   <RoyalTitlePermitDef ParentName="OutlanderDropResourcesBase">
@@ -57,7 +60,7 @@
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,2)</uiPosition>
     <royalAid>
-      <favorCost>3</favorCost>
+      <favorCost>2</favorCost>
 	  <!-- TODO: replace with custom worker pawn kind -->
       <pawnKindDef>Empire_Common_Laborer</pawnKindDef>
       <pawnCount>4</pawnCount>
