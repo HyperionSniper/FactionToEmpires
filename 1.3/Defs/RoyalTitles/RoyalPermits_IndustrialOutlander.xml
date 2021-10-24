@@ -41,7 +41,7 @@
     <defName>f2e_Outlander_SilverDrop</defName>
     <label>silver drop</label>
     <description>Call for a drop of 250 silver.</description>
-    <minTitle>f2e_Honorary</minTitle>
+    <minTitle>f2e_Dignitary</minTitle>
     <uiPosition>(0,1)</uiPosition>
     <royalAid>
       <itemsToDrop>
@@ -115,6 +115,7 @@
     <minTitle>f2e_Councilor</minTitle>
     <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
+    <prerequisite>f2e_Outlander_CallMilitaryAidLarge</prerequisite>
     <uiPosition>(1,4)</uiPosition>
     <royalAid>
       <favorCost>5</favorCost>

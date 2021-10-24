@@ -94,7 +94,7 @@
     <minTitle>f2e_Elder</minTitle>
     <faction>f2e_Neolithic</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(0,5)</uiPosition>
+    <uiPosition>(0,4)</uiPosition>
     <royalAid>
       <favorCost>5</favorCost>
       <pawnKindDef>Mercenary_Gunner_Acidifier</pawnKindDef>
@@ -112,7 +112,8 @@
     <minTitle>f2e_Elder</minTitle>
     <faction>f2e_Neolithic</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(0,6)</uiPosition>
+    <prerequisite>f2e_Neolithic_CallMilitaryAidLarge</prerequisite>
+    <uiPosition>(1,4)</uiPosition>
     <royalAid>
       <favorCost>7</favorCost>
       <pawnKindDef>Tribal_ChiefRanged</pawnKindDef>
