@@ -53,7 +53,7 @@
     <decreeMtbDays>-1</decreeMtbDays>
     <!-- disabled -->
     <decreeMentalBreakCommonality>8</decreeMentalBreakCommonality>
-    <permitPointsAwarded>1</permitPointsAwarded>
+    <permitPointsAwarded>2</permitPointsAwarded>
     <decreeTags>
       <li>All</li>
     </decreeTags>
@@ -74,7 +74,7 @@
     <label>councilman</label>
     <labelFemale>councilwoman</labelFemale>
     <description>A low-level member of the administration of an outlander union faction. Outlander colonies are almost entirely independent except in times of need, so councils are usually linked together only by loyalty to the union. This allows honorable unaffiliated outsiders to achieve the title of councilor.\n\nIn the outlander factions, councilors make up town and city councils. A councilor may become high councilor of an existing council through election, or found their own colony and council through a charter proposal. At war, a councilor leads their own squad, fighting alongside their soldiers, and may request mercenary reinforcements at will.</description>
-    <favorCost>10</favorCost>
+    <favorCost>16</favorCost>
     <seniority>700</seniority>
     <minExpectation>Moderate</minExpectation>
     <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
@@ -129,7 +129,7 @@
     <label>high councilor</label>
     <description>A middle-level member of the administration of an outlander union faction. Among the unaffiliated, only the most honorable are granted this level of influence within the union.\n\nIn the outlander factions, high councilors oversee the councils of towns and cities, collaborate with other high councilors in times of need, and may grant charters for colonies. At war, a high councilor serves as a general, fielding multiple divisions by drop pod and enacting specific strategies individually or by the Prime Councilor's order.</description>
     <seniority>800</seniority>
-    <favorCost>14</favorCost>
+    <favorCost>18</favorCost>
     <minExpectation>High</minExpectation>
     <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
     <changeHeirQuestPoints>2000</changeHeirQuestPoints>

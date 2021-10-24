@@ -48,7 +48,7 @@
 	
   <RoyalTitlePermitDef>
     <defName>f2e_Neolithic_CallLaborerTeam</defName>
-    <label>call labor team</label>
+    <label>call laborer team</label>
     <description>Request a group of 4 workers to assist you for 4 days. They will arrive within 2-3 days. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <!-- TODO: replace with custom worker -->
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
@@ -60,6 +60,25 @@
       <favorCost>3</favorCost>
       <pawnKindDef>Empire_Common_Laborer</pawnKindDef>
       <pawnCount>4</pawnCount>
+      <aidDurationDays>4</aidDurationDays>
+    </royalAid>
+    <cooldownDays>60</cooldownDays>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_Neolithic_CallLaborerGang</defName>
+    <label>call laborer gang</label>
+    <description>Request a group of 8 workers to assist you for 4 days. They will arrive within 2-3 days. You can control them as though they were your own colonists. You are required to keep them safe.</description>
+    <!-- TODO: replace with custom worker -->
+    <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
+    <minTitle>f2e_Honorable</minTitle>
+    <faction>f2e_Neolithic</faction>
+    <permitPointCost>1</permitPointCost>
+    <uiPosition>(1,2)</uiPosition>
+    <royalAid>
+      <favorCost>3</favorCost>
+      <pawnKindDef>Empire_Common_Laborer</pawnKindDef>
+      <pawnCount>8</pawnCount>
       <aidDurationDays>4</aidDurationDays>
     </royalAid>
     <cooldownDays>60</cooldownDays>

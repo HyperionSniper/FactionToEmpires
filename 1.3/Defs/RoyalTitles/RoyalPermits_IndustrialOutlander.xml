@@ -60,10 +60,30 @@
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,2)</uiPosition>
     <royalAid>
-      <favorCost>2</favorCost>
+      <favorCost>4</favorCost>
 	  <!-- TODO: replace with custom worker pawn kind -->
       <pawnKindDef>Empire_Common_Laborer</pawnKindDef>
       <pawnCount>4</pawnCount>
+      <aidDurationDays>4</aidDurationDays>
+    </royalAid>
+    <cooldownDays>60</cooldownDays>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef>
+    <defName>f2e_Outlander_CallLaborerGang</defName>
+    <label>call worker team</label>
+    <description>Call a group of 8 workers to assist you for 4 days. You can control them as though they were your own colonists. You are required to keep them safe.</description>
+    <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
+    <minTitle>f2e_Councilor</minTitle>
+    <faction>f2e_IndustrialOutlander</faction>
+    <permitPointCost>1</permitPointCost>
+    <prerequisite>f2e_Outlander_CallLaborerTeam</prerequisite>
+    <uiPosition>(1,2)</uiPosition>
+    <royalAid>
+      <favorCost>8</favorCost>
+      <!-- TODO: replace with custom worker pawn kind -->
+      <pawnKindDef>Empire_Common_Laborer</pawnKindDef>
+      <pawnCount>8</pawnCount>
       <aidDurationDays>4</aidDurationDays>
     </royalAid>
     <cooldownDays>60</cooldownDays>
@@ -81,7 +101,7 @@
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,3)</uiPosition>
     <royalAid>
-      <favorCost>3</favorCost>
+      <favorCost>2</favorCost>
       <pawnKindDef>Town_Guard</pawnKindDef>
       <pawnCount>4</pawnCount>
       <targetingRange>39.9</targetingRange>
@@ -99,7 +119,7 @@
     <permitPointCost>1</permitPointCost>
     <uiPosition>(0,4)</uiPosition>
     <royalAid>
-      <favorCost>5</favorCost>
+      <favorCost>4</favorCost>
       <pawnKindDef>Mercenary_Gunner_Acidifier</pawnKindDef>
       <pawnCount>4</pawnCount>
       <targetingRange>39.9</targetingRange>
@@ -112,13 +132,13 @@
     <label>call elite mercenary squad</label>
     <description>Call a group of elite mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
-    <minTitle>f2e_Councilor</minTitle>
+    <minTitle>f2e_HighCouncilor</minTitle>
     <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
     <prerequisite>f2e_Outlander_CallMilitaryAidLarge</prerequisite>
     <uiPosition>(1,4)</uiPosition>
     <royalAid>
-      <favorCost>5</favorCost>
+      <favorCost>6</favorCost>
       <pawnKindDef>Mercenary_Elite_Acidifier</pawnKindDef>
       <pawnCount>4</pawnCount>
       <targetingRange>39.9</targetingRange>
@@ -128,20 +148,48 @@
 
   <RoyalTitlePermitDef>
     <defName>f2e_CallArtilleryStrike</defName>
-    <label>call artillery strike</label>
+    <label>call artillery barrage</label>
     <description>Call a {0} bombardment at a target position.</description>
     <workerClass>RoyalTitlePermitWorker_OrbitalStrike</workerClass>
-    <minTitle>f2e_HighCouncilor</minTitle>
+    <minTitle>f2e_Councilor</minTitle>
     <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
     <cooldownDays>45</cooldownDays>
     <uiPosition>(0,5)</uiPosition>
     <royalAid>
-      <favorCost>6</favorCost>
+      <favorCost>4</favorCost>
       <targetingRange>44.9</targetingRange>
       <radius>2.9</radius>
       <explosionRadiusRange>7.9</explosionRadiusRange>
       <explosionCount>4</explosionCount>
+      <intervalTicks>60</intervalTicks>
+      <warmupTicks>120</warmupTicks>
+      <pawnKindDef>Mercenary_Gunner</pawnKindDef>
+      <pawnCount>1</pawnCount>
+    </royalAid>
+    <modExtensions>
+      <li Class="empireMaker.ArtilleryPermitShellDef">
+        <shellDefName>Shell_HighExplosive</shellDefName>
+      </li>
+    </modExtensions>
+  </RoyalTitlePermitDef>
+  
+  <RoyalTitlePermitDef>
+    <defName>f2e_CallArtillerySalvo</defName>
+    <label>call artillery bombardment</label>
+    <description>Call a large {0} bombardment at a target position.</description>
+    <workerClass>RoyalTitlePermitWorker_OrbitalStrike</workerClass>
+    <minTitle>f2e_HighCouncilor</minTitle>
+    <faction>f2e_IndustrialOutlander</faction>
+    <permitPointCost>1</permitPointCost>
+    <cooldownDays>45</cooldownDays>
+    <uiPosition>(0,6)</uiPosition>
+    <royalAid>
+      <favorCost>8</favorCost>
+      <targetingRange>44.9</targetingRange>
+      <radius>2.9</radius>
+      <explosionRadiusRange>7.9</explosionRadiusRange>
+      <explosionCount>16</explosionCount>
       <intervalTicks>60</intervalTicks>
       <warmupTicks>120</warmupTicks>
       <pawnKindDef>Mercenary_Gunner</pawnKindDef>
