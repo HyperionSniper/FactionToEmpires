@@ -17,9 +17,8 @@ namespace empireMaker
             out Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs)
         {
             // by the time this is run, factiondef should be one of the valid techlevels.
-
             generatedPermitDefs = new Dictionary<string, RoyalTitlePermitDef>();
-            HashSet<RoyalTitlePermitDef> baseGeneratedPermits = new HashSet<RoyalTitlePermitDef>();
+            HashSet<RoyalTitlePermitDef> basePermitsUsed = new HashSet<RoyalTitlePermitDef>();
 
             var p = EmpireHelpers.GetDefNamePrefix(techLevel);
 
@@ -45,17 +44,17 @@ namespace empireMaker
             if (militarySmall != null) {
                 DefDatabase<RoyalTitlePermitDef>.Add(militarySmall);
                 generatedPermitDefs.Add(aidSmallDefName, militarySmall);
-                baseGeneratedPermits.Add(callMilitaryAidSmall);
+                basePermitsUsed.Add(callMilitaryAidSmall);
             }
             if (militaryLarge != null) {
                 DefDatabase<RoyalTitlePermitDef>.Add(militaryLarge);
                 generatedPermitDefs.Add(aidLargeDefName, militaryLarge);
-                baseGeneratedPermits.Add(callMilitaryAidLarge);
+                basePermitsUsed.Add(callMilitaryAidLarge);
             }
             if (militaryGrand != null) {
                 DefDatabase<RoyalTitlePermitDef>.Add(militaryGrand);
                 generatedPermitDefs.Add(aidGrandDefName, militaryGrand);
-                baseGeneratedPermits.Add(callMilitaryAidGrand);
+                basePermitsUsed.Add(callMilitaryAidGrand);
             }
 
             // Trade permits --
@@ -123,7 +122,7 @@ namespace empireMaker
             }
 
             foreach (var permit in baseRoyalPermits) {
-                if (baseGeneratedPermits.Contains(permit)) {
+                if (basePermitsUsed.Contains(permit)) {
                     if (debugMode) {
                         Log.Message($"Not cloning {permit.defName}.");
                     }
@@ -137,10 +136,6 @@ namespace empireMaker
 
                     DefDatabase<RoyalTitlePermitDef>.Add(def);
                 }
-            }
-
-            if (debugMode) {
-                Log.Message("C");
             }
 
             return true;
@@ -174,24 +169,21 @@ namespace empireMaker
                 }
             }
 
-            foreach (var permitDef in from faction 
+            foreach (var permitDef in from permit 
                                       in DefDatabase<RoyalTitlePermitDef>.AllDefs
-                                      where faction != null
-                                            && faction.defName.Length > 4
-                                            && faction.defName.Substring(0,4) == "f2e_"
-                                      select faction) {
-                var permitArchetype = permitDef.defName.Substring(4);
-                var underscoreIndex = permitArchetype.IndexOf('_');
-
-                if (underscoreIndex == -1) continue;
-                else {
-                    permitArchetype = permitArchetype.Substring(0, underscoreIndex);
-                }
-
-                //Log.Message($"Found permit {permitDef.defName}, archetype:{permitArchetype}");
+                                      where permit != null
+                                            && permit.defName.Length > 4
+                                            && permit.defName.Substring(0,4) == "f2e_"
+                                      select permit) {
+                if (permitDef.faction == null)
+                    Log.Error($"F2E permit {permitDef.defName} has no faction - this should not happen.");
+                
+                // get rid of f2e_
+                // ex: f2e_IndustrialOutlander => IndustrialOutlander
+                var permitArchetype = permitDef.faction.defName.Substring(4);
 
                 if (Enum.TryParse<EmpireArchetype>(permitArchetype, out var archetype)) {
-                    //Log.Message($"sorted");
+                    Log.Message($"Found permit {permitDef.defName}, archetype:{permitArchetype}");
                     dict[archetype].Add(permitDef);
                 }
             }

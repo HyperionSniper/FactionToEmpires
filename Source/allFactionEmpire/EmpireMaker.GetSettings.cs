@@ -181,12 +181,12 @@ namespace empireMaker
                 };
 
                 SettingHandle.ShouldDisplay showMercTitlesPredicate = () => {
-                    var validTechLevels = (from titles in s_RoyalTitleTagMap
+                    var validArchetypes = (from titles in s_RoyalTitleTagMap
                                           where titles.Value.Mercenary != null
                                           select titles.Key).ToList();
 
                     return settings.ConversionType != Conversion.noConversion
-                    && validTechLevels.Contains(settings.ActualTechLevel);
+                    && validArchetypes.Contains(settings.Archetype);
                 };
 
                 techLevel.VisibilityPredicate = showTechLevelPredicate;

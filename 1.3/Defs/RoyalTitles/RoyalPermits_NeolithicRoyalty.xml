@@ -16,7 +16,7 @@
     <defName>f2e_Neolithic_WoodTeleport</defName>
     <label>wood teleport</label>
     <description>Call for a farskip drop of 240 wood.</description>
-    <uiPosition>(0,1)</uiPosition>
+    <uiPosition>(1,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
         <WoodLog>240</WoodLog>
@@ -38,7 +38,7 @@
 
   <RoyalTitlePermitDef>
     <defName>f2e_Neolithic_CallLaborerTeamTeleport</defName>
-    <label>teleport worker team</label>
+    <label>teleport labor team</label>
     <description>Request a group of 4 workers to assist you for 4 days. They will arrive immediately by farskip. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <!-- TODO: replace with custom worker -->
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
@@ -59,7 +59,7 @@
 
   <RoyalTitlePermitDef>
     <defName>f2e_Neolithic_CallTeleportMilitaryAidSmall</defName>
-    <label>call light protection troop</label>
+    <label>teleport light protection troop</label>
     <description>Call a group of light warrior tribesmen to aid you in battle. They will arrive immediately by farskip.</description>
     <!--TODO: Add farskip drop custom permit worker-->
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>

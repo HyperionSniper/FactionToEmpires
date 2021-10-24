@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using HugsLib;
 using HugsLib.Settings;
@@ -50,16 +51,6 @@ namespace empireMaker {
             // 제국 타이틀
             // todo: add ability to create custom royal title maps
 
-            var baseRoyalTitles = new Dictionary<string, List<RoyalTitleDef>> {
-                { "NeolithicTitle", new List<RoyalTitleDef>() },
-                //{ "MedievalTitle", new List<RoyalTitleDef>() },
-                { "IndustrialOutlanderTitle", new List<RoyalTitleDef>() },
-                { "IndustrialMercenaryTitle", new List<RoyalTitleDef>() },
-                //{ "SpacerTitle", new List<RoyalTitleDef>() },
-                //{ "SpacerRaiderTitle", new List<RoyalTitleDef>() },
-                //{ "UltraTitle", new List<RoyalTitleDef>() },
-            };
-
             var royalFavorLabels = new Dictionary<EmpireArchetype, string> {
                 {  EmpireArchetype.Neolithic, "respect" },
                 {  EmpireArchetype.Medieval, "respect" },
@@ -72,9 +63,9 @@ namespace empireMaker {
 
             // sort all royal title defs into title types
             // EmpireMaker.RoyalTitles.cs
-            GetBaseRoyalTitles(baseRoyalTitles);
+            var baseRoyalTitles = GetBaseRoyalTitles();
             var baseRoyalPermits = GetBaseRoyalPermits();
-            
+
             for (var i = 0; i < eligibleFactions.Count; i++) {
                 var factionDef = eligibleFactions[i];
                 var settings = factionConversionSettings[i];
@@ -112,8 +103,8 @@ namespace empireMaker {
                 // Sets royal title tags based on tech level. Returns true if the tech level matches a valid tech level.
                 // requires valid FactionDef.techLevel
                 // EmpireMaker.RoyalTitles.cs
-                if (!SetRoyalTitleTags(settings, factionDef, techLevel)) {
-                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but has an invalid tech level: {factionDef.techLevel}. Set the faction's tech level manually through the Empire : Force Conversion and tech level settings.");
+                if (!SetRoyalTitleTags(settings, factionDef)) {
+                    Log.Error($"Faction {factionDef.defName} is marked for empire conversion but failed royal title cloning.");
                     // keep converting anyways, but will probably be bugged
                 }
 

@@ -42,7 +42,7 @@
     <label>silver drop</label>
     <description>Call for a drop of 250 silver.</description>
     <minTitle>f2e_Honorary</minTitle>
-    <uiPosition>(2,0)</uiPosition>
+    <uiPosition>(0,1)</uiPosition>
     <royalAid>
       <itemsToDrop>
         <Silver>250</Silver>
@@ -73,8 +73,8 @@
 
   <RoyalTitlePermitDef>
     <defName>f2e_Outlander_CallMilitaryAidSmall</defName>
-    <label>call light combat squad</label>
-    <description>Call a group of 4 light mercenaries to aid you in battle.</description>
+    <label>call light mercenary squad</label>
+    <description>Call a group of light mercenaries to aid you in battle.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
     <minTitle>f2e_Dignitary</minTitle>
     <faction>f2e_IndustrialOutlander</faction>
@@ -97,7 +97,7 @@
     <minTitle>f2e_Councilor</minTitle>
     <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(1,5)</uiPosition>
+    <uiPosition>(0,4)</uiPosition>
     <royalAid>
       <favorCost>5</favorCost>
       <pawnKindDef>Mercenary_Gunner_Acidifier</pawnKindDef>
@@ -115,7 +115,7 @@
     <minTitle>f2e_Councilor</minTitle>
     <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(2,5)</uiPosition>
+    <uiPosition>(1,4)</uiPosition>
     <royalAid>
       <favorCost>5</favorCost>
       <pawnKindDef>Mercenary_Elite_Acidifier</pawnKindDef>
@@ -128,13 +128,13 @@
   <RoyalTitlePermitDef>
     <defName>f2e_CallArtilleryStrike</defName>
     <label>call artillery strike</label>
-    <description>Call {0} bombardment at a target position.</description>
+    <description>Call a {0} bombardment at a target position.</description>
     <workerClass>RoyalTitlePermitWorker_OrbitalStrike</workerClass>
     <minTitle>f2e_HighCouncilor</minTitle>
     <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
     <cooldownDays>45</cooldownDays>
-    <uiPosition>(0,7)</uiPosition>
+    <uiPosition>(0,5)</uiPosition>
     <royalAid>
       <favorCost>6</favorCost>
       <targetingRange>44.9</targetingRange>

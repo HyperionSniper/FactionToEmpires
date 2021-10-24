@@ -6,6 +6,7 @@
 
   <RoyalTitlePermitDef>
     <defName>f2e_NeolithicTradeSpecial</defName>
+    <faction>f2e_Neolithic</faction>
     <label>trade with special traders</label>
   </RoyalTitlePermitDef>
 
@@ -37,7 +38,7 @@
     <defName>f2e_Neolithic_PemmicanRequest</defName>
     <label>pemmican request</label>
     <description>Call for a delivery of 360 pemmican. It will arrive within 2-3 days.</description>
-    <uiPosition>(1,0)</uiPosition>
+    <uiPosition>(0,1)</uiPosition>
     <royalAid>
       <itemsToDrop>
         <Pemmican>360</Pemmican>
@@ -47,7 +48,7 @@
 	
   <RoyalTitlePermitDef>
     <defName>f2e_Neolithic_CallLaborerTeam</defName>
-    <label>call worker team</label>
+    <label>call labor team</label>
     <description>Request a group of 4 workers to assist you for 4 days. They will arrive within 2-3 days. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <!-- TODO: replace with custom worker -->
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
@@ -93,7 +94,7 @@
     <minTitle>f2e_Elder</minTitle>
     <faction>f2e_Neolithic</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(1,5)</uiPosition>
+    <uiPosition>(0,5)</uiPosition>
     <royalAid>
       <favorCost>5</favorCost>
       <pawnKindDef>Mercenary_Gunner_Acidifier</pawnKindDef>
@@ -105,13 +106,13 @@
 
   <RoyalTitlePermitDef>
     <defName>f2e_Neolithic_CallMilitaryAidGrand</defName>
-    <label>call elite mercenary squad</label>
-    <description>Call a group of warchiefs to protect your colony. They will arrive within 2-3 days.</description>
+    <label>call elite protection troop</label>
+    <description>Call a group of elite warrior tribesmen to protect your colony. They will arrive within 2-3 days.</description>
     <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
     <minTitle>f2e_Elder</minTitle>
     <faction>f2e_Neolithic</faction>
     <permitPointCost>1</permitPointCost>
-    <uiPosition>(2,5)</uiPosition>
+    <uiPosition>(0,6)</uiPosition>
     <royalAid>
       <favorCost>7</favorCost>
       <pawnKindDef>Tribal_ChiefRanged</pawnKindDef>

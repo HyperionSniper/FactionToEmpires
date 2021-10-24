@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Verse;
@@ -8,45 +9,65 @@ namespace empireMaker
 {
     public partial class EmpireMaker
     {
-        private static Dictionary<TechLevel, Titles> s_RoyalTitleTagMap = new Dictionary<TechLevel, Titles> {
-            { TechLevel.Neolithic, new Titles {
+        private static Dictionary<EmpireArchetype, Titles> s_RoyalTitleTagMap = new Dictionary<EmpireArchetype, Titles> {
+            {  EmpireArchetype.Neolithic, new Titles {
                 Base = "NeolithicTitle"
             }},
-            { TechLevel.Medieval, new Titles {
+            {  EmpireArchetype.Medieval, new Titles {
                 Base = "NeolithicTitle"
                 //Base = "MedievalTitle"
             }},
-            { TechLevel.Industrial, new Titles {
+            {  EmpireArchetype.IndustrialOutlander, new Titles {
+                Base = "IndustrialOutlanderTitle",
+                Mercenary = "IndustrialMercenaryTitle"
+            }},
+            {  EmpireArchetype.IndustrialRaider, new Titles {
+                Base = "IndustrialOutlanderTitle",
+                //Base = "IndustrialRaiderTitle",
+                Mercenary = "IndustrialMercenaryTitle"
+            }},
+            {  EmpireArchetype.Spacer, new Titles {
+                Base = "IndustrialOutlanderTitle",
+                Mercenary = "IndustrialMercenaryTitle"
+            }},
+            {  EmpireArchetype.SpacerRaider, new Titles {
+                Base = "IndustrialOutlanderTitle",
+                //Base = "SpacerRaiderTitle",
+                Mercenary = "IndustrialMercenaryTitle"
+            }},
+            {  EmpireArchetype.Ultra, new Titles {
                 Base = "IndustrialOutlanderTitle",
                 //Raider = "SpacerRaiderTitle",
                 Mercenary = "IndustrialMercenaryTitle"
             }},
-            { TechLevel.Spacer, new Titles {
-                Base = "IndustrialOutlanderTitle",
-                //Raider = "SpacerRaiderTitle",
-                Mercenary = "IndustrialMercenaryTitle"
-            }},
-            { TechLevel.Ultra, new Titles {
-                Base = "IndustrialOutlanderTitle",
-                //Raider = "SpacerRaiderTitle",
-                Mercenary = "IndustrialMercenaryTitle"
-            }},
-            //{ TechLevel.Spacer, new Titles {
-            //    Base = "SpacerTitle",
-            //    Raider = "SpacerRaiderTitle",
-            //    Mercenary = "IndustrialMercenaryTitle"
-            //}},
-            //{ TechLevel.Ultra, new Titles {
-            //    Base = "UltraTitle",
-            //    Raider = "SpacerRaiderTitle",
-            //    Mercenary = "IndustrialMercenaryTitle"
-            //}},
         };
+        //{ TechLevel.Spacer, new Titles {
+        //    Base = "SpacerTitle",
+        //    Raider = "SpacerRaiderTitle",
+        //    Mercenary = "IndustrialMercenaryTitle"
+        //}},
+        //{ TechLevel.Ultra, new Titles {
+        //    Base = "UltraTitle",
+        //    Raider = "SpacerRaiderTitle",
+        //    Mercenary = "IndustrialMercenaryTitle"
+        //}},
 
-        private class Titles {
+        private class Titles : IEnumerable<string>
+        {
             public string Base;
-            public string Raider;
             public string Mercenary;
+
+            public IEnumerator<string> GetEnumerator()
+            {
+                if (Base != null) yield return Base;
+                if (Mercenary != null) yield return Mercenary;
+            }
+
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                if (Base != null) yield return Base;
+                if (Mercenary != null) yield return Mercenary;
+            }
         }
 
         /// <summary>
@@ -55,53 +76,40 @@ namespace empireMaker
         /// <param name="settings"></param>
         /// <param name="factionDef"></param>
         /// <returns></returns>
-        private static bool SetRoyalTitleTags(ConversionParams settings, FactionDef factionDef, TechLevel techLevel)
+        private static bool SetRoyalTitleTags(ConversionParams settings, FactionDef factionDef)
         {
             // set royal titles based on tech level
             bool useMercTitles = !settings.DisableMercTitles;
-            bool isRaider = settings.IsRaiderFaction || EmpireHelpers.IsRaiderFaction(factionDef);
 
             factionDef.royalTitleTags ??= new List<string>();
 
-            switch (techLevel) {
-                case TechLevel.Neolithic:
-                case TechLevel.Medieval:
-                case TechLevel.Industrial:
-                case TechLevel.Spacer:
-                case TechLevel.Ultra:
-                    var titleTags = s_RoyalTitleTagMap[techLevel];
+            var titleTags = s_RoyalTitleTagMap[settings.Archetype];
 
-                    // if mercenaries are enabled, 2 title tags may be taken
-                    // some tech levels have no mercenary titles
+            factionDef.royalTitleTags.Add(titleTags.Base);
 
-                    if (isRaider && titleTags.Raider != null) {
-                        factionDef.royalTitleTags.Add(titleTags.Raider);
-                    } else {
-                        factionDef.royalTitleTags.Add(titleTags.Base);
-                    }
-
-                    if (titleTags.Mercenary != null) {
-                        factionDef.royalTitleTags.Add(titleTags.Mercenary);
-                    }
-
-                    break;
-
-                default:
-                    factionDef.royalTitleTags.Add($"OutlanderTitle");
-                    return false;
+            if (useMercTitles && titleTags.Mercenary != null) {
+                factionDef.royalTitleTags.Add(titleTags.Mercenary);
             }
 
             return true;
         }
 
-        private static void GetBaseRoyalTitles(Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap)
+        private static Dictionary<string, List<RoyalTitleDef>> GetBaseRoyalTitles()
         {
+            var baseRoyalTitleTags = new Dictionary<string, List<RoyalTitleDef>>();
+            foreach (var name in Enum.GetNames(typeof(EmpireArchetype))) {
+                baseRoyalTitleTags.Add(name + "Title", new List<RoyalTitleDef>());
+            }
+
+            baseRoyalTitleTags.Add("IndustrialMercenaryTitle", new List<RoyalTitleDef>());
+
             // sort all royal title defs into title types
             foreach (var title in DefDatabase<RoyalTitleDef>.AllDefs) {
                 // for each individual royal title, assign it to a single List in the royalTitleTagMap.
                 if (title.tags == null) continue;
 
-                foreach (var titleType in royalTitleTagMap) {
+                foreach (var titleType in baseRoyalTitleTags) {
+                    // if the title has one of the base royal tags, add it.
                     if (title.tags.Contains(titleType.Key)) {
                         titleType.Value.Add(title);
                         break;
@@ -109,10 +117,12 @@ namespace empireMaker
                 }
             }
 
-            foreach (var list in royalTitleTagMap.Values) {
+            foreach (var list in baseRoyalTitleTags.Values) {
                 // sort by favor cost
                 list.SortBy(t => t.favorCost);
             }
+
+            return baseRoyalTitleTags;
         }
 
         private static bool GenerateRoyalTitleDefs(ConversionParams settings, FactionDef factionDef, Dictionary<string, List<RoyalTitleDef>> royalTitleTagMap, Dictionary<string, RoyalTitlePermitDef> generatedPermitDefs, out List<RoyalTitleDef> royalTitles)
@@ -120,7 +130,7 @@ namespace empireMaker
             royalTitles = new List<RoyalTitleDef>();
 
             // Clone RoyalTitles --
-            foreach (string tag in factionDef.royalTitleTags) {
+            foreach (string tag in s_RoyalTitleTagMap[settings.Archetype]) {
                 foreach (var defaultTitleDef in royalTitleTagMap[tag]) {
                     var newRoyalTitle = new RoyalTitleDef {
                         defName = $"{defaultTitleDef.defName}_{factionDef.defName}"
