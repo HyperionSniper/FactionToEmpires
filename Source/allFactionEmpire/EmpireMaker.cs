@@ -66,6 +66,14 @@ namespace empireMaker {
             var baseRoyalTitles = GetBaseRoyalTitles();
             var baseRoyalPermits = GetBaseRoyalPermits();
 
+            // TODO: implement other archetypes so this isn't necessary
+
+            baseRoyalPermits[EmpireArchetype.Medieval] = baseRoyalPermits[EmpireArchetype.IndustrialOutlander];
+            baseRoyalPermits[EmpireArchetype.IndustrialRaider] = baseRoyalPermits[EmpireArchetype.IndustrialOutlander];
+            baseRoyalPermits[EmpireArchetype.Spacer] = baseRoyalPermits[EmpireArchetype.IndustrialOutlander];
+            baseRoyalPermits[EmpireArchetype.SpacerRaider] = baseRoyalPermits[EmpireArchetype.IndustrialOutlander];
+            baseRoyalPermits[EmpireArchetype.Ultra] = baseRoyalPermits[EmpireArchetype.IndustrialOutlander];
+
             for (var i = 0; i < eligibleFactions.Count; i++) {
                 var factionDef = eligibleFactions[i];
                 var settings = factionConversionSettings[i];
