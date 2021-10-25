@@ -177,6 +177,7 @@ namespace empireMaker
 
                             // if a generated permit can't be found, simply create a copy and set the faction.
                             if (!generatedPermitDefs.TryGetValue(oldPermit.defName, out newPermit)) {
+                                Log.Error($"Couldn't find f2e permit in faction {factionDef.defName} based off of {oldPermit.defName}. This should not happen.");
                                 newPermit = EmpireHelpers.ClonePermitDef(factionDef, oldPermit);
                                 newPermit.faction = factionDef;
                             }
