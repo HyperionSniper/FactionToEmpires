@@ -171,11 +171,11 @@ namespace empireMaker
                         // for each permit in the default title definition, 
                         // replace with new generated permits.
                         // generatedPermits maps default defNames to new permits.
-                        // if a generated permit can't be found, simply create a copy and set the faction.
                         for (var j = 0; j < defaultTitleDef.permits.Count; j++) {
                             var oldPermit = defaultTitleDef.permits[j];
                             RoyalTitlePermitDef newPermit;
 
+                            // if a generated permit can't be found, simply create a copy and set the faction.
                             if (!generatedPermitDefs.TryGetValue(oldPermit.defName, out newPermit)) {
                                 newPermit = EmpireHelpers.ClonePermitDef(factionDef, oldPermit);
                                 newPermit.faction = factionDef;

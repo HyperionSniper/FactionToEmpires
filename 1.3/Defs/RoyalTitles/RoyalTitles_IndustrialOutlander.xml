@@ -44,7 +44,6 @@
       <li>TradeSettlement</li>
       <li>TradeCaravan</li>
     </permits>
-    <maxPsylinkLevel>1</maxPsylinkLevel>
   </RoyalTitleDef>
 
   <!-- ============== Empire titles - Player gettable council ============================= -->
@@ -66,13 +65,11 @@
       <li>Speech</li>
     </grantedAbilities>
     <speechCooldown>900000</speechCooldown>
-    <maxPsylinkLevel>5</maxPsylinkLevel>
   </RoyalTitleDef>
 
   <RoyalTitleDef ParentName="BaseOutlanderCouncilTitle">
     <defName>f2e_Councilor</defName>
-    <label>councilman</label>
-    <labelFemale>councilwoman</labelFemale>
+    <label>councilor</label>
     <description>A low-level member of the administration of an outlander union faction. Outlander colonies are almost entirely independent except in times of need, so councils are usually linked together only by loyalty to the union. This allows honorable unaffiliated outsiders to achieve the title of councilor.\n\nIn the outlander factions, councilors make up town and city councils. A councilor may become high councilor of an existing council through election, or found their own colony and council through a charter proposal. At war, a councilor leads their own squad, fighting alongside their soldiers, and may request mercenary reinforcements at will.</description>
     <favorCost>16</favorCost>
     <seniority>700</seniority>
@@ -121,7 +118,7 @@
       </allowedDefs>
     </foodRequirement>
 
-    <maxPsylinkLevel>3</maxPsylinkLevel>
+    <maxPsylinkLevel>1</maxPsylinkLevel>
   </RoyalTitleDef>
   
   <RoyalTitleDef ParentName="BaseOutlanderCouncilTitle">
@@ -193,13 +190,17 @@
       <li Class="RoomRequirement_ThingAnyOfCount">
         <things>
           <li>Brazier</li>
+          <li>TorchLamp</li>
+          <li>StandingLamp</li>
           <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">DarklightBrazier</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darktorch</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darklamp</li>
         </things>
         <count>2</count>
       </li>
       <li Class="RoomRequirement_ThingCount">
         <thingDef>Shelf</thingDef>
-        <count>1</count>
+        <count>2</count>
       </li>
       <li Class="RoomRequirement_ThingCount">
         <thingDef>Column</thingDef>
@@ -209,7 +210,11 @@
         <labelKey>RoomRequirementAllBraziersMustBeLit</labelKey>
         <things>
           <li>Brazier</li>
+          <li>TorchLamp</li>
+          <li>StandingLamp</li>
           <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">DarklightBrazier</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darktorch</li>
+          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darklamp</li>
         </things>
       </li>
       <li Class="RoomRequirement_ForbiddenBuildings">
@@ -228,7 +233,7 @@
     
     <bedroomRequirements>
       <li Class="RoomRequirement_Area">
-        <area>20</area>
+        <area>30</area>
       </li>
       <li Class="RoomRequirement_Impressiveness">
         <impressiveness>40</impressiveness>
@@ -274,7 +279,7 @@
       </allowedDefs>
     </foodRequirement>
     
-    <maxPsylinkLevel>5</maxPsylinkLevel>
+    <maxPsylinkLevel>2</maxPsylinkLevel>
   </RoyalTitleDef>
 
   <!-- ============== Empire titles - NPC only psycaster ============================= -->
@@ -470,13 +475,13 @@
       </allowedDefs>
     </foodRequirement>
     
-    <maxPsylinkLevel>5</maxPsylinkLevel>
+    <maxPsylinkLevel>3</maxPsylinkLevel>
   </RoyalTitleDef>
 
   <RoyalTitleDef ParentName="BaseOutlanderCouncilTitleNPC">
     <defName>f2e_PrimeCouncilor</defName>
     <label>prime councilor</label>
-    <description>The highest level of administrator within an outlander union faction. The Prime Councilor, titled within this faction as {0}, controls all the colonies united under their flag, and projects force across the planet as needed. They may order their constituents to act as one in times of need, and at war, the Prime Councilor acts as commander-in-chief, and may approve wide-scale military movements and projections of force.</description>
+    <description>The highest level of administrator within an outlander union faction. \n\nThe prime councilor, titled within this faction as {0}, controls all the colonies united under their flag, and projects force across the planet as needed. They may order their constituents to act as one in times of need, and at war, the Prime Councilor acts as commander-in-chief, and may approve wide-scale military movements and projections of force.</description>
     <seniority>1000</seniority>
     <commonality>0</commonality>
     <minExpectation>Noble</minExpectation>
@@ -509,7 +514,7 @@
           <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darktorch</li>
           <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darklamp</li>
         </things>
-        <count>2</count>
+        <count>4</count>
       </li>
       <li Class="RoomRequirement_ThingCount">
         <thingDef>Column</thingDef>
@@ -618,9 +623,6 @@
         <bodyPartGroupsMatchAny>
           <li>Torso</li>
         </bodyPartGroupsMatchAny>
-        <requiredTags>
-          <li>RoyalTier2</li>
-        </requiredTags>
         <allowedTags>
           <li>PrestigeCombatGear</li>
           <li>CombatGear</li>
@@ -630,9 +632,6 @@
         <bodyPartGroupsMatchAny>
           <li>Torso</li>
         </bodyPartGroupsMatchAny>
-        <requiredTags>
-          <li>RoyalTier5</li>
-        </requiredTags>
         <allowedTags>
           <li>PrestigeCombatGear</li>
           <li>CombatGear</li>
@@ -642,9 +641,6 @@
         <bodyPartGroupsMatchAny>
           <li>Torso</li>
         </bodyPartGroupsMatchAny>
-        <requiredTags>
-          <li>RoyalTier6</li>
-        </requiredTags>
         <allowedTags>
           <li>PrestigeCombatGear</li>
           <li>CombatGear</li>
@@ -655,9 +651,6 @@
           <li>UpperHead</li>
           <li>FullHead</li>
         </bodyPartGroupsMatchAny>
-        <requiredTags>
-          <li>RoyalTier7</li>
-        </requiredTags>
         <allowedTags>
           <li>PrestigeCombatGear</li>
           <li>CombatGear</li>
@@ -681,7 +674,7 @@
       <li>f2e_Outlander_CallMilitaryAidSmall</li>
       <li>f2e_Outlander_CallMilitaryAidLarge</li>
     </permits>
-    <recruitmentResistanceOffset>200</recruitmentResistanceOffset>
+    <recruitmentResistanceOffset>280</recruitmentResistanceOffset>
     <maxPsylinkLevel>5</maxPsylinkLevel>
   </RoyalTitleDef>
 
@@ -697,9 +690,11 @@
       <li>TradeOrbital</li>
       <li>f2e_Outlander_CallMilitaryAidSmall</li>
       <li>f2e_Outlander_CallMilitaryAidLarge</li>
+      <li>f2e_Outlander_CallMilitaryAidGrand</li>
       <li>f2e_CallArtilleryStrike</li>
+      <li>f2e_CallArtillerySalvo</li>
     </permits>
-    <recruitmentResistanceOffset>280</recruitmentResistanceOffset>
+    <recruitmentResistanceOffset>380</recruitmentResistanceOffset>
     <maxPsylinkLevel>6</maxPsylinkLevel>
   </RoyalTitleDef>
   

@@ -63,6 +63,7 @@
       <li>TradeSettlement</li>
       <li>TradeCaravan</li>
     </permits>
+    <maxPsylinkLevel>1</maxPsylinkLevel>
   </RoyalTitleDef>
 
   <!-- ============== Empire titles - Player gettable council ============================= -->
@@ -84,7 +85,6 @@
       <li>Speech</li>
     </grantedAbilities>
     <speechCooldown>900000</speechCooldown>
-    <maxPsylinkLevel>5</maxPsylinkLevel>
   </RoyalTitleDef>
 
   <RoyalTitleDef ParentName="BaseNeolithicLeaderTitle">
@@ -110,7 +110,7 @@
       </allowedDefs>
     </foodRequirement>
 
-    <maxPsylinkLevel>3</maxPsylinkLevel>
+    <maxPsylinkLevel>2</maxPsylinkLevel>
   </RoyalTitleDef>
 
   <!-- ============== Empire titles - NPC only psycaster ============================= -->

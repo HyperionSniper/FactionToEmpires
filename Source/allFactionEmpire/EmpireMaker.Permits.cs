@@ -67,9 +67,9 @@ namespace empireMaker
             tradeCaravan.defName = $"TradeCaravan_{factionDef.defName}";
             tradeOrbital.defName = $"TradeOrbital_{factionDef.defName}";
 
-            tradeSettlement.label = "trade with settlements";
-            tradeCaravan.label = $"trade with caravans";
-            tradeOrbital.label = $"trade with orbital traders";
+            tradeSettlement.label = $"trade with {factionDef.label} settlements";
+            tradeCaravan.label = $"trade with {factionDef.label} caravans";
+            tradeOrbital.label = $"trade with {factionDef.label} orbital traders";
 
             tradeSettlement.generated = true;
             tradeCaravan.generated = true;
@@ -101,7 +101,7 @@ namespace empireMaker
 
 
                 // 캐러밴
-                traderKindDefList.Clear();
+                traderKindDefList = new List<TraderKindDef>();
                 foreach (var caravanTraderKindDef in factionDef.caravanTraderKinds) {
                     var newCaravanTraderKindDef = EmpireHelpers.CopyTraderKind(caravanTraderKindDef);
                     newCaravanTraderKindDef.defName =

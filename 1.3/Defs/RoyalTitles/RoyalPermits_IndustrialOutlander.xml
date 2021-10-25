@@ -4,22 +4,27 @@
 
   <!-- Econ -->
 
-  <RoyalTitlePermitDef Name="OutlanderDropResourcesBase" ParentName="DropResourcesBase" Abstract="True">
+  <RoyalTitlePermitDef Name="OutlanderDropResourcesBase" Abstract="True">
     <faction>f2e_IndustrialOutlander</faction>
+    <permitPointCost>1</permitPointCost>
+    <cooldownDays>18</cooldownDays>
+    <usableOnWorldMap>true</usableOnWorldMap>
     <royalAid>
-      <favorCost>4</favorCost>
+      <targetingRange>39.9</targetingRange>
+      <favorCost>2</favorCost>
     </royalAid>
+    <workerClass>RoyalTitlePermitWorker_DropResources</workerClass>
   </RoyalTitlePermitDef>
   
   <RoyalTitlePermitDef ParentName="OutlanderDropResourcesBase">
     <defName>f2e_Outlander_SteelDrop</defName>
     <label>steel drop</label>
-    <description>Call for a drop of 120 steel.</description>
+    <description>Call for a drop of 100 steel.</description>
     <minTitle>f2e_Honorary</minTitle>
     <uiPosition>(0,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
-        <Steel>120</Steel>
+        <Steel>100</Steel>
       </itemsToDrop>
     </royalAid>
   </RoyalTitlePermitDef>
@@ -27,12 +32,25 @@
   <RoyalTitlePermitDef ParentName="OutlanderDropResourcesBase">
     <defName>f2e_Outlander_FoodDrop</defName>
     <label>food drop</label>
-    <description>Call for a drop of 20 packaged survival meals.</description>
+    <description>Call for a drop of 8 packaged survival meals.</description>
     <minTitle>f2e_Honorary</minTitle>
     <uiPosition>(1,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
-        <MealSurvivalPack>20</MealSurvivalPack>
+        <MealSurvivalPack>8</MealSurvivalPack>
+      </itemsToDrop>
+    </royalAid>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef ParentName="OutlanderDropResourcesBase">
+    <defName>f2e_Outlander_MedDrop</defName>
+    <label>industrial med drop</label>
+    <description>Call for a drop of 4 industrial medicine.</description>
+    <minTitle>f2e_Honorary</minTitle>
+    <uiPosition>(2,0)</uiPosition>
+    <royalAid>
+      <itemsToDrop>
+        <MedicineIndustrial>4</MedicineIndustrial>
       </itemsToDrop>
     </royalAid>
   </RoyalTitlePermitDef>
@@ -40,13 +58,15 @@
   <RoyalTitlePermitDef ParentName="OutlanderDropResourcesBase">
     <defName>f2e_Outlander_SilverDrop</defName>
     <label>silver drop</label>
-    <description>Call for a drop of 250 silver.</description>
+    <description>Call for a drop of 500 silver.</description>
     <minTitle>f2e_Dignitary</minTitle>
     <uiPosition>(0,1)</uiPosition>
+    <cooldownDays>45</cooldownDays>
     <royalAid>
       <itemsToDrop>
-        <Silver>250</Silver>
+        <Silver>500</Silver>
       </itemsToDrop>
+      <favorCost>4</favorCost>
     </royalAid>
   </RoyalTitlePermitDef>
 
@@ -71,7 +91,7 @@
 
   <RoyalTitlePermitDef>
     <defName>f2e_Outlander_CallLaborerGang</defName>
-    <label>call worker team</label>
+    <label>call worker gang</label>
     <description>Call a group of 8 workers to assist you for 4 days. You can control them as though they were your own colonists. You are required to keep them safe.</description>
     <workerClass>RoyalTitlePermitWorker_CallLaborers</workerClass>
     <minTitle>f2e_Councilor</minTitle>
@@ -106,7 +126,7 @@
       <pawnCount>4</pawnCount>
       <targetingRange>39.9</targetingRange>
     </royalAid>
-    <cooldownDays>40</cooldownDays>
+    <cooldownDays>30</cooldownDays>
   </RoyalTitlePermitDef>
 
   <RoyalTitlePermitDef>
@@ -124,7 +144,7 @@
       <pawnCount>4</pawnCount>
       <targetingRange>39.9</targetingRange>
     </royalAid>
-    <cooldownDays>50</cooldownDays>
+    <cooldownDays>35</cooldownDays>
   </RoyalTitlePermitDef>
 
   <RoyalTitlePermitDef>
@@ -143,7 +163,7 @@
       <pawnCount>4</pawnCount>
       <targetingRange>39.9</targetingRange>
     </royalAid>
-    <cooldownDays>60</cooldownDays>
+    <cooldownDays>40</cooldownDays>
   </RoyalTitlePermitDef>
 
   <RoyalTitlePermitDef>
@@ -167,11 +187,6 @@
       <pawnKindDef>Mercenary_Gunner</pawnKindDef>
       <pawnCount>1</pawnCount>
     </royalAid>
-    <modExtensions>
-      <li Class="empireMaker.ArtilleryPermitShellDef">
-        <shellDefName>Shell_HighExplosive</shellDefName>
-      </li>
-    </modExtensions>
   </RoyalTitlePermitDef>
   
   <RoyalTitlePermitDef>
@@ -183,7 +198,7 @@
     <faction>f2e_IndustrialOutlander</faction>
     <permitPointCost>1</permitPointCost>
     <cooldownDays>45</cooldownDays>
-    <uiPosition>(0,6)</uiPosition>
+    <uiPosition>(1,5)</uiPosition>
     <royalAid>
       <favorCost>8</favorCost>
       <targetingRange>44.9</targetingRange>
@@ -195,11 +210,6 @@
       <pawnKindDef>Mercenary_Gunner</pawnKindDef>
       <pawnCount>1</pawnCount>
     </royalAid>
-    <modExtensions>
-      <li Class="empireMaker.ArtilleryPermitShellDef">
-        <shellDefName>Shell_HighExplosive</shellDefName>
-      </li>
-    </modExtensions>
   </RoyalTitlePermitDef>
 
   <!-- Utility -->

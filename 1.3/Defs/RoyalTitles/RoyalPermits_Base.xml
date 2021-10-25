@@ -3,15 +3,5 @@
   <!-- ============================= Faction permits ============================= -->
 
   <!-- Econ -->
-
-  <RoyalTitlePermitDef ParentName="DropResourcesBase" Abstract="True">
-    <permitPointCost>1</permitPointCost>
-    <cooldownDays>45</cooldownDays>
-    <usableOnWorldMap>true</usableOnWorldMap>
-    <royalAid>
-      <targetingRange>39.9</targetingRange>
-    </royalAid>
-    <workerClass>RoyalTitlePermitWorker_DropResources</workerClass>
-  </RoyalTitlePermitDef>
   
 </Defs>

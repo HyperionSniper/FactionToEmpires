@@ -38,51 +38,6 @@ namespace empireMaker {
             return hardModsToConvert.Contains(modName);
         }
 
-
-        public static List<string> unmoddedFactionDefNames = new List<string> {
-            // vanilla
-            "TribeCivil", // neolithic
-            "TribeRough",
-            "TribeSavage",
-
-            "OutlanderCivil", // industrial
-            "OutlanderRough",
-
-            "Pirate", // spacer
-
-            // royalty - already empire
-
-            // ideology
-            "TribeCannibal", // neolithic
-            "NudistTribe",
-
-            "CannibalPirate",  // spacer
-        };
-
-        public static bool IsUnmoddedFaction(string defName) {
-            return unmoddedFactionDefNames.Contains(defName);
-        }
-
-        public static bool IsRaiderFaction(FactionDef factionDef)
-        {
-            bool isPirate = false;
-
-            foreach (var backstoryFilter in factionDef.backstoryFilters) {
-                if (backstoryFilter.categories.Contains("Pirate")) {
-                    isPirate = true;
-                    break;
-                }
-
-                foreach (var category in backstoryFilter.categories) {
-                    if (category.Contains("Pirate")) {
-                        isPirate = true;
-                    }
-                }
-            }
-
-            return isPirate;
-        }
-
         static Dictionary<TechLevel, string> permitMaps = new Dictionary<TechLevel, string>() {
             { TechLevel.Neolithic, "f2e_Tribal_" },
             { TechLevel.Medieval, "f2e_Medieval_" },
@@ -116,8 +71,22 @@ namespace empireMaker {
             if (derivedFrom.royalAid != null) {
                 def.royalAid = new RoyalAid {
                     favorCost = derivedFrom.royalAid.favorCost,
-                    pawnKindDef = derivedFrom.royalAid.pawnKindDef,
+
+                    itemsToDrop = derivedFrom.royalAid.itemsToDrop,
+
+                    points = derivedFrom.royalAid.points,
                     pawnCount = derivedFrom.royalAid.pawnCount,
+                    pawnKindDef = derivedFrom.royalAid.pawnKindDef,
+
+                    aidDurationDays = derivedFrom.royalAid.aidDurationDays,
+
+                    targetingRange = derivedFrom.royalAid.targetingRange,
+                    targetingRequireLOS = derivedFrom.royalAid.targetingRequireLOS,
+                    radius = derivedFrom.royalAid.radius,
+                    intervalTicks = derivedFrom.royalAid.intervalTicks,
+                    explosionCount = derivedFrom.royalAid.explosionCount,
+                    warmupTicks = derivedFrom.royalAid.warmupTicks,
+                    explosionRadiusRange = derivedFrom.royalAid.explosionRadiusRange,
                 };
             }
 

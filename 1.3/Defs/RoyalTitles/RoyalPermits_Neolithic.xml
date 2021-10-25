@@ -25,11 +25,11 @@
   <RoyalTitlePermitDef ParentName="NeolithicRequestResourcesBase">
     <defName>f2e_Neolithic_WoodRequest</defName>
     <label>wood request</label>
-    <description>Call for a delivery of 240 wood. It will arrive within 2-3 days.</description>
+    <description>Call for a delivery of 375 wood. It will arrive within 2-3 days.</description>
     <uiPosition>(0,0)</uiPosition>
     <royalAid>
       <itemsToDrop>
-        <WoodLog>240</WoodLog>
+        <WoodLog>375</WoodLog>
       </itemsToDrop>
     </royalAid>
   </RoyalTitlePermitDef>
@@ -42,6 +42,18 @@
     <royalAid>
       <itemsToDrop>
         <Pemmican>360</Pemmican>
+      </itemsToDrop>
+    </royalAid>
+  </RoyalTitlePermitDef>
+
+  <RoyalTitlePermitDef ParentName="NeolithicRequestResourcesBase">
+    <defName>f2e_Neolithic_ClothRequest</defName>
+    <label>cloth request</label>
+    <description>Call for a delivery of 120 cloth. It will arrive within 2-3 days.</description>
+    <uiPosition>(0,2)</uiPosition>
+    <royalAid>
+      <itemsToDrop>
+        <Cloth>120</Cloth>
       </itemsToDrop>
     </royalAid>
   </RoyalTitlePermitDef>
