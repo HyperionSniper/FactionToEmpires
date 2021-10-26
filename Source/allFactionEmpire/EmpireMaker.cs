@@ -108,6 +108,11 @@ namespace empireMaker {
 
                 TechLevel techLevel = EmpireHelpers.GetTechLevel(settings, factionDef);
 
+                // overrides isRaider in settings if true
+                if (EmpireHelpers.IsRaiderFaction(factionDef)) {
+                    settings.IsRaiderFaction = true;
+                }
+
                 // Sets royal title tags based on tech level. Returns true if the tech level matches a valid tech level.
                 // requires valid FactionDef.techLevel
                 // EmpireMaker.RoyalTitles.cs

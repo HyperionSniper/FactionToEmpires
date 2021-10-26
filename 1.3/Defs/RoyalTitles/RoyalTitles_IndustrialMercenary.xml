@@ -56,8 +56,8 @@
   <RoyalTitleDef ParentName="BaseOutlanderMercenaryTitleNPC">
     <defName>f2e_MercenaryElite</defName>
     <label>mercenary elite</label>
-    <description>The title of elite is granted to some of the most skilled mercenaries in the outlander unions. An elite mercenary may lead their own squad.\n\nElite mercenaries are afforded powerful equipment, including armor, weaponry, and combat enhancing drugs.</description>
-    <seniority>500</seniority>
+    <description>The title of elite is granted to some of the most skilled mercenaries. An elite mercenary may lead their own squad.\n\nElite mercenaries are afforded powerful equipment, including armor, weaponry, and combat enhancing drugs.</description>
+    <seniority>-200</seniority>
     <commonality>0.6</commonality>
     <permits>
       <li>TradeSettlement</li>
@@ -73,8 +73,8 @@
   <RoyalTitleDef ParentName="BaseOutlanderMercenaryTitleNPC">
     <defName>f2e_MercenaryBoss</defName>
     <label>mercenary boss</label>
-    <description>Outlander mercenary groups grant the title of boss to veteran mercenaries who have proven themselves in battle time and time again. They control large platoons of mercenaries and are afforded the best equipment available.</description>
-    <seniority>600</seniority>
+    <description>Mercenary groups grant the title of boss to veteran mercenaries who have proven themselves in battle time and time again. They control large platoons of mercenaries and are afforded the best equipment available.</description>
+    <seniority>-100</seniority>
     <commonality>0.2</commonality>
     <permits>
       <li>TradeSettlement</li>

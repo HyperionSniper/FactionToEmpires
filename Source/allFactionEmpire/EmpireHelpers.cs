@@ -16,6 +16,33 @@ namespace empireMaker {
             }
         }
 
+        public static bool IsRaiderFaction(FactionDef factionDef) {
+            bool isPirate = false;
+
+            List<string> pirateKeywords = new List<string>() {
+                "pirate", "raider", "marauder",
+            };
+
+            foreach (var backstoryFilter in factionDef.backstoryFilters) {
+                if (backstoryFilter.categories.Contains("Pirate")) {
+                    isPirate = true;
+                    break;
+                }
+
+                foreach (var category in backstoryFilter.categories) {
+                    foreach (var keyword in pirateKeywords) {
+                        if (category.ToLowerInvariant().Contains(keyword)) {
+                            isPirate = true;
+                            break;
+                        }
+                    }
+                    if (isPirate) break;
+                }
+            }
+
+            return isPirate;
+        }
+
         public static TechLevel GetTechLevel(ConversionParams settings, FactionDef factionDef) {
             TechLevel techLevel;
             bool forceConversion = settings.ConversionType == Conversion.forceConversion;

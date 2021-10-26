@@ -173,7 +173,7 @@
     <maxPsylinkLevel>1</maxPsylinkLevel>
   </RoyalTitleDef>
 
-  <RoyalTitleDef ParentName="BaseOutlanderCouncilTitle">
+  <RoyalTitleDef ParentName="BaseIndustrialRaiderEliteTitle">
     <defName>f2e_Captain</defName>
     <label>captain</label>
     <description>The title of captain is the middle-level leadership role in a raider confederation. Among the unaffiliated, only the most honorable are granted this level of influence within the confederation.\n\nDuring raids, a captain serves as a general, fielding multiple divisions by drop pod and enacting specific strategies individually or by the underbosses' order.</description>
@@ -522,7 +522,7 @@
   
   <RoyalTitleDef ParentName="BaseIndustrialRaiderCouncilTitleNPC">
     <defName>f2e_RaiderUnderboss</defName>
-    <label>raider underboss</label>
+    <label>underboss</label>
     <description>A high-level member of the administration of a raider faction. They assist the boss in managing small-scale military operations.\n\nIn times of war, underbosses are authorized to use any tools at their disposal, fielding drop pod raids and enacting specific strategies individually or by the boss's order. Many veterans and elite soldiers become underbosses and may lead their own platoon of raiders directly into battle in times of war.</description>
     <seniority>900</seniority>
     <commonality>0.4</commonality>
@@ -539,7 +539,7 @@
 
   <RoyalTitleDef ParentName="BaseIndustrialRaiderCouncilTitleNPC">
     <defName>f2e_RaiderBoss</defName>
-    <label>raider boss</label>
+    <label>boss</label>
     <description>The title of boss represents sovereignty over the operations of the entire faction and whatever else they or their faction may lay claim to.\n\nThe title is granted to whoever can seize and hold the title whether by money, influence or strength. However, this internal power struggle has strict rules for the sake of stability, and often, raiders will maintain loyalty to a single ruler until they are forced to retire by external forces.</description>
     <seniority>1000</seniority>
     <commonality>0.1</commonality>
