@@ -1,20 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
-  <!-- ============== Empire titles - Player gettable non-psycaster ============================= -->
-
-  <RoyalTitleDef Abstract="True" ParentName ="BaseTitle" Name="BaseIndustrialOutlanderTitle" >
+  <RoyalTitleDef Abstract="True" ParentName ="BaseTitle" Name="BaseIndustrialRaiderTitle" >
     <tags>
-      <li>IndustrialOutlanderTitle</li>
+      <li>IndustrialRaiderTitle</li>
     </tags>
   </RoyalTitleDef>
 
-  <RoyalTitleDef ParentName="BaseIndustrialOutlanderTitle">
-    <defName>f2e_Honorary</defName>
-    <label>honorary</label>
-    <description>The title of honorary is used by the outlanders to signify respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlander union.\n\nWith the title comes promise of material assistance as repayment.</description>
+
+  <RoyalTitleDef ParentName="BaseIndustrialRaiderTitle">
+    <defName>f2e_Associate</defName>
+    <label>associate</label>
+    <description>The initial rank a newly recruited raider earns. Associates are afforded nothing more than menial work, training, and a potential promotion, given time.\n\nSome raiders stay this rank forever, playing the role of a servant to a more honorable leader.</description>
     <seniority>0</seniority>
-    <favorCost>4</favorCost>
+    <favorCost>1</favorCost>
     <permitPointsAwarded>1</permitPointsAwarded>
     <changeHeirQuestPoints>1000</changeHeirQuestPoints>
     <commonality>1</commonality>
@@ -28,10 +26,10 @@
 
   <!-- ============== Empire titles - Player gettable psycaster ============================= -->
 
-  <RoyalTitleDef ParentName="BaseIndustrialOutlanderTitle">
-    <defName>f2e_Dignitary</defName>
-    <label>dignitary</label>
-    <description>The title of dignitary is used by the outlanders to further distinguish respected individuals. The title is offered to anyone, union member or outsider, who acts with honor in the eyes of the outlanders in a manner far exceeding that which would be expected from an honorary.\n\nA dignitary may request immediate personal protection from an enlisted mercenary group in times of need - a privilege normally restricted to paying customers or union administrators.</description>
+  <RoyalTitleDef ParentName="BaseIndustrialRaiderTitle">
+    <defName>f2e_Soldier</defName>
+    <label>soldier</label>
+    <description>The second rank a newly recruited raider may earn. Associates earn this rank after completing combat training.\n\nWhile it brings no honor to earn this rank, soldiers are allowed the right to serve an underboss in a role other than servitude.</description>
     <seniority>100</seniority>
     <favorCost>8</favorCost>
     <changeHeirQuestPoints>1200</changeHeirQuestPoints>
@@ -47,7 +45,7 @@
   </RoyalTitleDef>
 
   <!-- ============== Empire titles - Player gettable council ============================= -->
-  <RoyalTitleDef Name="BaseOutlanderCouncilTitle" ParentName="BaseIndustrialOutlanderTitle" Abstract="True">
+  <RoyalTitleDef Name="BaseIndustrialRaiderEliteTitle" ParentName="BaseIndustrialRaiderTitle" Abstract="True">
     <canBeInherited>True</canBeInherited>
     <decreeMtbDays>-1</decreeMtbDays>
     <!-- disabled -->
@@ -67,18 +65,18 @@
     <speechCooldown>900000</speechCooldown>
   </RoyalTitleDef>
 
-  <RoyalTitleDef ParentName="BaseOutlanderCouncilTitle">
-    <defName>f2e_Councilor</defName>
-    <label>councilor</label>
-    <description>A low-level member of the administration of an outlander union faction. Outlander colonies are almost entirely independent except in times of need, so councils are usually linked together only by loyalty to the union. This allows honorable unaffiliated outsiders to achieve the title of councilor.\n\nIn the outlander factions, councilors make up town and city councils. A councilor may become high councilor of an existing council through election, or found their own colony and council through a charter proposal. At war, a councilor leads their own squad, fighting alongside their soldiers, and may request mercenary reinforcements at will.</description>
+  <RoyalTitleDef ParentName="BaseIndustrialRaiderEliteTitle">
+    <defName>f2e_RaiderElite</defName>
+    <label>elite</label>
+    <description>A respected member of a raider faction. A solder may be awarded this rank by outcompeting their peers in combat training.\n\nAn elite raider may lead their own squad. Elite raiders are afforded powerful equipment, including armor, weaponry, and combat enhancing drugs.</description>
     <favorCost>16</favorCost>
-    <seniority>700</seniority>
+    <seniority>500</seniority>
     <minExpectation>Moderate</minExpectation>
     <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
     <changeHeirQuestPoints>1600</changeHeirQuestPoints>
     <commonality>0.7</commonality>
     <recruitmentResistanceOffset>30</recruitmentResistanceOffset>
-    
+
     <bedroomRequirements>
       <li Class="RoomRequirement_Area">
         <area>16</area>
@@ -107,7 +105,7 @@
         </buildingTags>
       </li>
     </bedroomRequirements>
-    
+
     <foodRequirement>
       <minQuality>MealSimple</minQuality>
       <allowedTypes>Processed, Liquor</allowedTypes>
@@ -120,12 +118,66 @@
 
     <maxPsylinkLevel>1</maxPsylinkLevel>
   </RoyalTitleDef>
-  
+
+  <RoyalTitleDef ParentName="BaseIndustrialRaiderEliteTitle">
+    <defName>f2e_RaiderVeteran</defName>
+    <label>veteran</label>
+    <description>A highly respected member of a raider faction. One step above elite, a soldier may earn this rank through wartime experience or outstanding achievents in battle.\n\nA veteran raider may lead their own squad. Veterans are afforded powerful equipment, including armor, weaponry, and combat enhancing drugs.</description>
+    <favorCost>16</favorCost>
+    <seniority>600</seniority>
+    <minExpectation>Moderate</minExpectation>
+    <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
+    <changeHeirQuestPoints>1600</changeHeirQuestPoints>
+    <commonality>0.7</commonality>
+    <recruitmentResistanceOffset>30</recruitmentResistanceOffset>
+
+    <bedroomRequirements>
+      <li Class="RoomRequirement_Area">
+        <area>16</area>
+      </li>
+      <li Class="RoomRequirement_TerrainWithTags">
+        <labelKey>RoomRequirementAllFloored</labelKey>
+        <tags>
+          <li>Floor</li>
+          <li>FineFloor</li>
+        </tags>
+      </li>
+      <li Class="RoomRequirement_ThingAnyOf">
+        <disablingPrecepts>
+          <li MayRequire="Ludeon.RimWorld.Ideology">SlabBed_Preferred</li>
+        </disablingPrecepts>
+        <things>
+          <li>Bed</li>
+          <li>DoubleBed</li>
+          <li>RoyalBed</li>
+        </things>
+      </li>
+      <li Class="RoomRequirement_ForbiddenBuildings">
+        <labelKey>RoomRequirementNoProductionFacilities</labelKey>
+        <buildingTags>
+          <li>Production</li>
+        </buildingTags>
+      </li>
+    </bedroomRequirements>
+
+    <foodRequirement>
+      <minQuality>MealSimple</minQuality>
+      <allowedTypes>Processed, Liquor</allowedTypes>
+      <allowedDefs>
+        <li>Ambrosia</li>
+        <li>Milk</li>
+        <li>RawBerries</li>
+      </allowedDefs>
+    </foodRequirement>
+
+    <maxPsylinkLevel>1</maxPsylinkLevel>
+  </RoyalTitleDef>
+
   <RoyalTitleDef ParentName="BaseOutlanderCouncilTitle">
-    <defName>f2e_HighCouncilor</defName>
-    <label>high councilor</label>
-    <description>A middle-level member of the administration of an outlander union. Among the unaffiliated, only the most honorable are granted this level of influence within the union.\n\nIn this faction, high councilors oversee the councils of towns and cities, collaborate with other high councilors in times of need, and may grant charters for colonies. At war, a high councilor serves as a general, fielding multiple divisions by drop pod and enacting specific strategies individually or by the prime councilor's order.</description>
-    <seniority>800</seniority>
+    <defName>f2e_Captain</defName>
+    <label>captain</label>
+    <description>The title of captain is the middle-level leadership role in a raider confederation. Among the unaffiliated, only the most honorable are granted this level of influence within the confederation.\n\nDuring raids, a captain serves as a general, fielding multiple divisions by drop pod and enacting specific strategies individually or by the underbosses' order.</description>
+    <seniority>700</seniority>
     <favorCost>18</favorCost>
     <minExpectation>High</minExpectation>
     <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
@@ -230,7 +282,7 @@
         </buildingTags>
       </li>
     </throneRoomRequirements>
-    
+
     <bedroomRequirements>
       <li Class="RoomRequirement_Area">
         <area>30</area>
@@ -267,7 +319,7 @@
         </buildingTags>
       </li>
     </bedroomRequirements>
-    
+
     <foodRequirement>
       <minQuality>MealFine</minQuality>
       <allowedTypes>Processed, Liquor</allowedTypes>
@@ -278,14 +330,13 @@
         <li>InsectJelly</li>
       </allowedDefs>
     </foodRequirement>
-    
+
     <maxPsylinkLevel>2</maxPsylinkLevel>
   </RoyalTitleDef>
 
-  <!-- ============== Empire titles - NPC only psycaster ============================= -->
-
-
-  <RoyalTitleDef Abstract="True" Name="BaseOutlanderCouncilTitleNPC" ParentName="BaseIndustrialOutlanderTitle" >
+  <!-- ============== Empire titles - NPC only ============================= -->
+  <RoyalTitleDef Abstract="True" Name="BaseIndustrialRaiderCouncilTitleNPC" ParentName="BaseIndustrialRaiderTitle" >
+    <minExpectation>Moderate</minExpectation>
     <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
     <permits>
       <li>TradeSettlement</li>
@@ -297,36 +348,27 @@
         <bodyPartGroupsMatchAny>
           <li>Torso</li>
         </bodyPartGroupsMatchAny>
-        <requiredTags>
-          <li>RoyalTier2</li>
-        </requiredTags>
         <allowedTags>
           <li>PrestigeCombatGear</li>
-          <li>Psychic</li>
+          <li>CombatGear</li>
         </allowedTags>
       </li>
       <li>
         <bodyPartGroupsMatchAny>
           <li>Torso</li>
         </bodyPartGroupsMatchAny>
-        <requiredTags>
-          <li>RoyalTier5</li>
-        </requiredTags>
         <allowedTags>
           <li>PrestigeCombatGear</li>
-          <li>Psychic</li>
+          <li>CombatGear</li>
         </allowedTags>
       </li>
       <li>
         <bodyPartGroupsMatchAny>
           <li>Torso</li>
         </bodyPartGroupsMatchAny>
-        <requiredTags>
-          <li>RoyalTier6</li>
-        </requiredTags>
         <allowedTags>
           <li>PrestigeCombatGear</li>
-          <li>Psychic</li>
+          <li>CombatGear</li>
         </allowedTags>
       </li>
       <li>
@@ -334,28 +376,12 @@
           <li>UpperHead</li>
           <li>FullHead</li>
         </bodyPartGroupsMatchAny>
-        <requiredTags>
-          <li>RoyalTier7</li>
-        </requiredTags>
         <allowedTags>
           <li>PrestigeCombatGear</li>
-          <li>Psychic</li>
+          <li>CombatGear</li>
         </allowedTags>
       </li>
     </requiredApparel>
-    <grantedAbilities>
-      <li>Speech</li>
-    </grantedAbilities>
-    <speechCooldown>600000</speechCooldown>
-  </RoyalTitleDef>
-
-  <RoyalTitleDef ParentName="BaseOutlanderCouncilTitleNPC">
-    <defName>f2e_Governor</defName>
-    <label>governor</label>
-    <description>A high-level member of the administration of an outlander faction. They assist the prime councilor in managing towns and cities. One governor may have jurisdiction over multiple colonies.\n\nGovernors hold a strictly administrative role and do not participate in war directly, although wartime domestic logistics fall under their authority.</description>
-    <seniority>900</seniority>
-    <commonality>0.1</commonality>
-    <minExpectation>SkyHigh</minExpectation>
 
     <throneRoomRequirements>
       <li Class="RoomRequirement_HasAssignedThroneAnyOf">
@@ -474,135 +500,58 @@
         <li>InsectJelly</li>
       </allowedDefs>
     </foodRequirement>
-    
+
+    <grantedAbilities><li>Speech</li></grantedAbilities>
+    <speechCooldown>600000</speechCooldown>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseIndustrialRaiderCouncilTitleNPC">
+    <defName>f2e_RaiderGovernor</defName>
+    <label>governor</label>
+    <description>A high-level member of the administration of a raider faction. They assist the boss and underbosses in managing towns and cities. One governor may have jurisdiction over multiple colonies.\n\nGovernors hold a strictly administrative role and do not participate in war directly, although wartime domestic logistics fall under their authority.</description>
+    <seniority>800</seniority>
+    <commonality>0.4</commonality>
+    <permits>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidSmall</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidLarge</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidGrand</li>
+    </permits>
+    <minExpectation>SkyHigh</minExpectation>
     <maxPsylinkLevel>3</maxPsylinkLevel>
   </RoyalTitleDef>
+  
+  <RoyalTitleDef ParentName="BaseIndustrialRaiderCouncilTitleNPC">
+    <defName>f2e_RaiderUnderboss</defName>
+    <label>raider underboss</label>
+    <description>A high-level member of the administration of a raider faction. They assist the boss in managing small-scale military operations.\n\nIn times of war, underbosses are authorized to use any tools at their disposal, fielding drop pod raids and enacting specific strategies individually or by the boss's order. Many veterans and elite soldiers become underbosses and may lead their own platoon of raiders directly into battle in times of war.</description>
+    <seniority>900</seniority>
+    <commonality>0.4</commonality>
+    <permits>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidSmall</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidLarge</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidGrand</li>
+      <li>f2e_CallArtilleryStrike</li>
+      <li>f2e_CallArtillerySalvo</li>
+    </permits>
+    <recruitmentResistanceOffset>280</recruitmentResistanceOffset>
+    <maxPsylinkLevel>5</maxPsylinkLevel>
+  </RoyalTitleDef>
 
-  <RoyalTitleDef ParentName="BaseOutlanderCouncilTitleNPC">
-    <defName>f2e_PrimeCouncilor</defName>
-    <label>prime councilor</label>
-    <description>The highest level of administrator within an outlander union faction. \n\nThe prime councilor, titled within this faction as {0}, controls all the colonies united under their flag, and projects force across the planet as needed. They may order their constituents to act as one in times of need, and at war, the Prime Councilor acts as commander-in-chief, and may approve wide-scale military movements and projections of force.</description>
+  <RoyalTitleDef ParentName="BaseIndustrialRaiderCouncilTitleNPC">
+    <defName>f2e_RaiderBoss</defName>
+    <label>raider boss</label>
+    <description>The title of boss represents sovereignty over the operations of the entire faction and whatever else they or their faction may lay claim to.\n\nThe title is granted to whoever can seize and hold the title whether by money, influence or strength. However, this internal power struggle has strict rules for the sake of stability, and often, raiders will maintain loyalty to a single ruler until they are forced to retire by external forces.</description>
     <seniority>1000</seniority>
-    <commonality>0</commonality>
-    <minExpectation>Noble</minExpectation>
-
-    <throneRoomRequirements>
-      <li Class="RoomRequirement_HasAssignedThroneAnyOf">
-        <things>
-          <li>Throne</li>
-          <li>GrandThrone</li>
-        </things>
-      </li>
-      <li Class="RoomRequirement_Area">
-        <area>80</area>
-      </li>
-      <li Class="RoomRequirement_Impressiveness">
-        <impressiveness>160</impressiveness>
-      </li>
-      <li Class="RoomRequirement_TerrainWithTags">
-        <labelKey>RoomRequirementAllFineFloored</labelKey>
-        <tags>
-          <li>FineFloor</li>
-        </tags>
-      </li>
-      <li Class="RoomRequirement_ThingAnyOfCount">
-        <things>
-          <li>Brazier</li>
-          <li>TorchLamp</li>
-          <li>StandingLamp</li>
-          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">DarklightBrazier</li>
-          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darktorch</li>
-          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darklamp</li>
-        </things>
-        <count>4</count>
-      </li>
-      <li Class="RoomRequirement_ThingCount">
-        <thingDef>Column</thingDef>
-        <count>4</count>
-      </li>
-      <li Class="RoomRequirement_ThingCount">
-        <thingDef>Drape</thingDef>
-        <count>2</count>
-      </li>
-      <li Class="RoomRequirement_AllThingsAnyOfAreGlowing">
-        <labelKey>RoomRequirementAllBraziersMustBeLit</labelKey>
-        <things>
-          <li>Brazier</li>
-          <li>TorchLamp</li>
-          <li>StandingLamp</li>
-          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">DarklightBrazier</li>
-          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darktorch</li>
-          <li MayRequire="Ludeon.RimWorld.Royalty,Ludeon.RimWorld.Ideology">Darklamp</li>
-        </things>
-      </li>
-      <li Class="RoomRequirement_ForbiddenBuildings">
-        <labelKey>RoomRequirementNoProductionFacilities</labelKey>
-        <buildingTags>
-          <li>Production</li>
-        </buildingTags>
-      </li>
-      <li Class="RoomRequirement_ForbiddenBuildings">
-        <labelKey>RoomRequirementNoBeds</labelKey>
-        <buildingTags>
-          <li>Bed</li>
-        </buildingTags>
-      </li>
-      <li MayRequire="Ludeon.RimWorld.Ideology" Class="RoomRequirement_ForbidAltars">
-        <labelKey>RoomRequirementNoAltars</labelKey>
-      </li>
-    </throneRoomRequirements>
-
-    <bedroomRequirements>
-      <li Class="RoomRequirement_Area">
-        <area>30</area>
-      </li>
-      <li Class="RoomRequirement_Impressiveness">
-        <impressiveness>80</impressiveness>
-      </li>
-      <li Class="RoomRequirement_TerrainWithTags">
-        <labelKey>RoomRequirementAllFloored</labelKey>
-        <tags>
-          <li>FineFloor</li>
-        </tags>
-      </li>
-      <li Class="RoomRequirement_ThingAnyOf">
-        <disablingPrecepts>
-          <li MayRequire="Ludeon.RimWorld.Ideology">SlabBed_Preferred</li>
-        </disablingPrecepts>
-        <things>
-          <li>Bed</li>
-          <li>RoyalBed</li>
-        </things>
-      </li>
-      <li Class="RoomRequirement_Thing">
-        <thingDef>EndTable</thingDef>
-      </li>
-      <li Class="RoomRequirement_Thing">
-        <thingDef>Dresser</thingDef>
-      </li>
-      <li Class="RoomRequirement_ThingCount">
-        <thingDef>Drape</thingDef>
-        <count>1</count>
-      </li>
-      <li Class="RoomRequirement_ForbiddenBuildings">
-        <labelKey>RoomRequirementNoProductionFacilities</labelKey>
-        <buildingTags>
-          <li>Production</li>
-        </buildingTags>
-      </li>
-    </bedroomRequirements>
-
-    <foodRequirement>
-      <minQuality>MealLavish</minQuality>
-      <allowedTypes>Processed, Liquor</allowedTypes>
-      <allowedDefs>
-        <li>Ambrosia</li>
-        <li>Milk</li>
-        <li>RawBerries</li>
-        <li>InsectJelly</li>
-      </allowedDefs>
-    </foodRequirement>
-    
+    <commonality>0.1</commonality>
+    <permits>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidSmall</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidLarge</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidGrand</li>
+      <li>f2e_CallArtilleryStrike</li>
+      <li>f2e_CallArtillerySalvo</li>
+    </permits>
+    <recruitmentResistanceOffset>380</recruitmentResistanceOffset>
     <maxPsylinkLevel>6</maxPsylinkLevel>
   </RoyalTitleDef>
+  
 </Defs>

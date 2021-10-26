@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!--<PawnKindDef Name="EliteBase" Abstract="True">
+    <race>Human</race>
+    <maxGenerationAge>30</maxGenerationAge>
+    <combatPower>125</combatPower>
+    <chemicalAddictionChance>0.05</chemicalAddictionChance>
+    <invNutrition>2.55</invNutrition>
+  </PawnKindDef>
+
+  <PawnKindDef ParentName="EliteBase">
+    <defName>f2e_NeolithicElite</defName>
+    <label>anima warchief</label>
+    <invFoodDef>Pemmican</invFoodDef>
+    <apparelTags>
+      <li>Neolithic</li>
+    </apparelTags>
+    <weaponTags>
+      <li>NeolithicRangedChief</li>
+    </weaponTags>
+    <factionLeader>true</factionLeader>
+    <titleSelectOne>
+      <li>f2e_Chief</li>
+    </titleSelectOne>
+    <apparelMoney>3000~4500</apparelMoney>
+    <skills>
+      <li>
+        <skill>Shooting</skill>
+        <range>11~16</range>
+      </li>
+      <li>
+        <skill>Melee</skill>
+        <range>11~16</range>
+      </li>
+    </skills>
+    <disallowedTraits>
+      <li>Brawler</li>
+    </disallowedTraits>
+    <initialResistanceRange>66~96</initialResistanceRange>
+  </PawnKindDef>
+
+  -->
+</Defs>

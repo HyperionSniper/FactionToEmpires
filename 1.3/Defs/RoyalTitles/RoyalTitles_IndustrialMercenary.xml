@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  <!-- ============== Empire titles - NPC only mercenary ============================= -->
+  <RoyalTitleDef Abstract="True" Name="BaseOutlanderMercenaryTitleNPC" >
+    <tags>
+      <li>IndustrialMercenaryTitle</li>
+    </tags>
+    <awardThought>GainedTitle</awardThought>
+    <lostThought>LostTitle</lostThought>
+	
+    <minExpectation>Moderate</minExpectation>
+    <requiredMinimumApparelQuality>Normal</requiredMinimumApparelQuality>
+    <requiredApparel>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>Torso</li>
+        </bodyPartGroupsMatchAny>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>CombatGear</li>
+        </allowedTags>
+      </li>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>Torso</li>
+        </bodyPartGroupsMatchAny>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>CombatGear</li>
+        </allowedTags>
+      </li>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>Torso</li>
+        </bodyPartGroupsMatchAny>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>CombatGear</li>
+        </allowedTags>
+      </li>
+      <li>
+        <bodyPartGroupsMatchAny>
+          <li>UpperHead</li>
+          <li>FullHead</li>
+        </bodyPartGroupsMatchAny>
+        <allowedTags>
+          <li>PrestigeCombatGear</li>
+          <li>CombatGear</li>
+        </allowedTags>
+      </li>
+    </requiredApparel>
+    <grantedAbilities><li>Speech</li></grantedAbilities>
+    <speechCooldown>600000</speechCooldown>
+  </RoyalTitleDef>
+  
+  <RoyalTitleDef ParentName="BaseOutlanderMercenaryTitleNPC">
+    <defName>f2e_MercenaryElite</defName>
+    <label>mercenary elite</label>
+    <description>The title of elite is granted to some of the most skilled mercenaries in the outlander unions. An elite mercenary may lead their own squad.\n\nElite mercenaries are afforded powerful equipment, including armor, weaponry, and combat enhancing drugs.</description>
+    <seniority>500</seniority>
+    <commonality>0.6</commonality>
+    <permits>
+      <li>TradeSettlement</li>
+      <li>TradeCaravan</li>
+      <li>TradeOrbital</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidSmall</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidLarge</li>
+    </permits>
+    <recruitmentResistanceOffset>280</recruitmentResistanceOffset>
+    <maxPsylinkLevel>5</maxPsylinkLevel>
+  </RoyalTitleDef>
+
+  <RoyalTitleDef ParentName="BaseOutlanderMercenaryTitleNPC">
+    <defName>f2e_MercenaryBoss</defName>
+    <label>mercenary boss</label>
+    <description>Outlander mercenary groups grant the title of boss to veteran mercenaries who have proven themselves in battle time and time again. They control large platoons of mercenaries and are afforded the best equipment available.</description>
+    <seniority>600</seniority>
+    <commonality>0.2</commonality>
+    <permits>
+      <li>TradeSettlement</li>
+      <li>TradeCaravan</li>
+      <li>TradeOrbital</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidSmall</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidLarge</li>
+      <li>f2e_IndustrialOutlander_CallMilitaryAidGrand</li>
+      <li>f2e_CallArtilleryStrike</li>
+      <li>f2e_CallArtillerySalvo</li>
+    </permits>
+    <recruitmentResistanceOffset>380</recruitmentResistanceOffset>
+    <maxPsylinkLevel>6</maxPsylinkLevel>
+  </RoyalTitleDef>
+  
+</Defs>

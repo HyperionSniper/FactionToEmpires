@@ -75,4 +75,23 @@
     </royalAid>
     <cooldownDays>40</cooldownDays>
   </RoyalTitlePermitDef>
+
+  <!--<RoyalTitlePermitDef>
+    <defName>f2e_Neolithic_CallTeleportElite</defName>
+    <label>teleport anima warchief</label>
+    <description>Call a single anima warchief to aid you in battle. They will arrive immediately by farskip.</description>
+    <workerClass>RoyalTitlePermitWorker_CallAid</workerClass>
+    <minTitle>f2e_Elder</minTitle>
+    <faction>f2e_Neolithic</faction>
+    <permitPointCost>1</permitPointCost>
+    <prerequisite>f2e_Neolithic_CallTeleportMilitaryAidSmall</prerequisite>
+    <uiPosition>(2,4)</uiPosition>
+    <royalAid>
+      <favorCost>4</favorCost>
+      <pawnKindDef>f2e_NeolithicElite</pawnKindDef>
+      <pawnCount>1</pawnCount>
+      <targetingRange>39.9</targetingRange>
+    </royalAid>
+    <cooldownDays>40</cooldownDays>
+  </RoyalTitlePermitDef>-->
 </Defs>

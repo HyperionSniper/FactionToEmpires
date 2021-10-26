@@ -22,7 +22,7 @@ namespace empireMaker
                 Mercenary = "IndustrialMercenaryTitle"
             }},
             {  EmpireArchetype.IndustrialRaider, new Titles {
-                Base = "IndustrialOutlanderTitle",
+                Base = "IndustrialRaiderTitle",
                 //Base = "IndustrialRaiderTitle",
                 Mercenary = "IndustrialMercenaryTitle"
             }},
@@ -31,7 +31,7 @@ namespace empireMaker
                 Mercenary = "IndustrialMercenaryTitle"
             }},
             {  EmpireArchetype.SpacerRaider, new Titles {
-                Base = "IndustrialOutlanderTitle",
+                Base = "IndustrialRaiderTitle",
                 //Base = "SpacerRaiderTitle",
                 Mercenary = "IndustrialMercenaryTitle"
             }},
@@ -131,6 +131,7 @@ namespace empireMaker
 
             // Clone RoyalTitles --
             foreach (string tag in s_RoyalTitleTagMap[settings.Archetype]) {
+                Log.Message($"F2E - using tag {tag}");
                 foreach (var defaultTitleDef in royalTitleTagMap[tag]) {
                     var newRoyalTitle = new RoyalTitleDef {
                         defName = $"{defaultTitleDef.defName}_{factionDef.defName}"
